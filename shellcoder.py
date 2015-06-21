@@ -6,11 +6,10 @@ ZeroDay Cyber Research
 Z3r0D4y.Com
 Ali Razmjoo
 '''
-__version__ = '1.0.1'
-__key__ = 'BOILING_POINT'
-__release_date__ = '2015 June 19'
+__version__ = '1.0.2'
+__key__ = 'SKIP'
+__release_date__ = '2015 June 21'
 __author__ = 'Ali Razmjoo'
-
 import time
 import sys
 import os

@@ -13,6 +13,7 @@ def start(__version__):
 	try:
 		last_version = urllib2.urlopen(url).read()
 		last_version = last_version.rsplit()[0]
+		print last_version
 	except:
 		print 'Connection Error!\n\n'
 	update = True
