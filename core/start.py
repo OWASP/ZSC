@@ -8,9 +8,9 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.2'
-__key__ = 'SKIP'
-__release_date__ = '2015 June 21'
+__version__ = '1.0.3'
+__key__ = 'AWAKE'
+__release_date__ = '2015 June 27'
 __author__ = 'Ali Razmjoo'
 def sig():
 	print '''

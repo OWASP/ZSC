@@ -447,7 +447,7 @@ def do(cont):
 			values = file_writer(job).rsplit('\x90\x90\x90')
 			shellcode = write.run(values[0],values[1])
 	if shellcode is not None:
-		shellcode = encode.process(encode_type,shellcode,os_name,job)
+		shellcode = encode.process(encode_type,shellcode,os_name,job).replace('\n\n','\n').replace('\n\n','\n')
 	save = open('output/'+filename,'w')
 	save.write(shellcode)
 	save.close()

