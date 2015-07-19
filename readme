@@ -15,7 +15,7 @@ Examples:
 >python shellcoder.py -os linux_x86 -encode inc_10 -job chmod('/etc/passwd','777') -o file
 >python shellcoder.py -os linux_x86 -encode dec_30 -job chmod('/etc/passwd','777') -o file
 
-Note: you also can use high value for inc and dec time, like inc_100000, your shellcode may get much length 
+Note: you also can use high value for inc and dec time, like inc_100000, your shellcode may get too big
 
 
 version 1.0.3: AWAKE
