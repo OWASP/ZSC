@@ -9,7 +9,10 @@ Ali Razmjoo
 import binascii
 def run(file_to_perm,perm_num):
 	if len(file_to_perm) >= 4:
-		perm_num = hex(int(perm_num, 8))
+		try:
+			perm_num = hex(int(perm_num, 8))
+		except:
+			perm_num = hex(int(perm_num, 16))
 		if len(perm_num) % 2 is not 0:
 			perm_num = perm_num.replace('0x','0x0')
 		if len(perm_num) is 10:

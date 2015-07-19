@@ -1,3 +1,23 @@
+version 1.0.4: Infinity
+add inc encoding chmod() [linux_x86]
+add inc_timesyouwant chmod() [linux_x86]
+add dec encoding chmod() [linux_x86]
+add dec_timesyouwant chmod() [linux_x86]
+add features table inside "features_table.html"
+add -about to menu for developers name and etc
+add color output for windows cmd
+fixed permission number calculating in chmod() [linux_x86]
+software's signature changes
+
+Examples:
+>python shellcoder.py -os linux_x86 -encode inc -job chmod('/etc/passwd','777') -o file
+>python shellcoder.py -os linux_x86 -encode dec -job chmod('/etc/passwd','777') -o file
+>python shellcoder.py -os linux_x86 -encode inc_10 -job chmod('/etc/passwd','777') -o file
+>python shellcoder.py -os linux_x86 -encode dec_30 -job chmod('/etc/passwd','777') -o file
+
+Note: you also can use high value for inc and dec time, like inc_100000, your shellcode may get much length 
+
+
 version 1.0.3: AWAKE
 add xor_random encoding chmod() [linux_x86]
 add xor_yourvalue encoding chmod() [linux_x86]

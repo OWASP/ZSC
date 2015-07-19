@@ -7,6 +7,8 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 import encode
+import sys
+from core import color
 def chmod_spliter(cont):
 	cont = cont.replace('chmod(\'','')
 	cont = cont.replace('\',\'','\x90\x90\x90')
@@ -451,4 +453,21 @@ def do(cont):
 	save = open('output/'+filename,'w')
 	save.write(shellcode)
 	save.close()
-	print 'Your Shellcode file generated!\nOS:',os_name,'\nOutput:','output/'+filename,'\nEncode:',encode_type,'\nJob:',job
+	color.color(10)
+	sys.stdout.write('Your Shellcode file generated!\n')
+	color.color(11)
+	sys.stdout.write('\nOS: ')
+	color.color(12)
+	sys.stdout.write(os_name)
+	color.color(11)
+	sys.stdout.write('\nOutput: ')
+	color.color(12)
+	sys.stdout.write('output/'+filename)
+	color.color(11)
+	sys.stdout.write('\nEncode: ')
+	color.color(12)
+	sys.stdout.write(encode_type)
+	color.color(11)
+	sys.stdout.write('\nJob: ')
+	color.color(12)
+	sys.stdout.write(job+'\n\n')

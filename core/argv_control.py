@@ -40,6 +40,9 @@ def check():
 		if str(sys.argv[1]) == '-update':
 			checkargv = True
 			start.update()
+		if str(sys.argv[1]) == '-about':
+			checkargv = True
+			start.about()
 		if checkargv is False:
 			start.inputcheck()
 		return checkargv
