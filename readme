@@ -1,5 +1,5 @@
 version 1.0.4.1: Infinity
-bug fix reported by user in linux
+bug fix reported by user in executing on linux , color function
 
 version 1.0.4: Infinity
 add inc encoding chmod() [linux_x86]
