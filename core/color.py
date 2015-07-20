@@ -6,6 +6,7 @@ ZeroDay Cyber Research
 Z3r0D4y.Com
 Ali Razmjoo
 '''
+#bug fix reported by John Babio in version 1.0.4 johndbabio/[at]/gmail/./com
 import sys
 import ctypes
 ''' windows colors
@@ -36,8 +37,8 @@ background_blue_content_gr = 0x18
 background_blue_content_light_blue = 0x19
 background_green_content_black = 0x20
 '''
-def color(color, handle=ctypes.windll.kernel32.GetStdHandle(-11)):
+def color(color):
 	if sys.platform == 'win' or sys.platform == 'win32' or sys.platform == 'win64':
-		ctypes.windll.kernel32.SetConsoleTextAttribute(handle, color)
+		ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), color)
 	else:
 		skip = 1

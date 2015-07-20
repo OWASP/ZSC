@@ -8,9 +8,9 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.4'
+__version__ = '1.0.4.1'
 __key__ = 'Infinity'
-__release_date__ = '2015 July 19'
+__release_date__ = '2015 July 20'
 __author__ = 'Ali Razmjoo'
 zcr =  '''
   ___________ _____                                                      
@@ -55,7 +55,7 @@ def sig():
 	color.color(12)
 	sys.stdout.write(__release_date__)
 	color.color(10)
-	sys.stdout.write(''' ----------------|
+	sys.stdout.write(''' --------------|
 |----------------------------------------------------------------------------|
 |----------------------------------------------------------------------------|''')
 	color.color(15)
