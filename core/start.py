@@ -8,11 +8,13 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.4.1'
-__key__ = 'Infinity'
-__release_date__ = '2015 July 20'
+__version__ = '1.0.5'
+__key__ = 'CaMo'
+__release_date__ = '2015 July 27'
 __author__ = 'Ali Razmjoo'
-zcr =  '''
+from core import color
+def zcr():
+	print color.color('red') + '''
   ___________ _____                                                      
  |___  / ____|  __ \                                                     
     / / |    | |__) |                                                    
@@ -24,93 +26,53 @@ zcr =  '''
   \___ \| '_ \|  __| | |    | |   | |   | |  | | |  | |  __| |  _  /  | |
   ____) | | | | |____| |____| |___| |___| |__| | |__| | |____| | \ \  |_|
  |_____/|_| |_|______|______|______\_____\____/|_____/|______|_|  \_\ (_)
-'''
-from core import color
+''' + color.color('cyan') + '\t\t\t\tZeroDay Cyber Research Shellcoder\n' + color.color('reset')	
 def sig():
-	color.color(10)
-	sys.stdout.write( '''
+	print '''%s
 |----------------------------------------------------------------------------|
 |----------------------------------------------------------------------------|
 |Author Website: http://z3r0d4y.com/ ----------------------------------------|
-|Project URL: http://www.z3r0d4y.com/p/zcr-shellcoder.html ------------------|
-|Project Coordinator: ''')
-	color.color(12)
-	sys.stdout.write( '''%s'''%__author__)
-	color.color(10)
-	sys.stdout.write(' | ')
-	color.color(12)
-	sys.stdout.write('Ali@Z3r0D4y.Com ')
-	color.color(10)
-	sys.stdout.write('''-------------------------|''')
-	sys.stdout.write('''
-|key: ''')
-	color.color(12)
-	sys.stdout.write(__key__)
-	color.color(10)
-	sys.stdout.write(''' | version: ''') 
-	color.color(12)
-	sys.stdout.write(__version__) 
-	color.color(10)
-	sys.stdout.write(''' | Release Date: ''')
-	color.color(12)
-	sys.stdout.write(__release_date__)
-	color.color(10)
-	sys.stdout.write(''' --------------|
+|Project URL: http://%szsc%s.z3r0d4y.com/ ---------------------------------------|
+|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s --------------------|
 |----------------------------------------------------------------------------|
-|----------------------------------------------------------------------------|''')
-	color.color(15)
+|----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'),color.color('red'),__version__,color.color('blue'))
 def start():
-	color.color(11)
-	print zcr
-	color.color(12)	
-	print '''           	
-ZeroDay Cyber Research Shellcoder
-Please execute with -h|--h|-help|--help switch to see help menu.
-'''
-	color.color(15)
+	zcr()
+	print color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset')
 	sig()
-	color.color(14)
-	raw_input('\nPress "Enter" to continue')
-	color.color(15)
+	raw_input('%sPress "%sEnter%s" to continue%s'%(color.color('green'),color.color('red'),color.color('green'),color.color('reset')))
 	sys.exit(0)
 def menu():
-	color.color(12)
-	print '''ZeroDay Cyber Research Shellcoder'''
-	color.color(11)
 	print '''
-Switches:
--h, --h, -help, --help => to see this help guide  
--os => choose your os to create shellcode
--oslist	=> list os for switch -os
--o => output filename
--job => what shellcode gonna do for you ?
--joblist => list of -job switch
--encode => generate shellcode with encode
--types => types of encode for -encode switch
+%sSwitches%s:
+%s-h%s, %s--h%s, %s-help%s, %s--help%s => to see this help guide  
+%s-os%s => choose your os to create shellcode
+%s-oslist%s	=> list os for switch -os
+%s-o%s => output filename
+%s-job%s => what shellcode gonna do for you ?
+%s-joblist%s => list of -job switch
+%s-encode%s => generate shellcode with encode
+%s-types%s => types of encode for -encode switch
+%s-wizard%s => wizard mod
 
--update => check for update
--about => about software and developers.
-'''
-	color.color(11)
+%s-update%s => check for update
+%s-about%s => about software and %sdevelopers%s.'''%(color.color('yellow'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'))
 	sig()
 	sys.exit(0)
 def inputcheck():
-	color.color(12)
-	print '''
-[+] Wrong input, Check Help Menu ,Execute: shellcoder -h
-'''
-	color.color(15)
+	print color.color('yellow')+'''
+[+] Wrong input, Check Help Menu ,Execute: zsc ''' + color.color('red') + '-h'+ '\n' + color.color('reset')
 	sig()
 	sys.exit(0)
 def oslist(value):
 	val = value
+	
 	list = ['linux_x86','linux_x64','linux_arm','linux_mips',
 	'freebsd_x86','freebsd_x64','windows_x86','windows_x64',
 	'osx','solaris_x86','solaris_x64']
 	if val is 1:
-		color.color(11)
 		for os in list:
-			print '[+]',os
+			print '%s[+]%s'%(color.color('yellow'),color.color('green')),os
 		sig()
 		sys.exit(0)
 	if val is not 1:
@@ -129,9 +91,8 @@ def joblist(value):
 	'download_execute(\'url\',\'filename\',\'command to execute\')','system(\'command to execute\')',
 	'script_executor(\'name of script\',\'path and name of your script in your pc\',\'execute command\')']
 	if val is 1:
-		color.color(11)
 		for job in list:
-			print '[+]',job
+			print '%s[+]%s'%(color.color('yellow'),color.color('green')),job
 		sig()
 		sys.exit(0)
 	if val is not 1:
@@ -238,9 +199,8 @@ def types(value):
 	'add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant',
 	'dec','dec_timesyouwant','mix_all']
 	if val is 1:
-		color.color(11)
 		for type in list:
-			print '[+]',type
+			print '%s[+]%s'%(color.color('yellow'),color.color('green')),type
 		sig()
 		sys.exit(0)
 	if val is not 1:
@@ -293,10 +253,10 @@ def update():
 	sig()
 	sys.exit(0)
 def about():
-	color.color(11)
-	print zcr,'\n'
-	color.color(13)
+	zcr(),'\n'
 	developers = ['Ali Razmjoo | http://z3r0d4y.com | Ali@Z3r0D4y.Com | Twitter: @Ali_Razmjo0',]
+	print color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo\n\n' + color.color('yellow') + 'Developers:'
+	sys.stdout.write(color.color('cyan'))
 	for developer in developers:
 		print developer
 	sig()

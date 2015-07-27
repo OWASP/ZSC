@@ -16,21 +16,15 @@ def startu(__version__):
 		last_version = urllib2.urlopen(url).read()
 		last_version = last_version.rsplit()[0]
 	except:
-		color.color(12)
-		print 'Connection Error!\n\n'
-		color.color(15)
+		print '%sConnection Error!%s\n\n'%(color.color('red'),color.color('reset'))
 		err = 1
 	if err is 0:
 		update = True
 		if str(last_version) == str(__version__):
-			color.color(11)
-			print 'you are using the last version of software : %s'%(last_version)
-			color.color(15)
+			print '%syou are using the last version of software : %s%s%s'%(color.color('green'),color.color('red'),last_version,color.color('reset'))
 			update = False
 		if update is True:
-			color.color(13)
-			print 'your software version: %s\nlast version released: %s\n\nDownloading zcr_shellcoder_%s.zip\n\n\n'%(str(__version__),str(last_version),str(last_version))
-			color.color(14)
+			print '%syour software version: %s%s%s\nlast version released: %s%s%s\n\nDownloading %szcr_shellcoder_%s%s%s.zip%s\n\n\n'%(color.color('green'),color.color('cyan'),str(__version__),color.color('green'),color.color('red'),str(last_version),color.color('green'),color.color('yellow'),color.color('red'),str(last_version),color.color('yellow'),color.color('reset'))
 			up_url = up_url + 'zcr_shellcoder_%s.zip'%(last_version)
 			try:
 				file_name = up_url.split('/')[-1]
@@ -38,7 +32,7 @@ def startu(__version__):
 				f = open(file_name, 'wb')
 				meta = u.info()
 				file_size = int(meta.getheaders("Content-Length")[0])
-				print "Downloading: %s Bytes: %s" % (file_name, file_size)
+				print "%sDownloading: %s%s%s Bytes: %s%s%s" % (color.color('white'),color.color('yellow'),file_name,color.color('white'),color.color('red'), file_size,color.color('blue'))
 				file_size_dl = 0
 				block_sz = 10
 				while True:
@@ -51,10 +45,6 @@ def startu(__version__):
 					status = status + chr(8)*(len(status)+1)
 					print status,
 				f.close()
-				print 'File Downloaded: %s\n\n'%(file_name)
-				color.color(15)
+				print '%sFile Downloaded: %s%s%s\n\n'%(color.color('cyan'),color.color('yellow'),file_name,color.color('reset'))
 			except:
-				color.color(12)
-				print 'Connection Error!\n\n'
-				color.color(15)
-				
+				print '%sConnection Error!%s\n\n'%(color.color('red'),color.color('reset'))

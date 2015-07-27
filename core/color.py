@@ -7,38 +7,32 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 #bug fix reported by John Babio in version 1.0.4 johndbabio/[at]/gmail/./com
-import sys
-import ctypes
-''' windows colors
-blue = 0x01 
-green= 0x02
-light_green = 10
-cy = 0x03
-light_cy = 11
-red  = 0x04 
-light_red = 12
-per = 0x05
-light_per = 13
-by = 0x06
-light_by = 14
-wh = 0x07
-gr = 0x08
-white = 15
-light_blue = 0x09
-background_blue_content_black = 0x10
-background_content_blue = 0x11
-background_blue_content_green = 0x12
-background_blue_content_cy = 0x13
-background_blue_content_red = 0x14
-background_blue_content_per = 0x15
-background_blue_content_by = 0x16
-background_blue_content_wh = 0x17
-background_blue_content_gr = 0x18
-background_blue_content_light_blue = 0x19
-background_green_content_black = 0x20
-'''
+reset = '\033[0m'
+grey = '\033[1;30m'
+red = '\033[1;31m'
+green = '\033[1;32m'
+yellow = '\033[1;33m'
+blue = '\033[1;34m'
+purple = '\033[1;35m'
+cyan = '\033[1;36m'
+white = '\033[1;37m'
 def color(color):
-	if sys.platform == 'win' or sys.platform == 'win32' or sys.platform == 'win64':
-		ctypes.windll.kernel32.SetConsoleTextAttribute(ctypes.windll.kernel32.GetStdHandle(-11), color)
-	else:
-		skip = 1
+	if color == 'reset':
+		return reset
+	if color == 'grey':
+		return grey
+	if color == 'red':
+		return red
+	if color == 'green':
+		return green
+	if color == 'yellow':
+		return yellow
+	if color == 'blue':
+		return blue
+	if color == 'purple':
+		return purple
+	if color == 'cyan':
+		return cyan
+	if color == 'white':
+		return white
+

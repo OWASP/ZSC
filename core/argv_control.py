@@ -8,6 +8,9 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 import sys
+from lib import analyser
+from core import start
+from core import color
 def exist():
 	check_num = False
 	if len(sys.argv) > 1:
@@ -43,6 +46,17 @@ def check():
 		if str(sys.argv[1]) == '-about':
 			checkargv = True
 			start.about()
+		if str(sys.argv[1]) == '-wizard':
+			checkargv = True
+			start.zcr()
+			os = raw_input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
+			filename = raw_input(color.color('cyan')+'Filename: '+color.color('white')).replace('\n','')
+			encode = raw_input(color.color('cyan')+'encode:'+color.color('white')).replace('\n','')
+			job = raw_input(color.color('cyan')+'job:'+color.color('white')).replace('\n','')
+			content = os + '\x90\x90\x90' + filename + '\x90\x90\x90' + encode + '\x90\x90\x90' + job
+			analyser.do(content)
+			start.sig()
+			sys.exit(0)
 		if checkargv is False:
 			start.inputcheck()
 		return checkargv
@@ -64,6 +78,8 @@ def check():
 			if argv_check == '-joblist':
 				checkargv = False
 			if argv_check == '-update':
+				checkargv = False
+			if argv_check == '-wizard':
 				checkargv = False
 		if checkargv is False:
 			start.inputcheck()
@@ -133,9 +149,13 @@ def run():
 		return checkargv
 	if start.joblist(sys.argv[job_counter]) is not True:
 		return checkargv
-	writer = open('output/'+sys.argv[filename_counter],'w')
-	writer.write('')
-	writer.close()
+	try:
+		writer = open(sys.argv[filename_counter],'w')
+		writer.write('')
+		writer.close()
+	except:
+		sys.exit('Error, Cannot write file!')
+	print 1
 	os = sys.argv[os_counter]
 	filename = sys.argv[filename_counter]
 	encode = sys.argv[encode_counter]

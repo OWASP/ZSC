@@ -1,7 +1,34 @@
+ZCR Shellcoder is an open source software in python language which lets you 
+generate customized  shellcodes for listed operation systems. This software 
+can be run on Windows/Linux&Unix/OSX and others OS under python 2.7.x.
+
+Home: http://zsc.z3r0d4y.com/
+Features: http://zsc.z3r0d4y.com/table.html
+Github: https://github.com/Ali-Razmjoo/ZCR-Shellcoder
+Archive: https://github.com/Ali-Razmjoo/ZCR-Shellcoder-Archive
+About Author: http://www.z3r0d4y.com/p/about.html
+
+for more information read the document files in main directory or visit home page.
+
+
+Usages And Changes:
+==
+version 1.0.5: CaMo
+----
+add "-wizard" switch
+add installer "use 'zsc' commandline in terminal after installed"
+add uninstaller 
+This Software just could be run on linux since this version
+change output to .c file and automated shellcode generating
+add color output for terminal
+etc ...
+
 version 1.0.4.1: Infinity
+----
 bug fix reported by user in executing on linux , color function
 
 version 1.0.4: Infinity
+----
 add inc encoding chmod() [linux_x86]
 add inc_timesyouwant chmod() [linux_x86]
 add dec encoding chmod() [linux_x86]
@@ -22,6 +49,7 @@ Note: you also can use high value for inc and dec time, like inc_100000, your sh
 
 
 version 1.0.3: AWAKE
+----
 add xor_random encoding chmod() [linux_x86]
 add xor_yourvalue encoding chmod() [linux_x86]
 add add_random encoding chmod() [linux_x86]
@@ -51,6 +79,7 @@ Note: your xor value could be anything. "xor_0x41414141" and "xor_0x45872f4d" ar
 
 
 version 1.0.2: SKIP
+----
 [linux_x86 modules completed]
 add script_executor() [linux - using command execution]
 add download_execute() [linux_x86 - using command execution (wget)]  
@@ -77,6 +106,7 @@ Note: script_executor(),download_execute(),download(),dir_create(),file_create()
 
 
 version 1.0.1: BOILING_POINT
+----
 add system() [linux_x86 command execute]
 fixed chmod filename 1/4 char length [linux_x86]
 fixed exec filename 1/4 char length [linux_x86]
@@ -97,6 +127,7 @@ Note: Don't use space ' ' in system() function, replace it with "[space]" , soft
 
 
 version 1.0.0: ASIIN_BLUE_RUBY
+----
 add chmod() [linux_x86] -> chmod('/path/file','perm_num')
 add write() [linux_x86] -> write('/path/file','content')
 add exec() [linux_x86]  -> exec('/path/file')
