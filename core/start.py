@@ -35,7 +35,7 @@ def sig():
 |Project URL: http://%szsc%s.z3r0d4y.com/ ---------------------------------------|
 |key: %s%s%s | version: %s%s%s | Release Date: %s%s%s --------------------|
 |----------------------------------------------------------------------------|
-|----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'),color.color('red'),__version__,color.color('blue'))
+|----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'))
 def start():
 	zcr()
 	print color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset')
