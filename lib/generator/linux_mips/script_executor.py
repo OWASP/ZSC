@@ -7,4 +7,4 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 def run(filename,content,command):
-	print 'This feature is not active yet for this operation system !\nWait for updates , Thanks.\n'
+	return 'N'

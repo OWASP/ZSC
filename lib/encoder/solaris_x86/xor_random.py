@@ -17,7 +17,7 @@ def start(shellcode,job):
 		print 'This encoding feature is not available yet, please wait for next versions.'
 	if 'download(' in job:
 		print 'This encoding feature is not available yet, please wait for next versions.'
-	if 'exc(' in job:
+	if 'exec(' in job:
 		print 'This encoding feature is not available yet, please wait for next versions.'
 	if 'file_create(' in job:
 		print 'This encoding feature is not available yet, please wait for next versions.'

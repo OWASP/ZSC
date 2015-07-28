@@ -67,19 +67,19 @@ def start(shellcode,job):
 					t = False
 		shellcode = start + middle + end
 	if 'dir_create(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'download_execute(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'download(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
-	if 'exc(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
+	if 'exec(' in job:
+		shellcode = 'N' + shellcode
 	if 'file_create(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'script_executor(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'system(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'write(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	return shellcode

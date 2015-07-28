@@ -8,9 +8,9 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.5'
+__version__ = '1.0.5.1'
 __key__ = 'CaMo'
-__release_date__ = '2015 July 27'
+__release_date__ = '2015 July 28'
 __author__ = 'Ali Razmjoo'
 from core import color
 def zcr():
@@ -33,14 +33,17 @@ def sig():
 |----------------------------------------------------------------------------|
 |Author Website: http://z3r0d4y.com/ ----------------------------------------|
 |Project URL: http://%szsc%s.z3r0d4y.com/ ---------------------------------------|
-|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s --------------------|
+|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s ------------------|
 |----------------------------------------------------------------------------|
 |----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'))
 def start():
 	zcr()
 	print color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset')
 	sig()
-	raw_input('%sPress "%sEnter%s" to continue%s'%(color.color('green'),color.color('red'),color.color('green'),color.color('reset')))
+	try:
+		raw_input('%sPress "%sEnter%s" to continue%s'%(color.color('green'),color.color('red'),color.color('green'),color.color('white')))
+	except:
+		print '\n\nKeyboardInterrupt, aborted by user.\n'
 	sys.exit(0)
 def menu():
 	print '''
@@ -57,201 +60,207 @@ def menu():
 
 %s-update%s => check for update
 %s-about%s => about software and %sdevelopers%s.'''%(color.color('yellow'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'))
-	sig()
-	sys.exit(0)
+	
+	sys.exit(sig())
 def inputcheck():
 	print color.color('yellow')+'''
 [+] Wrong input, Check Help Menu ,Execute: zsc ''' + color.color('red') + '-h'+ '\n' + color.color('reset')
-	sig()
-	sys.exit(0)
-def oslist(value):
-	val = value
-	
-	list = ['linux_x86','linux_x64','linux_arm','linux_mips',
+	sys.exit(sig())
+os_name_list = ['linux_x86','linux_x64','linux_arm','linux_mips',
 	'freebsd_x86','freebsd_x64','windows_x86','windows_x64',
 	'osx','solaris_x86','solaris_x64']
+def os_names_list():
+	for os in os_name_list:
+		print '%s[+]%s'%(color.color('yellow'),color.color('green')),os
+def os_check(val):
+	exist = 0
+	for os in os_name_list:
+		if str(val) == str(os):
+			exist = 1
+	if exist is 1:
+		return True
+def oslist(val):
 	if val is 1:
-		for os in list:
-			print '%s[+]%s'%(color.color('yellow'),color.color('green')),os
-		sig()
-		sys.exit(0)
+		os_names_list()
+		sys.exit(sig())
 	if val is not 1:
-		exist = 0
-		for os in list:
-			if str(val) == str(os):
-				exist = 1
-		if exist is 1:
+		if os_check(val) is True:
 			return True
 
-def joblist(value):
-	val = value	
-	list = ['exec(\'/path/file\')','chmod(\'/path/file\',\'permission number\')',
+job_name_list = ['exec(\'/path/file\')','chmod(\'/path/file\',\'permission number\')',
 	'write(\'/path/file\',\'text to write\')','file_create(\'/path/file\',\'text to write\')',
 	'dir_create(\'/path/folder\')','download(\'url\',\'filename\')',
 	'download_execute(\'url\',\'filename\',\'command to execute\')','system(\'command to execute\')',
 	'script_executor(\'name of script\',\'path and name of your script in your pc\',\'execute command\')']
+def job_list():
+	for job in job_name_list:
+		print '%s[+]%s'%(color.color('yellow'),color.color('green')),job
+def job_check(val):
+	exist = 0
+	if 'exec(' in val:
+		try:
+			val = val.replace('exec(\'','')
+			val = val.replace('\')','')
+			softname = val
+			exist = 1
+		except:
+			exist = 0
+	if 'chmod(' in val:
+		try: 
+			val = val.replace('chmod(\'','')
+			val = val.replace('\',\'','\x90\x90\x90')
+			val = val.replace('\')','')
+			val = val.rsplit('\x90\x90\x90')
+			filename = val[0]
+			number = val[1]
+			int_num = int(number)
+			exist = 1
+		except:
+			exist = 0
+	if 'write(' in val: 
+		try:
+			val = val.replace('write(\'','')
+			val = val.replace('\',\'','\x90\x90\x90')
+			val = val.replace('\')','')
+			val = val.rsplit('\x90\x90\x90')
+			filename = val[0]
+			content = val[1]
+			exist = 1
+		except:
+			exist = 0
+	if 'file_create(' in val:
+		try:
+			val = val.replace('file_create(\'','')
+			val = val.replace('\',\'','\x90\x90\x90')
+			val = val.replace('\')','')
+			val = val.rsplit('\x90\x90\x90')
+			filename = val[0]
+			content = val[1]
+			exist = 1
+		except:
+			exist = 0
+	if 'dir_create(' in val:
+		try:
+			val = val.replace('dir_create(\'','')
+			val = val.replace('\')','')
+			dirname = val
+			exist = 1
+		except:
+			exist = 0
+	if 'download(' in val:
+		try:
+			val = val.replace('download(\'','')
+			val = val.replace('\',\'','\x90\x90\x90')
+			val = val.replace('\')','')
+			val = val.rsplit('\x90\x90\x90')
+			url = val[0]
+			filename = val[1]
+			exist = 1
+		except:
+			exist = 0
+	if 'download_execute(' in val:
+		try:
+			val = val.replace('download_execute(\'','')
+			val = val.replace('\',\'','\x90\x90\x90')
+			val = val.replace('\')','')
+			val = val.rsplit('\x90\x90\x90')
+			url = val[0]
+			filename = val[1]
+			command = val[2]
+			exist = 1
+		except:
+			exist = 0
+	if 'system(' in val:
+		try:
+			val = val.replace('system(\'','')
+			val = val.replace('\')','')
+			command = val
+			exist = 1
+		except:
+			exist = 0
+	if 'script_executor(' in val:
+		try:
+			val = val.replace('script_executor(\'','')
+			val = val.replace('\',\'','\x90\x90\x90')
+			val = val.replace('\')','')
+			val = val.rsplit('\x90\x90\x90')
+			filename = val[0]
+			client_side_name = val[1]
+			command = val[2]
+			exist = 1
+		except:
+			exist = 0
+	if exist is 1:
+		return True
+
+def joblist(val):	
 	if val is 1:
-		for job in list:
-			print '%s[+]%s'%(color.color('yellow'),color.color('green')),job
-		sig()
-		sys.exit(0)
+		job_list()
+		sys.exit(sig())
 	if val is not 1:
-		exist = 0
-		if 'exec(' in val:
-			try:
-				val = val.replace('exec(\'','')
-				val = val.replace('\')','')
-				softname = val
-				exist = 1
-			except:
-				exist = 0
-		if 'chmod(' in val:
-			try: 
-				val = val.replace('chmod(\'','')
-				val = val.replace('\',\'','\x90\x90\x90')
-				val = val.replace('\')','')
-				val = val.rsplit('\x90\x90\x90')
-				filename = val[0]
-				number = val[1]
-				int_num = int(number)
-				exist = 1
-			except:
-				exist = 0
-		if 'write(' in val: 
-			try:
-				val = val.replace('write(\'','')
-				val = val.replace('\',\'','\x90\x90\x90')
-				val = val.replace('\')','')
-				val = val.rsplit('\x90\x90\x90')
-				filename = val[0]
-				content = val[1]
-				exist = 1
-			except:
-				exist = 0
-		if 'file_create(' in val:
-			try:
-				val = val.replace('file_create(\'','')
-				val = val.replace('\',\'','\x90\x90\x90')
-				val = val.replace('\')','')
-				val = val.rsplit('\x90\x90\x90')
-				filename = val[0]
-				content = val[1]
-				exist = 1
-			except:
-				exist = 0
-		if 'dir_create(' in val:
-			try:
-				val = val.replace('dir_create(\'','')
-				val = val.replace('\')','')
-				dirname = val
-				exist = 1
-			except:
-				exist = 0
-		if 'download(' in val:
-			try:
-				val = val.replace('download(\'','')
-				val = val.replace('\',\'','\x90\x90\x90')
-				val = val.replace('\')','')
-				val = val.rsplit('\x90\x90\x90')
-				url = val[0]
-				filename = val[1]
-				exist = 1
-			except:
-				exist = 0
-		if 'download_execute(' in val:
-			try:
-				val = val.replace('download_execute(\'','')
-				val = val.replace('\',\'','\x90\x90\x90')
-				val = val.replace('\')','')
-				val = val.rsplit('\x90\x90\x90')
-				url = val[0]
-				filename = val[1]
-				command = val[2]
-				exist = 1
-			except:
-				exist = 0
-		if 'system(' in val:
-			try:
-				val = val.replace('system(\'','')
-				val = val.replace('\')','')
-				command = val
-				exist = 1
-			except:
-				exist = 0
-		if 'script_executor(' in val:
-			try:
-				val = val.replace('script_executor(\'','')
-				val = val.replace('\',\'','\x90\x90\x90')
-				val = val.replace('\')','')
-				val = val.rsplit('\x90\x90\x90')
-				filename = val[0]
-				client_side_name = val[1]
-				command = val[2]
-				exist = 1
-			except:
-				exist = 0
-		if exist is 1:
+		if job_check(val) is True:
 			return True
-	
-def types(value):
-	val = value
-	list = ['none','xor_random','xor_yourvalue','add_random',
+encode_name_list = ['none','xor_random','xor_yourvalue','add_random',
 	'add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant',
 	'dec','dec_timesyouwant','mix_all']
+def encode_name():
+	for type in encode_name_list:
+		print '%s[+]%s'%(color.color('yellow'),color.color('green')),type
+def encode_name_check(val):
+	exist = 0
+	if val == 'none':
+		exist = 1
+	if val == 'xor_random':
+		exist = 1
+	if val == 'add_random':
+		exist = 1
+	if val == 'sub_random':
+		exist = 1
+	if val == 'inc':
+		exist = 1
+	if val == 'dec':
+		exist = 1
+	if val == 'mix_all':
+		exist = 1
+	if exist is not 1:
+		if 'xor_' in val:
+			val = val.replace('xor_','')
+			if len(str(val)) is 10:
+				exist = 1
+		if 'add_' in val:
+			val = val.replace('add_','')
+			if len(str(val)) is 10:
+				exist = 1
+		if 'sub_' in val:
+			val = val.replace('sub_','')
+			if len(str(val)) is 10:
+				exist = 1
+		if 'inc_' in val:
+			val = val.replace('inc_','')
+			try:
+				val = int(val)
+				exist = 1
+			except:
+				exist = 0
+		if 'dec_' in str(val):
+			val = val.replace('dec_','')
+			try:
+				val = int(val)
+				exist = 1
+			except:
+				exist = 0
+	if exist is 1:
+		return True
+def types(val):	
 	if val is 1:
-		for type in list:
-			print '%s[+]%s'%(color.color('yellow'),color.color('green')),type
-		sig()
-		sys.exit(0)
+		encode_name()
+		sys.exit(sig())
 	if val is not 1:
-		exist = 0
-		if val == 'none':
-			exist = 1
-		if val == 'xor_random':
-			exist = 1
-		if val == 'add_random':
-			exist = 1
-		if val == 'sub_random':
-			exist = 1
-		if val == 'inc':
-			exist = 1
-		if val == 'dec':
-			exist = 1
-		if val == 'mix_all':
-			exist = 1
-		if exist is not 1:
-			if 'xor_' in val:
-				val = val.replace('xor_','')
-				if len(str(val)) is 10:
-					exist = 1
-			if 'add_' in val:
-				val = val.replace('add_','')
-				if len(str(val)) is 10:
-					exist = 1
-			if 'sub_' in val:
-				val = val.replace('sub_','')
-				if len(str(val)) is 10:
-					exist = 1
-			if 'inc_' in val:
-				val = val.replace('inc_','')
-				try:
-					val = int(val)
-					exist = 1
-				except:
-					exist = 0
-			if 'dec_' in str(val):
-				val = val.replace('dec_','')
-				try:
-					val = int(val)
-					exist = 1
-				except:
-					exist = 0
-		if exist is 1:
+		if encode_name_check(val) is True:
 			return True
 def update():
 	upd.startu(__version__)
-	sig()
-	sys.exit(0)
+	sys.exit(sig())
 def about():
 	zcr(),'\n'
 	developers = ['Ali Razmjoo | http://z3r0d4y.com | Ali@Z3r0D4y.Com | Twitter: @Ali_Razmjo0',]
@@ -259,5 +268,4 @@ def about():
 	sys.stdout.write(color.color('cyan'))
 	for developer in developers:
 		print developer
-	sig()
-	sys.exit(0)
+	sys.exit(sig())

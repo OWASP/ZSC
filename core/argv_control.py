@@ -49,14 +49,86 @@ def check():
 		if str(sys.argv[1]) == '-wizard':
 			checkargv = True
 			start.zcr()
-			os = raw_input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
-			filename = raw_input(color.color('cyan')+'Filename: '+color.color('white')).replace('\n','')
-			encode = raw_input(color.color('cyan')+'encode:'+color.color('white')).replace('\n','')
-			job = raw_input(color.color('cyan')+'job:'+color.color('white')).replace('\n','')
-			content = os + '\x90\x90\x90' + filename + '\x90\x90\x90' + encode + '\x90\x90\x90' + job
+			try:
+				t = True
+				print '\n'+color.color('yellow')+'Default OS Name is linux_x86, Enter OS Name or Enter "list" to see OS List'
+				while t:
+					osname = raw_input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
+					if osname == '':
+						osname = 'linux_x86'
+					check = start.oslist(osname)
+					if osname == 'list':
+						start.os_names_list()
+						check = 1
+					if check is True:
+						print color.color('blue')+'OS Name set to "%s%s%s"'%(color.color('red'),osname,color.color('blue'))
+						t = False
+					if check is not True and check is not 1:
+						print color.color('red')+'Wrong Input'	
+				t = True
+				print '\n'+color.color('yellow')+'Default Job is exec(\'/bin/bash\'), Enter Job Type or Enter "list" to see Jobs List'
+				while t:
+					job = raw_input(color.color('cyan')+'Job:'+color.color('white')).replace('\n','')
+					if job == '':
+						job = 'exec(\'/bin/bash\')'
+					check = start.job_check(job)
+					if job == 'list':
+						start.job_list()
+						check = 1
+					if check is True:
+						print color.color('blue')+'Job set to "%s%s%s"'%(color.color('red'),job,color.color('blue'))
+						t = False
+					if check is not True and check is not 1:
+						print color.color('red')+'Wrong Input'
+				t = True
+				print '\n'+color.color('yellow')+'Default Encode Type is none, Enter Encode Type or Enter "list" to see Encodes List'
+				while t:
+					encode = raw_input(color.color('cyan')+'Encode:'+color.color('white')).replace('\n','')
+					if encode == '':
+						encode = 'none'
+					check = start.encode_name_check(encode)
+					if encode == 'list':
+						start.encode_name()
+						check = 1
+					if check is True:
+						print color.color('blue')+'Encode Type set to "%s%s%s"'%(color.color('red'),encode,color.color('blue'))
+						t = False
+					if check is not True and check is not 1:
+						print color.color('red')+'Wrong Input'
+				t = True
+				print '\n'+color.color('yellow')+'Default Filename is shellcode.c, Enter Filename or Just Enter to skip'
+				while t:
+					filename = raw_input(color.color('cyan')+'Filename: '+color.color('white')).replace('\n','')
+					if filename == '':
+						filename = 'shellcode.c'
+					check = False
+					try:
+						file = open(filename,'w')
+						file.write('')
+						file.close()
+						check = True
+					except:
+						check = False
+					if check is True:
+						print color.color('blue')+'Filename set to "%s%s%s"'%(color.color('red'),filename,color.color('blue'))
+						t = False
+					if check is False:
+						print color.color('red')+'File is not writable, Try other name or change directory'
+			except (KeyboardInterrupt, SystemExit):
+				print '\n\nAborted by user.\n'
+				sys.exit(0)
+			checkargv = True
+			if start.oslist(osname) is not True:
+				checkargv = False
+			if start.types(encode) is not True:
+				checkargv = False
+			if start.joblist(job) is not True:
+				checkargv = False
+			if checkargv is False:
+				start.inputcheck()
+			content = osname + '\x90\x90\x90' + filename + '\x90\x90\x90' + encode + '\x90\x90\x90' + job
 			analyser.do(content)
-			start.sig()
-			sys.exit(0)
+			sys.exit(start.sig())
 		if checkargv is False:
 			start.inputcheck()
 		return checkargv
@@ -154,8 +226,8 @@ def run():
 		writer.write('')
 		writer.close()
 	except:
-		sys.exit('Error, Cannot write file!')
-	print 1
+		print color.color('red')+'File is not writable, Try other name or change directory'+color.color('reset')
+		sys.exit(start.sig())
 	os = sys.argv[os_counter]
 	filename = sys.argv[filename_counter]
 	encode = sys.argv[encode_counter]
