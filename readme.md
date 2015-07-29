@@ -83,7 +83,7 @@ Examples
 
 `python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/shadow','777') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/passwd','444') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/passwd','444') -o file.txt`
 
 Note: each time you execute chmod() function with random encode, you are gonna get random outputs and different shellcode.
 
@@ -105,13 +105,13 @@ Note: your xor value could be anything. "xor_0x41414141" and "xor_0x45872f4d" ar
 
 version 1.0.2: SKIP
 -------------------
-[linux_x86 modules completed]
-add script_executor() [linux - using command execution]
-add download_execute() [linux_x86 - using command execution (wget)]  
-add download() [linux_x86 - using command execution (wget)] 
-add dir_create() [linux_x86 using command execution] 
-add file_create() [linux_x86 using command execution]
-add encodes file for next version released
+ * [linux_x86 modules completed]
+ * add script_executor() [linux - using command execution]
+ * add download_execute() [linux_x86 - using command execution (wget)]  
+ * add download() [linux_x86 - using command execution (wget)] 
+ * add dir_create() [linux_x86 using command execution] 
+ * add file_create() [linux_x86 using command execution]
+ * add encodes file for next version released
 
 Examples
 --------
@@ -171,11 +171,8 @@ version 1.0.0: ASIIN_BLUE_RUBY
 ------------------------------
 
  * add chmod() [linux_x86] -> chmod('/path/file','perm_num')
-
  * add write() [linux_x86] -> write('/path/file','content')
-
  * add exec() [linux_x86]  -> exec('/path/file')
-
  * add encode [none - all os] 
 
 Examples
@@ -183,8 +180,6 @@ Examples
 
 python shellcoder.py -h
 -----------------------
-
-Switches:
 
 -h, --h, -help, --help => to see this help guide
 
@@ -208,79 +203,49 @@ Switches:
 python shellcoder.py -oslist
 ----------------------------
 
-[+] linux_x86
-
-[+] linux_x64
-
-[+] linux_arm
-
-[+] linux_mips
-
-[+] freebsd_x86
-
-[+] freebsd_x64
-
-[+] windows_x86
-
-[+] windows_x64
-
-[+] osx
-
-[+] solaris_x86
-
-[+] solaris_x64
+ * [+] linux_x86
+ * [+] linux_x64
+ * [+] linux_arm
+ * [+] linux_mips
+ * [+] freebsd_x86
+ * [+] freebsd_x64
+ * [+] windows_x86
+ * [+] windows_x64
+ * [+] osx
+ * [+] solaris_x86
+ * [+] solaris_x64
 
 
 python shellcoder.py -joblist
 -----------------------------
 
-[+] exec('/path/file')
-
-[+] chmod('/path/file','permission number')
-
-[+] write('/path/file','text to write')
-
-[+] file_create('/path/file','text to write')
-
-[+] dir_create('/path/folder')
-
-[+] download('url','filename')
-
-[+] download_execute('url','filename','command to execute')
-
-[+] system('command to execute')
-
-[+] script_executor('name of script','path and name of your script in your pc','execute command')
-
+ * [+] exec('/path/file')
+ * [+] chmod('/path/file','permission number')
+ * [+] write('/path/file','text to write')
+ * [+] file_create('/path/file','text to write')
+ * [+] dir_create('/path/folder')
+ * [+] download('url','filename')
+ * [+] download_execute('url','filename','command to execute')
+ * [+] system('command to execute')
+ * [+] script_executor('name of script','path and name of your script in your pc','execute command')
 
 python shellcoder.py -types
 ---------------------------
 
-[+] none
+ * [+] none
+ * [+] xor_random
+ * [+] xor_yourvalue
+ * [+] add_random
+ * [+] add_yourvalue
+ * [+] sub_random
+ * [+] sub_yourvalue
+ * [+] inc
+ * [+] inc_timesyouwant
+ * [+] dec
+ * [+] dec_timesyouwant
+ * [+] mix_all
 
-[+] xor_random
-
-[+] xor_yourvalue
-
-[+] add_random
-
-[+] add_yourvalue
-
-[+] sub_random
-
-[+] sub_yourvalue
-
-[+] inc
-
-[+] inc_timesyouwant
-
-[+] dec
-
-[+] dec_timesyouwant
-
-[+] mix_all
-
-
+ 
 Generating shellcodes , using functions
 ----------------------------------------
 
