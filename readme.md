@@ -15,7 +15,7 @@ for more information read the document files in main directory or visit home pag
 
 
 Usages And Changes
-===================
+------------------
 
 version 1.0.5.1: CaMo
 ---------------------
@@ -279,12 +279,13 @@ python shellcoder.py -types
 [+] mix_all
 
 
-Generating shellcodes , using functions:
+Generating shellcodes , using functions
+----------------------------------------
 
-python shellcoder.py -os linux_x86 -encode none -job chmod('/etc/shadow','777') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job chmod('/etc/shadow','777') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job write('/etc/passwd','user:pass') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job write('/etc/passwd','user:pass') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job exec('/bin/bash') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job exec('/bin/bash') -o file.txt`
 
 Note: exec() doesn't support any ARGV same as exec('/bin/bash -c ls') or exec('/bin/bash','-c','ls'), you have to wait for next version and this feature will available  in system()
