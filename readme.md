@@ -181,24 +181,15 @@ Examples
 python shellcoder.py -h
 -----------------------
 
--h, --h, -help, --help => to see this help guide
-
--os => choose your os to create shellcode
-
--oslist => list os for switch -os
-
--o => output filename
-
--job => what shellcode gonna do for you ?
-
--joblist => list of -job switch
-
--encode => generate shellcode with encode
-
--types => types of encode for -encode switch
-
--update => check for update
-
+ * -h, --h, -help, --help => to see this help guide
+ * -os => choose your os to create shellcode
+ * -oslist => list os for switch -os
+ * -o => output filename
+ * -job => what shellcode gonna do for you ?
+ * -joblist => list of -job switch
+ * -encode => generate shellcode with encode
+ * -types => types of encode for -encode switch
+ * -update => check for update
 
 python shellcoder.py -oslist
 ----------------------------
