@@ -13,7 +13,7 @@ can be run on Windows/Linux&Unix/OSX and others OS under python 2.7.x.
 
 ![screenshot](http://zsc.z3r0d4y.com/images/Snapshot_2015-07-26_191951.png)
 
-for more information read the document files in main directory or visit home page.
+For more information read the document files in main directory or visit home page.
 
 
 Usages And Changes
