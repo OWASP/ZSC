@@ -15,9 +15,10 @@ Usages And Changes:
 ==
 version 1.0.5.1: CaMo
 ----
-
 upgrade "-wizard" switch
+------
 add length calculator for output
+------
 add filename writer in gcc commandline in output file
 fixed bug in encoding module not available.
 fixed bug in os module not available
