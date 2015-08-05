@@ -8,34 +8,35 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.5.1'
-__key__ = 'CaMo'
-__release_date__ = '2015 July 28'
+__version__ = '1.0.5.2'
+__key__ = 'S'
+__release_date__ = '2015 August 5'
 __author__ = 'Ali Razmjoo'
 from core import color
 def zcr():
 	print color.color('red') + '''
-  ___________ _____                                                      
- |___  / ____|  __ \                                                     
-    / / |    | |__) |                                                    
-   / /| |    |  _  /                                                     
-  / /_| |____| | \ \                                                     
- /_____\_____|_|__\_\ _      _      _____ ____  _____  ______ _____    _ 
-  / ____| |   |  ____| |    | |    / ____/ __ \|  __ \|  ____|  __ \  | |
- | (___ | |__ | |__  | |    | |   | |   | |  | | |  | | |__  | |__) | | |
-  \___ \| '_ \|  __| | |    | |   | |   | |  | | |  | |  __| |  _  /  | |
-  ____) | | | | |____| |____| |___| |___| |__| | |__| | |____| | \ \  |_|
- |_____/|_| |_|______|______|______\_____\____/|_____/|______|_|  \_\ (_)
-''' + color.color('cyan') + '\t\t\t\tZeroDay Cyber Research Shellcoder\n' + color.color('reset')	
+   ______          __      _____ _____    ___________ _____               
+  / __ \ \        / /\    / ____|  __ \  |___  / ____|  __ \              
+ | |  | \ \  /\  / /  \  | (___ | |__) |    / / |    | |__) |             
+ | |  | |\ \/  \/ / /\ \  \___ \|  ___/    / /| |    |  _  /              
+ | |__| | \  /\  / ____ \ ____) | |       / /_| |____| | \ \              
+  \____/ _ \/ _\/_/___ \_\_____/|_|  ____/_____\_____|_|__\_\_ _____    _ 
+  / ____| |  | |  ____| |    | |    / ____/ __ \|  __ \|  ____|  __ \  | |
+ | (___ | |__| | |__  | |    | |   | |   | |  | | |  | | |__  | |__) | | |
+  \___ \|  __  |  __| | |    | |   | |   | |  | | |  | |  __| |  _  /  | |
+  ____) | |  | | |____| |____| |___| |___| |__| | |__| | |____| | \ \  |_|
+ |_____/|_|  |_|______|______|______\_____\____/|_____/|______|_|  \_\ (_)
+                                                                          
+                                                                          
+''' + color.color('cyan') + '\t\t\t'+color.color('green')+'OWASP' + color.color('cyan') + ' ZeroDay Cyber Research Shellcoder\n' + color.color('reset')	
 def sig():
 	print '''%s
 |----------------------------------------------------------------------------|
-|----------------------------------------------------------------------------|
-|Author Website: http://z3r0d4y.com/ ----------------------------------------|
-|Project URL: http://%szsc%s.z3r0d4y.com/ ---------------------------------------|
-|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s ------------------|
-|----------------------------------------------------------------------------|
-|----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'))
+|%sOWASP%s Page: https://www.%sowasp%s.org/index.php/OWASP_ZSC_Tool_Project ---------|
+|Author Website: http://%sz3r0d4y%s.com/ ----------------------------------------|
+|Project Home: http://%szsc%s.z3r0d4y.com/ --------------------------------------|
+|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s --------------------|
+|----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'))
 def start():
 	zcr()
 	print color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset')
@@ -263,7 +264,7 @@ def update():
 	sys.exit(sig())
 def about():
 	zcr(),'\n'
-	developers = ['Ali Razmjoo | http://z3r0d4y.com | Ali@Z3r0D4y.Com | Twitter: @Ali_Razmjo0',]
+	developers = ['Ali Razmjoo | OWASP:Ali Razmjoo | Twitter: @Ali_Razmjo0 | z3r0d4y.com',]
 	print color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo\n\n' + color.color('yellow') + 'Developers:'
 	sys.stdout.write(color.color('cyan'))
 	for developer in developers:
