@@ -16,12 +16,12 @@ else:
 	sys.exit(color.color('red')+'Sorry, This version of software just could be run on linux.'+color.color('reset'))
 start.zcr()
 executor = '''#!/bin/bash
-python /usr/share/zcr_shellcoder/zsc.py "$@"'''
+python /usr/share/owasp_zsc/zsc.py "$@"'''
 print color.color('cyan')+'Building Commandline'
 commandline = open('/usr/bin/zsc','w')
 commandline.write(executor)
 commandline.close()
 print color.color('green')+'Copying Files'+color.color('white')
-os.system('rm -rf /usr/share/zcr_shellcoder && mkdir /usr/share/zcr_shellcoder && cp -r * /usr/share/zcr_shellcoder/ && chmod +x /usr/share/zcr_shellcoder/zsc.py && chmod +x /usr/bin/zsc')
-print color.color('yellow') + '\nNow you can remove this folder\nfiles copied in /usr/share/zcr_shellcoder.\nto run zcr shellcoder please use "zsc" command line\n'+color.color('reset')
+os.system('rm -rf /usr/share/owasp_zsc && mkdir /usr/share/owasp_zsc && cp -r * /usr/share/owasp_zsc/ && chmod +x /usr/share/owasp_zsc/zsc.py && chmod +x /usr/bin/zsc')
+print color.color('yellow') + '\nNow you can remove this folder\nfiles copied in /usr/share/owasp_zsc.\nto run zcr shellcoder please use "zsc" command line\n'+color.color('reset')
 start.sig()

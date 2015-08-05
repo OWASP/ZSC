@@ -8,7 +8,7 @@ can be run on Windows/Linux&Unix/OSX and others OS under python 2.7.x.
  * OWASP Page: https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
  * Home: http://zsc.z3r0d4y.com/
  * Features: http://zsc.z3r0d4y.com/table.html
- * Github: https://github.com/Ali-Razmjoo/ZCR-Shellcoder
+ * Github: https://github.com/Ali-Razmjoo/OWASP-ZSC
  * Archive: https://github.com/Ali-Razmjoo/ZCR-Shellcoder-Archive
  * About Author: http://www.z3r0d4y.com/p/about.html
 
@@ -160,8 +160,8 @@ Changes
 
 version 1.0.5.2: S
 ------------------
- * changed To OWASP ZSC
-
+ * Project name changed To OWASP ZSC + Signature
+ * installing directory changed to /usr/share/owasp_zsc
 
 version 1.0.5.1: CaMo
 ---------------------

@@ -16,6 +16,6 @@ else:
 	sys.exit(color.color('red')+'Sorry, This version of software just could be run on linux.'+color.color('reset'))
 start.zcr()
 print color.color('green')+'Removing Files'+color.color('white')
-os.system('rm -rf /usr/share/zcr_shellcoder /usr/bin/zsc')
+os.system('rm -rf /usr/share/owasp_zsc /usr/bin/zsc')
 print color.color('green')+'Files Removed!'+color.color('white')
 start.sig()
