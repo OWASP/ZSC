@@ -1,10 +1,11 @@
-ZSC
-===
+OWASP ZSC
+=========
 
-ZCR Shellcoder is an open source software in python language which lets you 
+OWASP ZCR Shellcoder is an open source software in python language which lets you 
 generate customized  shellcodes for listed operation systems. This software 
 can be run on Windows/Linux&Unix/OSX and others OS under python 2.7.x.
 
+ * OWASP Page: https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
  * Home: http://zsc.z3r0d4y.com/
  * Features: http://zsc.z3r0d4y.com/table.html
  * Github: https://github.com/Ali-Razmjoo/ZCR-Shellcoder
@@ -157,6 +158,11 @@ Note: you also can use high value for inc and dec time, like inc_100000, your sh
 Changes
 -------
 
+version 1.0.5.2: S
+------------------
+ * changed To OWASP ZSC
+
+
 version 1.0.5.1: CaMo
 ---------------------
  * upgrade "-wizard" switch
@@ -228,5 +234,6 @@ version 1.0.0: ASIIN_BLUE_RUBY
  * add write() [linux_x86] -> write('/path/file','content')
  * add exec() [linux_x86]  -> exec('/path/file')
  * add encode [none - all os] 
+
 
 
