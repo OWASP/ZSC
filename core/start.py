@@ -8,9 +8,9 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.5.2'
-__key__ = 'S'
-__release_date__ = '2015 August 5'
+__version__ = '1.0.6'
+__key__ = 'B2018'
+__release_date__ = '2015 August 10'
 __author__ = 'Ali Razmjoo'
 from core import color
 def zcr():

@@ -115,8 +115,9 @@ def check():
 					if check is False:
 						print color.color('red')+'File is not writable, Try other name or change directory'
 			except (KeyboardInterrupt, SystemExit):
-				print '\n\nAborted by user.\n'
-				sys.exit(0)
+				sys.exit('\n\nAborted by user.\n')
+			except:
+				sys.exit('\n\nAborted by user.\n')
 			checkargv = True
 			if start.oslist(osname) is not True:
 				checkargv = False

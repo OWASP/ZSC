@@ -157,6 +157,98 @@ Note: you also can use high value for inc and dec time, like inc_100000, your sh
 
 Changes
 -------
+version 1.0.6: B2018
+------------------
+
+
+ * add mix_all encoding in chmod() [linux_x86]
+ * add xor_random encoding in system() [linux_x86]
+ * add xor_yourvalue encoding in system() [linux_x86]
+ * add add_random encoding in system() [linux_x86]
+ * add add_yourvalue encoding in system() [linux_x86]
+ * add sub_random encoding in system() [linux_x86
+ * add sub_yourvalue encoding in system() [linux_x86]
+ * add inc encoding in system() [linux_x86]
+ * add inc_timesyouwant encoding in system() [linux_x86
+ * add dec encoding in system() [linux_x86]
+ * add dec_timesyouwant encoding in system() [linux_x86]
+ * add mix_all encoding in system() [linux_x86]
+ * add xor_random encoding in file_create() [linux_x86]
+ * add xor_yourvalue encoding in file_create() [linux_x86]
+ * add add_random encoding in file_create() [linux_x86]
+ * add add_yourvalue encoding in file_create() [linux_x86]
+ * add sub_random encoding in file_create() [linux_x86
+ * add sub_yourvalue encoding in file_create() [linux_x86]
+ * add inc encoding in file_create() [linux_x86]
+ * add inc_timesyouwant encoding in file_create() [linux_x86
+ * add dec encoding in file_create() [linux_x86]
+ * add dec_timesyouwant encoding in file_create() [linux_x86]
+ * add mix_all encoding in file_create() [linux_x86]
+ * add xor_random encoding in dir_create() [linux_x86]
+ * add xor_yourvalue encoding in dir_create() [linux_x86]
+ * add add_random encoding in dir_create() [linux_x86]
+ * add add_yourvalue encoding in dir_create() [linux_x86]
+ * add sub_random encoding in dir_create() [linux_x86
+ * add sub_yourvalue encoding in dir_create() [linux_x86]
+ * add inc encoding in dir_create() [linux_x86]
+ * add inc_timesyouwant encoding in dir_create() [linux_x86
+ * add dec encoding in dir_create() [linux_x86]
+ * add dec_timesyouwant encoding in dir_create() [linux_x86]
+ * add mix_all encoding in dir_create() [linux_x86]
+ * add xor_random encoding in download() [linux_x86]
+ * add xor_yourvalue encoding in download() [linux_x86]
+ * add add_random encoding in download() [linux_x86]
+ * add add_yourvalue encoding in download() [linux_x86]
+ * add sub_random encoding in download() [linux_x86
+ * add sub_yourvalue encoding in download() [linux_x86]
+ * add inc encoding in download() [linux_x86]
+ * add inc_timesyouwant encoding in download() [linux_x86
+ * add dec encoding in download() [linux_x86]
+ * add dec_timesyouwant encoding in download() [linux_x86]
+ * add mix_all encoding in download() [linux_x86]
+ * add xor_random encoding in download_execute() [linux_x86]
+ * add xor_yourvalue encoding in download_execute() [linux_x86]
+ * add add_random encoding in download_execute() [linux_x86]
+ * add add_yourvalue encoding in download_execute() [linux_x86]
+ * add sub_random encoding in download_execute() [linux_x86
+ * add sub_yourvalue encoding in download_execute() [linux_x86]
+ * add inc encoding in download_execute() [linux_x86]
+ * add inc_timesyouwant encoding in download_execute() [linux_x86
+ * add dec encoding in download_execute() [linux_x86]
+ * add dec_timesyouwant encoding in download_execute() [linux_x86]
+ * add mix_all encoding in download_execute() [linux_x86]
+ * add xor_random encoding in system() [linux_x86]
+ * add xor_yourvalue encoding in system() [linux_x86]
+ * add add_random encoding in system() [linux_x86]
+ * add add_yourvalue encoding in system() [linux_x86]
+ * add sub_random encoding in system() [linux_x86
+ * add sub_yourvalue encoding in system() [linux_x86]
+ * add inc encoding in system() [linux_x86]
+ * add inc_timesyouwant encoding in system() [linux_x86
+ * add dec encoding in system() [linux_x86]
+ * add dec_timesyouwant encoding in system() [linux_x86]
+ * add mix_all encoding in system() [linux_x86]
+ * add xor_random encoding in script_executor() [linux_x86]
+ * add xor_yourvalue encoding in script_executor() [linux_x86]
+ * add add_random encoding in script_executor() [linux_x86]
+ * add add_yourvalue encoding in script_executor() [linux_x86]
+ * add sub_random encoding in script_executor() [linux_x86
+ * add sub_yourvalue encoding in script_executor() [linux_x86]
+ * add inc encoding in script_executor() [linux_x86]
+ * add inc_timesyouwant encoding in script_executor() [linux_x86
+ * add dec encoding in script_executor() [linux_x86]
+ * add dec_timesyouwant encoding in script_executor() [linux_x86]
+ * add mix_all encoding in script_executor() [linux_x86]
+ * add add_random encoding in write() [linux_x86]
+ * add xor_random encoding in write() [linux_x86]
+ * add sub_random encoding in write() [linux_x86]
+ * add xor_random encoding in exec() [linux_x86]
+ * add sub_random encoding in exec() [linux_x86
+ * add add_random encoding in exec() [linux_x86]
+ * fixed bug in system() when len(command) is less than 5
+ * fixed bug in encode module add_random chmod() [linux_x86]
+
+
 
 version 1.0.5.2: S
 ------------------

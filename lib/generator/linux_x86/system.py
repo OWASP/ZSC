@@ -9,6 +9,9 @@ shellcode template used : http://shell-storm.org/shellcode/files/shellcode-57.ph
 '''
 def run(command):
 	command = command.replace('[space]',' ')
+        if len(command) < 5: 
+		command = str(command) + '    '
+	#bug in line 12 & 13, check later 
 	m = len(command) - 1
 	if len(command) >= 4:
 		m = len(command) - 1
@@ -99,6 +102,9 @@ push   %%esi
 push   %%ecx
 push   %%ebx
 mov    %%esp,%%ecx
+int    $0x80
+mov    $0x01,%%al
+mov    $0x01,%%bl
 int    $0x80
 '''%(str(file_z))
 	return shellcode
