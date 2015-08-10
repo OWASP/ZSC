@@ -35,7 +35,7 @@ def sig():
 |%sOWASP%s Page: https://www.%sowasp%s.org/index.php/OWASP_ZSC_Tool_Project ---------|
 |Author Website: http://%sz3r0d4y%s.com/ ----------------------------------------|
 |Project Home: http://%szsc%s.z3r0d4y.com/ --------------------------------------|
-|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s --------------------|
+|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s -----------------|
 |----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'))
 def start():
 	zcr()
