@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-ZCR Shellcoder
+OWASP ZSC | ZCR Shellcoder
 
 ZeroDay Cyber Research
 Z3r0D4y.Com
@@ -15,8 +15,7 @@ if 'linux' in sys.platform:
 else:
 	sys.exit(color.color('red')+'Sorry, This version of software just could be run on linux.'+color.color('reset'))
 start.zcr()
-executor = '''#!/bin/bash
-python /usr/share/owasp_zsc/zsc.py "$@"'''
+executor = '''#!/bin/bash\npython /usr/share/owasp_zsc/zsc.py "$@"'''
 print color.color('cyan')+'Building Commandline'
 commandline = open('/usr/bin/zsc','w')
 commandline.write(executor)

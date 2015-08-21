@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-ZCR Shellcoder
+OWASP ZSC | ZCR Shellcoder
 
 ZeroDay Cyber Research
 Z3r0D4y.Com
@@ -10,7 +10,6 @@ import random,binascii,string
 chars = string.digits + string.ascii_letters
 def start(shellcode,job):
 	if 'chmod(' in job:	
-		
 		t = True
 		eax = str('0x0f')
 		while t:
@@ -250,7 +249,7 @@ def start(shellcode,job):
 			eax_1 = str('0') + str(eax_1[1])
 			eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 			if eax>eax_1:
-				if '00' not in str(eax_1) and '00' not in str(eax_2):
+				if '00' not in str(eax_1) and '0' not in str(eax_2):
 					t = False
 		A = 0	
 		eax = 'push   $%s'%(str(eax))	
@@ -284,7 +283,7 @@ def start(shellcode,job):
 			eax_1 = str('0') + str(eax_1[1])
 			eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 			if eax>eax_1:
-				if '00' not in str(eax_1) and '00' not in str(eax_2):
+				if '00' not in str(eax_1) and '0' not in str(eax_2):
 					t = False
 		A = 0	
 		eax = 'push   $%s'%(str(eax))	
@@ -315,9 +314,10 @@ def start(shellcode,job):
 			eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
 			eax_1 = str('0') + str(eax_1[1])
 			eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
-			if eax>eax_1:
-				if '00' not in str(eax_1) and '00' not in str(eax_2):
-					t = False
+			if eax_1 != eax:
+				if eax>eax_1:
+					if '00' not in str(eax_1) and '0' not in str(eax_2):
+						t = False
 		A = 0	
 		eax = 'push   $%s'%(str(eax))	
 		if '-' in eax_2:
@@ -327,15 +327,17 @@ def start(shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0x5\npop    %eax',eax_add)
+		
 		t = True
 		eax = str('0x4')
 		while t:
 			eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
 			eax_1 = str('0') + str(eax_1[1])
 			eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
-			if eax>eax_1:
-				if '00' not in str(eax_1) and '00' not in str(eax_2):
-					t = False
+			if eax_1 != eax:
+				if eax>eax_1:
+					if str('00') not in str(eax_1) and str('0') not in str(eax_2):
+						t = False
 		A = 0	
 		eax = 'push   $%s'%(str(eax))	
 		if '-' in eax_2:
@@ -345,10 +347,8 @@ def start(shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0x4\npop    %eax',eax_add)
-
-
-
 		A = 0
+
 		for line in shellcode.rsplit('\n'):
 			if 'mov    %esp,%ebx' in line:
 				A = 1
@@ -360,11 +360,16 @@ def start(shellcode,job):
 					while t:
 						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
-						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
-							ebx_2 = ebx_2.replace('-','')
-							command = '\npush $0x%s\npop %%ebx\nneg %%ebx\nadd $0x%s,%%ebx\npush %%ebx\n'%(str(ebx_2),str(ebx_1))
-							shellcode = shellcode.replace(line,command)
-							t = False
+						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1 and ebx_1 != data:
+							if '-' in ebx_2:
+								ebx_2 = ebx_2.replace('-','')
+								command = '\npush $0x%s\npop %%ebx\nneg %%ebx\nadd $0x%s,%%ebx\npush %%ebx\n'%(str(ebx_2),str(ebx_1))
+								shellcode = shellcode.replace(line,command)
+								t = False
+							if t is True:
+								command = '\npush $0x%s\npop %%ebx\nadd $0x%s,%%ebx\npush %%ebx\n'%(str(ebx_2),str(ebx_1))
+								shellcode = shellcode.replace(line,command)
+								t = False
 		shellcode = shellcode.replace('_z3r0d4y_','')
 		
 		t = True
@@ -372,9 +377,10 @@ def start(shellcode,job):
 		while t:
 			eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 			eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
-			if eax>eax_1:
-				if '00' not in str(eax_1) and '00' not in str(eax_2):
-					t = False
+			if eax_1 != eax:
+				if eax>eax_1:
+					if '00' not in str(eax_1) and '00' not in str(eax_2):
+						t = False
 		A = 0	
 		eax = 'push   $%s'%(str(eax))	
 		if '-' in eax_2:
@@ -383,7 +389,7 @@ def start(shellcode,job):
 			eax_add = 'push $0x%s\npop %%ecx\nneg %%ecx\nadd $0x%s,%%ecx\n'%(eax_2,eax_1)
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%ecx\nadd $0x%s,%%ecx\n'%(eax_2,eax_1)
-		shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('mov %esp,%ecx\npush $0x0b909090','\n_z3r0|d4y_\nmov %esp,%ecx\npush $0x0b909090\n')
+		shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
 		A = 1
 		for line in shellcode.rsplit('\n'):
 			if '_z3r0d4y_' in line:
@@ -397,19 +403,25 @@ def start(shellcode,job):
 					while t:
 						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
-						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
-							ebx_2 = ebx_2.replace('-','')
-							command = '\npush $0x%s\npop %%ecx\nneg %%ecx\nadd $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
-							shellcode = shellcode.replace(line,command)
-							t = False
-		shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
+						if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
+							if '-' in ebx_2:
+								ebx_2 = ebx_2.replace('-','')
+								command = '\npush $0x%s\npop %%ecx\nneg %%ecx\nadd $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
+								shellcode = shellcode.replace(line,command)
+								t = False
+							if t is True:
+								command = '\npush $0x%s\npop %%ecx\nadd $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
+								shellcode = shellcode.replace(line,command)
 
+
+
+		shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		t = True
 		eax = str('0b909090')
 		while t:
 			eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 			eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
-			if '00' not in str(eax_1) and '00' not in str(eax_2):
+			if '00' not in str(eax_1) and '00' not in str(eax_2) and eax_1 != eax:
 				t = False
 		A = 0	
 		eax = 'push   $%s'%(str(eax))	

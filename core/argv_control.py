@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-import start
 '''
-ZCR Shellcoder
+OWASP ZSC | ZCR Shellcoder
 
 ZeroDay Cyber Research
 Z3r0D4y.Com
 Ali Razmjoo
 '''
+import start
 import sys
 from lib import analyser
 from core import start

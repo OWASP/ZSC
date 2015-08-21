@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-ZCR Shellcoder
+OWASP ZSC | ZCR Shellcoder
 
 ZeroDay Cyber Research
 Z3r0D4y.Com
@@ -10,21 +10,21 @@ import random,binascii,string
 chars = string.digits + string.ascii_letters
 def start(shellcode,job):
 	if 'chmod(' in job:	
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'dir_create(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'download_execute(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'download(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'exec(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'file_create(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'script_executor(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'system(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	if 'write(' in job:
-		print 'This encoding feature is not available yet, please wait for next versions.'
+		shellcode = 'N' + shellcode
 	return shellcode
