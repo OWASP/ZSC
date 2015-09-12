@@ -115,7 +115,7 @@ Changes
 version 1.0.7.1: FT
 -------------------
  * Optimized Core and Removed some required softwares
- * Compatible with OSX [tested on: OS X Tosemite 10.10.4] and Fixed Linux base bugs [tested on: Debian 7.8,Centos 6.7,OpenSUSE 13.2]
+ * Compatible with OSX [tested on: OS X Yosemite 10.10.4] and Fixed Linux base bugs [tested on: Debian 7.8,Centos 6.7,OpenSUSE 13.2]
  * fixed some encoding modules
 
 
