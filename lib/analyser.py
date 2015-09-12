@@ -7,6 +7,7 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 import encode
+import opcode
 import sys
 import os
 from core import color
@@ -456,7 +457,7 @@ def do(cont):
 		return 0
 	old_encode_type = ''
 	if shellcode is not None:
-		shellcode = encode.process(encode_type,shellcode,os_name,job).replace('\n\n','\n').replace('\n\n','\n')
+		shellcode = encode.process(encode_type,shellcode,os_name,job).replace('\n\n','\n').replace('\n\n','\n').replace('    ',' ').replace('   ',' ')
 		NE = False
 		if shellcode[0] == 'N':
 			shellcode = shellcode[1:]
@@ -467,15 +468,19 @@ def do(cont):
 	save = open(tmpname,'w')
 	save.write(shellcode)
 	save.close()
+	comment = shellcode
+	res = '"' + opcode.generator(shellcode,os_name) + '"'
+	'''
 	tmp = os.popen('as %s -o %s.o > .tmp2.%s'%(tmpname,tmpname,tmpname)).read()
 	comment = os.popen('objdump -D %s.o'%(tmpname)).read()
 	comment = comment.replace('.tmp.'+filename+'.o',filename).replace('\n\n','\n')
-	res = os.popen('''objdump -D %s.o |grep '[0-9a-f]:'|grep -v 'file'|cut -f2 -d:|cut -f1-6 -d' '|tr -s ' '|tr '\t' ' '|sed 's/ $//g'|sed 's/ /\\x/g'|paste -d '' -s |sed 's/^/"/'|sed 's/$/"/g' '''%(tmpname)).read()
+	res = os.popen(\'''objdump -D %s.o |grep '[0-9a-f]:'|grep -v 'file'|cut -f2 -d:|cut -f1-6 -d' '|tr -s ' '|tr '\t' ' '|sed 's/ $//g'|sed 's/ /\\x/g'|paste -d '' -s |sed 's/^/"/'|sed 's/$/"/g' \'''%(tmpname)).read()
 	res = res.replace('x','\\x').rsplit()[0]
 	null = os.system('rm -rf %s %s.o .tmp2.%s'%(tmpname,tmpname,tmpname))
-	PASS = True
-	if str(len(res)/4) == '0':
-		PASS = False
+	'''
+	PASS = False
+	if str(len(res)%2) == '0':
+		PASS = True
 	shellcode = done.c_style(job,os_name,encode_type,str(len(res)/4),comment,str(filename.rsplit('.')[0])+'_compiled',str(filename),res)
 	os.system('clear')
 	done.res(PASS,shellcode,filename,os_name,job,encode_type,str(len(res)/4),old_encode_type,NE)

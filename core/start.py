@@ -8,9 +8,9 @@ Ali Razmjoo
 '''
 import sys
 import update as upd
-__version__ = '1.0.7'
+__version__ = '1.0.7.1'
 __key__ = 'FT'
-__release_date__ = '2015 August 21'
+__release_date__ = '2015 September 12'
 from core import color
 def zcr():
 	print color.color('red') + '''
@@ -34,8 +34,8 @@ def sig():
 |%sOWASP%s Page: https://www.%sowasp%s.org/index.php/OWASP_ZSC_Tool_Project ---------|
 |Author Website: http://%sz3r0d4y%s.com/ ----------------------------------------|
 |Project Home: http://%szsc%s.z3r0d4y.com/ --------------------------------------|
-|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s --------------------|
-|----------------------------------------------------------------------------|'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'))
+|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s ---------------|
+|----------------------------------------------------------------------------|%s'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'),color.color('reset'))
 def start():
 	zcr()
 	print color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset')
@@ -263,8 +263,8 @@ def update():
 	sys.exit(sig())
 def about():
 	zcr(),'\n'
-	developers = ['Ali Razmjoo | OWASP:Ali Razmjoo | Twitter: @Ali_Razmjo0 | z3r0d4y.com',]
-	print color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo\n\n' + color.color('yellow') + 'Developers:'
+	developers = ['All Developers: owasp-zsc-tool-project[at]lists.owasp.org','Ali Razmjoo | OWASP:Ali Razmjoo | Twitter: @Ali_Razmjo0 | z3r0d4y.com',]
+	print color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo (Ali[dot]Razmjoo[at]owasp.org)\n\n' + color.color('yellow') + 'Developers:'
 	sys.stdout.write(color.color('cyan'))
 	for developer in developers:
 		print developer

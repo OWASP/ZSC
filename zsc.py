@@ -13,10 +13,10 @@ from time import strftime,gmtime
 from core import start
 from core import argv_control
 from lib import analyser
-if 'linux' in sys.platform:
+if 'linux' in sys.platform or 'darwin' in sys.platform:
 	os.system('clear')
 else:
-	sys.exit('Sorry, This version of software just could be run on linux.')
+	sys.exit('Sorry, This version of software just could be run on linux/osx.')
 def main():
 	'''
 	main function of ZCR Shellcoder

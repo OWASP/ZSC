@@ -111,8 +111,16 @@ Note: Remember don't use `" "` and replace it with `"[space]"`
 
 Changes
 -------
+version 1.0.7.1: FT
+-------------------
+ * Optimized Core and Removed some required softwares
+ * Compatible with OSX [tested on: OS X Tosemite 10.10.4] and Fixed Linux base bugs [tested on: Debian 7.8,Centos 6.7,OpenSUSE 13.2]
+ * fixed some encoding modules
+
+
+
 version 1.0.7: FT
-------------------
+-----------------
 
 
  * add xor_yourvalue encoding in exec() [linux_x86]
@@ -143,7 +151,7 @@ version 1.0.7: FT
 
 
 version 1.0.6: B2018
-------------------
+--------------------
 
 
  * add mix_all encoding in chmod() [linux_x86]

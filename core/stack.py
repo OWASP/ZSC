@@ -6,8 +6,19 @@ ZeroDay Cyber Research
 Z3r0D4y.Com
 Ali Razmjoo
 '''
+import binascii
+def shellcoder(shellcode):
+	n = 0
+	xshellcode = '\\x'
+	for w in shellcode:
+		n += 1
+		xshellcode += str(w)
+		if n is 2:
+			n = 0
+			xshellcode += str('\\x')
+	return xshellcode[:-2]
 def st(data):
-	return data[::-1].encode('hex')
+	return binascii.b2a_hex(data[::-1])
 def generate(data,register,gtype):
 	length = len(data)
 	if gtype == 'int':

@@ -198,8 +198,8 @@ def start(shellcode,job):
 				while t:
 					ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 					ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
-					
-					if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
+					print ebx_2,len(ebx_2)
+					if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2.replace('-','')) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
 						ebx_2 = ebx_2.replace('-','')
 						command = '\npush $0x%s\npop %%ebx\npush $0x%s\npop %%eax\nneg %%eax\nadd %%ebx,%%eax\npush %%eax\n'%(str(ebx_1),str(ebx_2))
 						shellcode = shellcode.replace(line,command)
