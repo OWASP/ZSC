@@ -42,15 +42,15 @@ def res(PASS,shellcode,filename,os_name,job,encode_type,length,old_encode_type,N
 		save = open(filename,'w')
 		save.write(shellcode)
 		save.close()
-		print '''%sYour Shellcode file generated!
+		print ('''%sYour Shellcode file generated!
 
 OS: %s%s%s
 Job: %s%s%s
 Encode: %s%s%s
 Length: %s%s%s
-Output: %s%s%s'''%(color.color('yellow'),color.color('blue'),os_name,color.color('yellow'),color.color('red'),job,color.color('yellow'),color.color('cyan'),encode_type,color.color('yellow'),color.color('green'),length,color.color('yellow'),color.color('purple'),filename,color.color('reset'))
+Output: %s%s%s'''%(color.color('yellow'),color.color('blue'),os_name,color.color('yellow'),color.color('red'),job,color.color('yellow'),color.color('cyan'),encode_type,color.color('yellow'),color.color('green'),length,color.color('yellow'),color.color('purple'),filename,color.color('reset')))
 		if NE is True:
-			print color.color('red')+'Note: %s%s%s encode type module is not activated yet, so your shellcode generated with %snone%s encode type! Please Wait for update. To see available modules take a look at the %sfeatures_table.html%s file in software folder.'%(color.color('green'),old_encode_type,color.color('red'),color.color('cyan'),color.color('red'),color.color('white'),color.color('red'))
+			print (color.color('red')+'Note: %s%s%s encode type module is not activated yet, so your shellcode generated with %snone%s encode type! Please Wait for update. To see available modules take a look at the %sfeatures_table.html%s file in software folder.'%(color.color('green'),old_encode_type,color.color('red'),color.color('cyan'),color.color('red'),color.color('white'),color.color('red')))
 def disable(os_name,job):
-	print color.color('red')+'Note: %s%s%s function is not Activated for %s%s%s OS Yet, Please wait for update.\nTo see available modules take a look at the %sfeatures_table.html%s file in software folder.'%(color.color('cyan'),job,color.color('red'),color.color('blue'),os_name,color.color('red'),color.color('white'),color.color('red'))
+	print (color.color('red')+'Note: %s%s%s function is not Activated for %s%s%s OS Yet, Please wait for update.\nTo see available modules take a look at the %sfeatures_table.html%s file in software folder.'%(color.color('cyan'),job,color.color('red'),color.color('blue'),os_name,color.color('red'),color.color('white'),color.color('red')))
 	return 0	

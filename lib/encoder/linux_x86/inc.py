@@ -173,18 +173,24 @@ def start(shellcode,job):
 		eax = str('4014141')
 		eax_2 = "%x" % (int(eax, 16) - int('0x01', 16))
 		eax_add = 'push $0x%s\npop %%ecx\ninc %%ecx\n'%(eax_2)
-		shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+		shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('mov %esp,%ecx','\n_z3r0|d4y_\nmov %esp,%ecx\n')
 		A = 1
 		for line in shellcode.rsplit('\n'):
 			if '_z3r0d4y_' in line:
 				A = 0
 			if '_z3r0|d4y_' in line:
-				A = 1
+				A = 2
 			if A is 0:
 				if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					ebx_2 = "%x" % (int(data, 16) - int('0x01', 16))
 					command = '\npush $0x%s\npop %%ecx\ninc %%ecx\npush %%ecx\n'%(str(ebx_2))
+					shellcode = shellcode.replace(line,command)
+			if A is 2:
+				if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+					data = line.rsplit('push')[1].rsplit('$0x')[1]
+					ebx_2 = "%x" % (int(data, 16) - int('0x01', 16))
+					command = '\npush $0x%s\npop %%edx\ninc %%edx\npush %%edx\n'%(str(ebx_2))
 					shellcode = shellcode.replace(line,command)
 		shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		eax = str('0b909090')

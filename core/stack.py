@@ -7,6 +7,8 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 import binascii
+from core.pyversion import version
+version = version()
 def shellcoder(shellcode):
 	n = 0
 	xshellcode = '\\x'
@@ -18,7 +20,10 @@ def shellcoder(shellcode):
 			xshellcode += str('\\x')
 	return xshellcode[:-2]
 def st(data):
-	return binascii.b2a_hex(data[::-1])
+	if version is 2:
+		return str(binascii.b2a_hex(data[::-1]))
+	if version is 3:
+		return (binascii.b2a_hex(data[::-1].encode('latin-1'))).decode('latin-1')
 def generate(data,register,gtype):
 	length = len(data)
 	if gtype == 'int':
@@ -56,8 +61,8 @@ def generate(data,register,gtype):
 			shr = '\npop %s\nshr    $0x8,%s\npush %s\n'%(register,register,register)
 			stack_content = stack_content[0:6] + '90' + stack_content[6:]
 		zshr = shr
-		m = len(stack_content)
-		n = len(stack_content) / 8
+		m = int(len(stack_content))
+		n = int(len(stack_content) / 8)
 		file_shellcode = ''
 		if (len(stack_content) % 8) is 0:
 			shr_n = 0

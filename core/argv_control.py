@@ -6,11 +6,12 @@ ZeroDay Cyber Research
 Z3r0D4y.Com
 Ali Razmjoo
 '''
-import start
 import sys
 from lib import analyser
 from core import start
 from core import color
+from core.pyversion import version
+version = version()
 def exist():
 	check_num = False
 	if len(sys.argv) > 1:
@@ -51,9 +52,12 @@ def check():
 			start.zcr()
 			try:
 				t = True
-				print '\n'+color.color('yellow')+'Default OS Name is linux_x86, Enter OS Name or Enter "list" to see OS List'
+				print ('\n'+color.color('yellow')+'Default OS Name is linux_x86, Enter OS Name or Enter "list" to see OS List')
 				while t:
-					osname = raw_input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
+					if version is 2:
+						osname = raw_input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
+					if version is 3:
+						osname = input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
 					if osname == '':
 						osname = 'linux_x86'
 					check = start.oslist(osname)
@@ -61,14 +65,17 @@ def check():
 						start.os_names_list()
 						check = 1
 					if check is True:
-						print color.color('blue')+'OS Name set to "%s%s%s"'%(color.color('red'),osname,color.color('blue'))
+						print (color.color('blue')+'OS Name set to "%s%s%s"'%(color.color('red'),osname,color.color('blue')))
 						t = False
 					if check is not True and check is not 1:
-						print color.color('red')+'Wrong Input'	
+						print (color.color('red')+'Wrong Input'	)
 				t = True
-				print '\n'+color.color('yellow')+'Default Job is exec(\'/bin/bash\'), Enter Job Type or Enter "list" to see Jobs List'
+				print ('\n'+color.color('yellow')+'Default Job is exec(\'/bin/bash\'), Enter Job Type or Enter "list" to see Jobs List')
 				while t:
-					job = raw_input(color.color('cyan')+'Job:'+color.color('white')).replace('\n','')
+					if version is 2:
+						job = raw_input(color.color('cyan')+'Job:'+color.color('white')).replace('\n','')
+					if version is 3:
+						job = input(color.color('cyan')+'Job:'+color.color('white')).replace('\n','')
 					if job == '':
 						job = 'exec(\'/bin/bash\')'
 					check = start.job_check(job)
@@ -76,14 +83,17 @@ def check():
 						start.job_list()
 						check = 1
 					if check is True:
-						print color.color('blue')+'Job set to "%s%s%s"'%(color.color('red'),job,color.color('blue'))
+						print (color.color('blue')+'Job set to "%s%s%s"'%(color.color('red'),job,color.color('blue')))
 						t = False
 					if check is not True and check is not 1:
-						print color.color('red')+'Wrong Input'
+						print (color.color('red')+'Wrong Input')
 				t = True
-				print '\n'+color.color('yellow')+'Default Encode Type is none, Enter Encode Type or Enter "list" to see Encodes List'
+				print ('\n'+color.color('yellow')+'Default Encode Type is none, Enter Encode Type or Enter "list" to see Encodes List')
 				while t:
-					encode = raw_input(color.color('cyan')+'Encode:'+color.color('white')).replace('\n','')
+					if version is 2:
+						encode = raw_input(color.color('cyan')+'Encode:'+color.color('white')).replace('\n','')
+					if version is 3:
+						encode = input(color.color('cyan')+'Encode:'+color.color('white')).replace('\n','')
 					if encode == '':
 						encode = 'none'
 					check = start.encode_name_check(encode)
@@ -91,14 +101,17 @@ def check():
 						start.encode_name()
 						check = 1
 					if check is True:
-						print color.color('blue')+'Encode Type set to "%s%s%s"'%(color.color('red'),encode,color.color('blue'))
+						print (color.color('blue')+'Encode Type set to "%s%s%s"'%(color.color('red'),encode,color.color('blue')))
 						t = False
 					if check is not True and check is not 1:
-						print color.color('red')+'Wrong Input'
+						print (color.color('red')+'Wrong Input')
 				t = True
-				print '\n'+color.color('yellow')+'Default Filename is shellcode.c, Enter Filename or Just Enter to skip'
+				print ('\n'+color.color('yellow')+'Default Filename is shellcode.c, Enter Filename or Just Enter to skip')
 				while t:
-					filename = raw_input(color.color('cyan')+'Filename: '+color.color('white')).replace('\n','')
+					if version is 2:
+						filename = raw_input(color.color('cyan')+'Filename: '+color.color('white')).replace('\n','')
+					if version is 3:
+						filename = input(color.color('cyan')+'Filename: '+color.color('white')).replace('\n','')
 					if filename == '':
 						filename = 'shellcode.c'
 					check = False
@@ -110,10 +123,10 @@ def check():
 					except:
 						check = False
 					if check is True:
-						print color.color('blue')+'Filename set to "%s%s%s"'%(color.color('red'),filename,color.color('blue'))
+						print (color.color('blue')+'Filename set to "%s%s%s"'%(color.color('red'),filename,color.color('blue')))
 						t = False
 					if check is False:
-						print color.color('red')+'File is not writable, Try other name or change directory'
+						print (color.color('red')+'File is not writable, Try other name or change directory')
 			except (KeyboardInterrupt, SystemExit):
 				sys.exit('\n\nAborted by user.\n')
 			except:
@@ -227,7 +240,7 @@ def run():
 		writer.write('')
 		writer.close()
 	except:
-		print color.color('red')+'File is not writable, Try other name or change directory'+color.color('reset')
+		print (color.color('red')+'File is not writable, Try other name or change directory'+color.color('reset'))
 		sys.exit(start.sig())
 	os = sys.argv[os_counter]
 	filename = sys.argv[filename_counter]

@@ -7,13 +7,15 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 import sys
-import update as upd
-__version__ = '1.0.7.1'
-__key__ = 'FT'
-__release_date__ = '2015 September 12'
+from core import update as upd
+from core.pyversion import version
+version = version() #python version
+__version__ = '1.0.8'
+__key__ = 'F[ed]T'
+__release_date__ = '2015 October 25'
 from core import color
 def zcr():
-	print color.color('red') + '''
+	print (color.color('red') + '''
    ______          __      _____ _____    ___________ _____               
   / __ \ \        / /\    / ____|  __ \  |___  / ____|  __ \              
  | |  | \ \  /\  / /  \  | (___ | |__) |    / / |    | |__) |             
@@ -27,26 +29,29 @@ def zcr():
  |_____/|_|  |_|______|______|______\_____\____/|_____/|______|_|  \_\ (_)
                                                                           
                                                                           
-''' + color.color('cyan') + '\t\t\t'+color.color('green')+'OWASP' + color.color('cyan') + ' ZeroDay Cyber Research Shellcoder\n' + color.color('reset')	
+''' + color.color('cyan') + '\t\t\t'+color.color('green')+'OWASP' + color.color('cyan') + ' ZeroDay Cyber Research Shellcoder\n' + color.color('reset'))
 def sig():
-	print '''%s
+	print ('''%s
 |----------------------------------------------------------------------------|
 |%sOWASP%s Page: https://www.%sowasp%s.org/index.php/OWASP_ZSC_Tool_Project ---------|
 |Author Website: http://%sz3r0d4y%s.com/ ----------------------------------------|
 |Project Home: http://%szsc%s.z3r0d4y.com/ --------------------------------------|
 |key: %s%s%s | version: %s%s%s | Release Date: %s%s%s ---------------|
-|----------------------------------------------------------------------------|%s'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'),color.color('reset'))
+|----------------------------------------------------------------------------|%s'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'),color.color('reset')))
 def start():
 	zcr()
-	print color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset')
+	print (color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset'))
 	sig()
 	try:
-		raw_input('%sPress "%sEnter%s" to continue%s'%(color.color('green'),color.color('red'),color.color('green'),color.color('white')))
+		if version is 2:
+			raw_input('%sPress "%sEnter%s" to continue%s'%(color.color('green'),color.color('red'),color.color('green'),color.color('white')))
+		if version is 3:
+			input('%sPress "%sEnter%s" to continue%s'%(color.color('green'),color.color('red'),color.color('green'),color.color('white')))
 	except:
 		sys.exit(color.color('red')+'\n\nKeyboardInterrupt, aborted by user.\n'+color.color('reset')) 
 	sys.exit(0)
 def menu():
-	print '''
+	print ('''
 %sSwitches%s:
 %s-h%s, %s--h%s, %s-help%s, %s--help%s => to see this help guide  
 %s-os%s => choose your os to create shellcode
@@ -59,19 +64,19 @@ def menu():
 %s-wizard%s => wizard mod
 
 %s-update%s => check for update
-%s-about%s => about software and %sdevelopers%s.'''%(color.color('yellow'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'))
+%s-about%s => about software and %sdevelopers%s.'''%(color.color('yellow'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple')))
 	
 	sys.exit(sig())
 def inputcheck():
-	print color.color('yellow')+'''
-[+] Wrong input, Check Help Menu ,Execute: zsc ''' + color.color('red') + '-h'+ '\n' + color.color('reset')
+	print (color.color('yellow')+'''
+[+] Wrong input, Check Help Menu ,Execute: zsc ''' + color.color('red') + '-h'+ '\n' + color.color('reset'))
 	sys.exit(sig())
 os_name_list = ['linux_x86','linux_x64','linux_arm','linux_mips',
 	'freebsd_x86','freebsd_x64','windows_x86','windows_x64',
 	'osx','solaris_x86','solaris_x64']
 def os_names_list():
 	for os in os_name_list:
-		print '%s[+]%s'%(color.color('yellow'),color.color('green')),os
+		print ('%s[+]%s '%(color.color('yellow'),color.color('green')) + os)
 def os_check(val):
 	exist = 0
 	for os in os_name_list:
@@ -94,7 +99,7 @@ job_name_list = ['exec(\'/path/file\')','chmod(\'/path/file\',\'permission numbe
 	'script_executor(\'name of script\',\'path and name of your script in your pc\',\'execute command\')']
 def job_list():
 	for job in job_name_list:
-		print '%s[+]%s'%(color.color('yellow'),color.color('green')),job
+		print ('%s[+]%s '%(color.color('yellow'),color.color('green')) + job)
 def job_check(val):
 	exist = 0
 	if 'exec(' in val:
@@ -205,7 +210,7 @@ encode_name_list = ['none','xor_random','xor_yourvalue','add_random',
 	'dec','dec_timesyouwant','mix_all']
 def encode_name():
 	for type in encode_name_list:
-		print '%s[+]%s'%(color.color('yellow'),color.color('green')),type
+		print ('%s[+]%s '%(color.color('yellow'),color.color('green'))+type)
 def encode_name_check(val):
 	exist = 0
 	if val == 'none':
@@ -264,8 +269,8 @@ def update():
 def about():
 	zcr(),'\n'
 	developers = ['All Developers: owasp-zsc-tool-project[at]lists.owasp.org','Ali Razmjoo | OWASP:Ali Razmjoo | Twitter: @Ali_Razmjo0 | z3r0d4y.com',]
-	print color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo (Ali[dot]Razmjoo[at]owasp.org)\n\n' + color.color('yellow') + 'Developers:'
+	print (color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo (Ali[dot]Razmjoo[at]owasp.org)\n\n' + color.color('yellow') + 'Developers:')
 	sys.stdout.write(color.color('cyan'))
 	for developer in developers:
-		print developer
+		print (developer)
 	sys.exit(sig())

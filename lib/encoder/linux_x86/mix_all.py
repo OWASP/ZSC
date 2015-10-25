@@ -7,6 +7,8 @@ Z3r0D4y.Com
 Ali Razmjoo
 '''
 import random,binascii,string
+from core.pyversion import version
+version = version()
 chars = string.digits + string.ascii_letters
 def start(shellcode,job):
 	encodes = ['add_random','sub_random','xor_random','inc_timesyouwant','dec_timesyouwant']
@@ -17,7 +19,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x0f')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -32,7 +37,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x0f')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if '00' not in str(eax_1) and '00' not in str(eax_2):
@@ -46,7 +54,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x0f')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if '00' not in eax_1 and '00' not in eax_2:
 					t = False
@@ -105,7 +116,10 @@ def start(shellcode,job):
 		if selected == 'add_random':
 			t = True
 			while t:
-				ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					ecx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				ecx_2 = "%x" % (int(ecx_value, 16) - int(ecx_1, 16))
 				if '00' not in str(ecx_1) and '00' not in str(ecx_2) and len(ecx_1) >= 7 and len(ecx_2) >= 7 and '-' in ecx_2:
 					t = False
@@ -115,7 +129,10 @@ def start(shellcode,job):
 		if selected == 'sub_random':
 			t = True
 			while t:
-				ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					ecx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				ecx_2 = "%x" % (int(ecx_value, 16) + int(ecx_1, 16))
 				if '00' not in str(ecx_1) and '00' not in str(ecx_2) and len(ecx_1) >= 7 and len(ecx_2) >= 7 and '-' not in ecx_2:
 					t = False
@@ -124,7 +141,10 @@ def start(shellcode,job):
 		if selected == 'xor_random':
 			t = True
 			while t:
-				ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					ecx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				ecx_2 = "%x" % (int(ecx_value, 16) ^ int(ecx_1, 16))
 				if '00' not in ecx_1 and '00' not in ecx_2:
 					t = False
@@ -191,7 +211,10 @@ def start(shellcode,job):
 				while t:
 					if 'push $0x' in l:
 						ebx = l.rsplit()[1][1:]
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(ebx[2:], 16) - int(ebx_1, 16))
 						if '00' not in str(ebx_1) and '00' not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
 							ebx_2 = ebx_2.replace('-','')
@@ -227,7 +250,10 @@ def start(shellcode,job):
 				while t:
 					if 'push $0x' in l:
 						ebx = l.rsplit()[1][1:]
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(ebx[2:], 16) + int(ebx_1, 16))
 						if '00' not in str(ebx_1) and '00' not in str(ebx_2) and '-' not in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
 							ebx_2 = ebx_2.replace('-','')
@@ -261,7 +287,10 @@ def start(shellcode,job):
 			for l in middle.rsplit('\n'):
 				if 'push $0x' in l:
 					ebx = l.rsplit()[1][1:]
-					ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+					if version is 2:
+						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+					if version is 3:
+						ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 					ebx_2 = "%x" % (int(ebx, 16) ^ int(ebx_1, 16))
 					command = 'push $0x%s\npop %%ebx\npush $0x%s\npop %%edx\nxor %%ebx,%%edx\npush %%edx'%(str(ebx_1),str(ebx_2))
 					middle = middle.replace(l,command)
@@ -356,7 +385,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -378,7 +410,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax>eax_1:
@@ -398,7 +433,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -445,7 +483,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -459,7 +500,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -473,7 +517,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -512,7 +559,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -534,7 +584,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax>eax_1:
@@ -554,7 +607,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -601,7 +657,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -615,7 +674,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -629,7 +691,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -668,7 +733,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -690,7 +758,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax>eax_1:
@@ -710,7 +781,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -757,7 +831,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -771,7 +848,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -785,7 +865,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -823,7 +906,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x46')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -844,7 +930,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x46')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax>eax_1:
@@ -865,7 +954,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x46')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -927,7 +1019,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -941,7 +1036,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -955,7 +1053,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1002,7 +1103,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -1024,7 +1128,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax>eax_1:
@@ -1044,7 +1151,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -1091,7 +1201,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1105,7 +1218,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1119,7 +1235,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1158,7 +1277,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -1200,7 +1322,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -1247,7 +1372,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is  2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1261,7 +1389,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1275,7 +1406,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1314,7 +1448,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax>eax_1:
@@ -1336,7 +1473,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax>eax_1:
@@ -1356,7 +1496,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0xb')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax>eax_1:
@@ -1403,7 +1546,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and '-' in ebx_2 and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1417,7 +1563,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1431,7 +1580,10 @@ def start(shellcode,job):
 					data = line.rsplit('push')[1].rsplit('$0x')[1]
 					t = True
 					while t:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 2:
+							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						if version is 3:
+							ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 						ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 					
 						if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
@@ -1471,7 +1623,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x5')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax_1 != eax:
@@ -1491,7 +1646,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x5')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax_1 != eax:
@@ -1515,7 +1673,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x5')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax_1 != eax:
@@ -1560,7 +1721,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x4')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax_1 != eax:
@@ -1580,7 +1744,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x4')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax_1 != eax:
@@ -1604,7 +1771,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0x4')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(1)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(1))).encode('latin-1'))).decode('latin-1')
 				eax_1 = str('0') + str(eax_1[1])
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax_1 != eax:
@@ -1659,7 +1829,10 @@ def start(shellcode,job):
 						data = line.rsplit('push')[1].rsplit('$0x')[1]
 						t = True
 						while t:
-							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 							ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
 							if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1 and ebx_1 != data:
 								if '-' in ebx_2:
@@ -1685,7 +1858,10 @@ def start(shellcode,job):
 						data = line.rsplit('push')[1].rsplit('$0x')[1]
 						t = True
 						while t:
-							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 							ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 						
 							if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1 and ebx_1 != data:	
@@ -1704,7 +1880,10 @@ def start(shellcode,job):
 						data = line.rsplit('push')[1].rsplit('$0x')[1]
 						t = True
 						while t:
-							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 							ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 						
 							if str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1 and ebx_1 != data:
@@ -1754,7 +1933,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('4014141')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if eax_1 != eax:
 					if eax>eax_1:
@@ -1768,12 +1950,15 @@ def start(shellcode,job):
 				eax_add = 'push $0x%s\npop %%ecx\nneg %%ecx\nadd $0x%s,%%ecx\n'%(eax_2,eax_1)
 			if A is 0:
 				eax_add = 'push $0x%s\npop %%ecx\nadd $0x%s,%%ecx\n'%(eax_2,eax_1)
-			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('mov %esp,%ecx','\n_z3r0|d4y_\nmov %esp,%ecx\n')
 		if selected == 'sub_random':
 			t = True
 			eax = str('4014141')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if eax_1 != eax:
 					if eax>eax_1:
@@ -1787,12 +1972,15 @@ def start(shellcode,job):
 				eax_sub = 'push $0x%s\npop %%ecx\nneg %%ecx\nsub $0x%s,%%ecx\n'%(eax_2,eax_1)
 			if A is 0:
 				eax_sub = 'push $0x%s\npop %%ecx\nsub $0x%s,%%ecx\n'%(eax_2,eax_1)
-			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_sub+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_sub+'\n_z3r0d4y_\n').replace('mov %esp,%ecx','\n_z3r0|d4y_\nmov %esp,%ecx\n')
 		if selected == 'xor_random':
 			t = True
 			eax = str('4014141')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if eax_1 != eax:
 					if eax>eax_1:
@@ -1806,7 +1994,7 @@ def start(shellcode,job):
 				eax_xor = 'push $0x%s\npop %%ecx\nneg %%ecx\nxor $0x%s,%%ecx\n'%(eax_2,eax_1)
 			if A is 0:
 				eax_xor = 'push $0x%s\npop %%ecx\nxor $0x%s,%%ecx\n'%(eax_2,eax_1)
-			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_xor+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_xor+'\n_z3r0d4y_\n').replace('mov %esp,%ecx','\n_z3r0|d4y_\nmov %esp,%ecx\n')
 		if selected == 'inc_timesyouwant':
 			times = random.randrange(1,50)
 			eax_2 = str('4014141')
@@ -1816,7 +2004,7 @@ def start(shellcode,job):
 				n+=1
 			inc = 'inc %ecx\n' * n
 			eax_add = 'push $0x%s\npop %%ecx\n%s\n'%(eax_2,inc)
-			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('mov %esp,%ecx','\n_z3r0|d4y_\nmov %esp,%ecx\n')
 		if selected == 'dec_timesyouwant':
 			times = random.randrange(1,50)
 			eax_2 = str('4014141')
@@ -1826,34 +2014,63 @@ def start(shellcode,job):
 				n+=1
 			dec = 'dec %ecx\n' * n
 			eax_add = 'push $0x%s\npop %%ecx\n%s\n'%(eax_2,dec)
-			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('push $0x06909090','\n_z3r0|d4y_\npush $0x06909090\n')
+			shellcode = shellcode.replace('push   $0x4014141\npop    %ecx',eax_add+'\n_z3r0d4y_\n').replace('mov %esp,%ecx','\n_z3r0|d4y_\nmov %esp,%ecx\n')
 		selected = random.choice(encodes)
 		if selected == 'add_random':
 			A = 1
 			for line in shellcode.rsplit('\n'):
-				if '_z3r0d4y_' in line:
+				if str('_z3r0d4y_') in str(line):
 					A = 0
-				if '_z3r0|d4y_' in line:
-					A = 1
+				if str('_z3r0|d4y_') in str(line):
+					A = 2
 				if A is 0:
-					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+					if 'push' in line and '$0x' in line and ',' not in line and int(len(line)) > 14:
 						data = line.rsplit('push')[1].rsplit('$0x')[1]
 						t = True
 						while t:
-							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 							ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
-							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
+							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and int(len(ebx_2)) >=7 and int(len(ebx_1)) >= 7 and '-' not in ebx_1:
 								if '-' in ebx_2:
 									ebx_2 = ebx_2.replace('-','')
+									if int(len(ebx_2)) is 7:
+										ebx_2 = str('0') + str(ebx_2)
 									command = '\npush $0x%s\npop %%ecx\nneg %%ecx\nadd $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
 									shellcode = shellcode.replace(line,command)
 									t = False
-								if t is True:
+								if '-' not in ebx_2 and t is True:
+									if int(len(ebx_2)) is 7:
+										ebx_2 = str('0') + str(ebx_2)
 									command = '\npush $0x%s\npop %%ecx\nadd $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
 									shellcode = shellcode.replace(line,command)
-
-
-
+									t = False
+				if A is 2:
+					if 'push' in line and '$0x' in line and ',' not in line and int(len(line)) > 14:
+						data = line.rsplit('push')[1].rsplit('$0x')[1]
+						t = True
+						while t:
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
+							ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
+							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and int(len(ebx_2)) >=7 and int(len(ebx_1)) >= 7 and '-' not in ebx_1:
+								if '-' in ebx_2:
+									ebx_2 = ebx_2.replace('-','')
+									if int(len(ebx_2)) is 7:
+										ebx_2 = str('0') + str(ebx_2)
+									command = '\npush $0x%s\npop %%edx\nneg %%edx\nadd $0x%s,%%edx\npush %%edx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+								if '-' not in ebx_2 and t is True:
+									if int(len(ebx_2)) is 7:
+										ebx_2 = str('0') + str(ebx_2)
+									command = '\npush $0x%s\npop %%edx\nadd $0x%s,%%edx\npush %%edx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
 			shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		if selected == 'sub_random':
 			A = 1
@@ -1861,19 +2078,47 @@ def start(shellcode,job):
 				if '_z3r0d4y_' in line:
 					A = 0
 				if '_z3r0|d4y_' in line:
-					A = 1
+					A = 2
 				if A is 0:
 					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
 						data = line.rsplit('push')[1].rsplit('$0x')[1]
 						t = True
 						while t:
-							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 							ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
 							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
-								ebx_2 = ebx_2.replace('-','')
-								command = '\npush $0x%s\npop %%ecx\nsub $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
-								shellcode = shellcode.replace(line,command)
-								t = False
+								if '-' in ebx_2:
+									ebx_2 = ebx_2.replace('-','')
+									command = '\npush $0x%s\npop %%ecx\nneg %%ecx\nsub $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+								if '-' not in ebx_2 and t is True:
+									command = '\npush $0x%s\npop %%ecx\nsub $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+				if A is 2:
+					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+						data = line.rsplit('push')[1].rsplit('$0x')[1]
+						t = True
+						while t:
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
+							ebx_2 = "%x" % (int(data, 16) + int(ebx_1, 16))
+							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
+								if '-' in ebx_2:
+									ebx_2 = ebx_2.replace('-','')
+									command = '\npush $0x%s\npop %%edx\nneg %%edx\nsub $0x%s,%%edx\npush %%edx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+								if '-' not in ebx_2 and t is True:
+									command = '\npush $0x%s\npop %%edx\nsub $0x%s,%%edx\npush %%edx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
 			shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		if selected == 'xor_random':
 			A = 1
@@ -1881,19 +2126,47 @@ def start(shellcode,job):
 				if '_z3r0d4y_' in line:
 					A = 0
 				if '_z3r0|d4y_' in line:
-					A = 1
+					A = 2
 				if A is 0:
 					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
 						data = line.rsplit('push')[1].rsplit('$0x')[1]
 						t = True
 						while t:
-							ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 							ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
 							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
-								ebx_2 = ebx_2.replace('-','')
-								command = '\npush $0x%s\npop %%ecx\nxor $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
-								shellcode = shellcode.replace(line,command)
-								t = False
+								if '-' in ebx_2:
+									ebx_2 = ebx_2.replace('-','')
+									command = '\npush $0x%s\npop %%ecx\nneg %%ecx\nxor $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+								if '-' not in ebx_2 and t is True:
+									command = '\npush $0x%s\npop %%ecx\nxor $0x%s,%%ecx\npush %%ecx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+				if A is 2:
+					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+						data = line.rsplit('push')[1].rsplit('$0x')[1]
+						t = True
+						while t:
+							if version is 2:
+								ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+							if version is 3:
+								ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
+							ebx_2 = "%x" % (int(data, 16) ^ int(ebx_1, 16))
+							if ebx_1 != data and str('00') not in str(ebx_1) and str('00') not in str(ebx_2) and len(ebx_2) >=7 and len(ebx_1) >= 7 and '-' not in ebx_1:
+								if '-' in ebx_2:
+									ebx_2 = ebx_2.replace('-','')
+									command = '\npush $0x%s\npop %%edx\nneg %%edx\nxor $0x%s,%%edx\npush %%edx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
+								if '-' not in ebx_2 and t is True:
+									command = '\npush $0x%s\npop %%edx\nxor $0x%s,%%edx\npush %%edx\n'%(str(ebx_2),str(ebx_1))
+									shellcode = shellcode.replace(line,command)
+									t = False
 			shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		if selected == 'inc_timesyouwant':
 			times = random.randrange(1,50)
@@ -1902,7 +2175,7 @@ def start(shellcode,job):
 				if '_z3r0d4y_' in line:
 					A = 0
 				if '_z3r0|d4y_' in line:
-					A = 1
+					A = 2
 				if A is 0:
 					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
 						ebx_2 = line.rsplit('push')[1].rsplit('$0x')[1]
@@ -1913,6 +2186,16 @@ def start(shellcode,job):
 						inc = 'inc %ecx\n' * n
 						command = '\npush $0x%s\npop %%ecx\n%s\npush %%ecx\n'%(str(ebx_2),inc)
 						shellcode = shellcode.replace(line,command)
+				if A is 2:
+					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+						ebx_2 = line.rsplit('push')[1].rsplit('$0x')[1]
+						n = 0
+						while n<times:
+							ebx_2 = "%x" % (int(ebx_2, 16) - int('0x01', 16))
+							n+=1
+						inc = 'inc %ecx\n' * n
+						command = '\npush $0x%s\npop %%edx\n%s\npush %%edx\n'%(str(ebx_2),inc)
+						shellcode = shellcode.replace(line,command)
 			shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		if selected == 'dec_timesyouwant':
 			times = random.randrange(1,50)
@@ -1921,7 +2204,7 @@ def start(shellcode,job):
 				if '_z3r0d4y_' in line:
 					A = 0
 				if '_z3r0|d4y_' in line:
-					A = 1
+					A = 2
 				if A is 0:
 					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
 						ebx_2 = line.rsplit('push')[1].rsplit('$0x')[1]
@@ -1932,13 +2215,26 @@ def start(shellcode,job):
 						dec = 'dec %ecx\n' * n
 						command = '\npush $0x%s\npop %%ecx\n%s\npush %%ecx\n'%(str(ebx_2),dec)
 						shellcode = shellcode.replace(line,command)
+				if A is 2:
+					if 'push' in line and '$0x' in line and ',' not in line and len(line) > 14:
+						ebx_2 = line.rsplit('push')[1].rsplit('$0x')[1]
+						n = 0
+						while n<times:
+							ebx_2 = "%x" % (int(ebx_2, 16) + int('0x01', 16))
+							n+=1
+						dec = 'dec %ecx\n' * n
+						command = '\npush $0x%s\npop %%edx\n%s\npush %%edx\n'%(str(ebx_2),dec)
+						shellcode = shellcode.replace(line,command)
 			shellcode = shellcode.replace('_z3r0d4y_','').replace('_z3r0|d4y_','')
 		selected = random.choice(encodes)
 		if selected == 'add_random':
 			t = True
 			eax = str('0b909090')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) - int(eax_1, 16))
 				if '00' not in str(eax_1) and '00' not in str(eax_2) and eax_1 != eax:
 					t = False
@@ -1955,7 +2251,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0b909090')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) + int(eax_1, 16))
 				if '00' not in str(eax_1) and '00' not in str(eax_2) and eax_1 != eax:
 					t = False
@@ -1972,7 +2271,10 @@ def start(shellcode,job):
 			t = True
 			eax = str('0b909090')
 			while t:
-				eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 2:
+					eax_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				if version is 3:
+					eax_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
 				eax_2 = "%x" % (int(eax, 16) ^ int(eax_1, 16))
 				if '00' not in str(eax_1) and '00' not in str(eax_2) and eax_1 != eax:
 					t = False

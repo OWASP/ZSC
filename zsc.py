@@ -13,24 +13,19 @@ from time import strftime,gmtime
 from core import start
 from core import argv_control
 from lib import analyser
-if 'linux' in sys.platform or 'darwin' in sys.platform:
-	os.system('clear')
-else:
-	sys.exit('Sorry, This version of software just could be run on linux/osx.')
-def main():
+from core.compatible import check
+def main(): #main function
 	'''
 	main function of ZCR Shellcoder
 	'''
-	if argv_control.exist() is not True:
-		process = start.start()
-		sys.exit(0)
-	if argv_control.exist() is True:
-		process_check = False
-		if argv_control.check() is True:
-			process_check = True
-			analyser.do(argv_control.run())
-			start.sig()
-		if process_check is False:
+	if argv_control.exist() is not True: #if execute without any argv
+		start.start() #show start page and exit
+	else:
+		if argv_control.check() is True: #check argv, if entered accurately
+			analyser.do(argv_control.run()) #go for generating
+			start.sig() #print software signature and exit
+		else:
 			start.inputcheck()
 if __name__ == "__main__":
-    main()
+	check() #check os and python version if compatible
+	main() #execute main function
