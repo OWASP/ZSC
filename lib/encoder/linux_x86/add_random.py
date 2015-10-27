@@ -27,20 +27,20 @@ def start(shellcode,job):
 		eax = 'push   $%s'%(str(eax))
 		eax_add = 'push $0x%s\npop %%eax\npush $0x%s\npop %%ebx\nadd %%eax,%%ebx\npush %%ebx\n'%(eax_1,eax_2)
 		shellcode = shellcode.replace(eax,eax_add)
-		ecx = str(shellcode.rsplit('\n')[8])
-		ecx_value = str(shellcode.rsplit('\n')[8].rsplit()[1][1:])
+		ebx = str(shellcode.rsplit('\n')[8])
+		ebx_value = str(shellcode.rsplit('\n')[8].rsplit()[1][1:])
 		t = True
 		while t:
 			if version is 2:
-				ecx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+				ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 			if version is 3:
-				ecx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
-			ecx_2 = "%x" % (int(ecx_value, 16) - int(ecx_1, 16))
-			if '00' not in str(ecx_1) and '00' not in str(ecx_2) and int(len(ecx_1)) >= 7 and int(len(ecx_2)) >= 7 and '-' in ecx_2:
+				ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
+			ebx_2 = "%x" % (int(ebx_value, 16) - int(ebx_1, 16))
+			if '00' not in str(ebx_1) and '00' not in str(ebx_2) and int(len(ebx_1)) >= 7 and int(len(ebx_2)) >= 7 and '-' in ebx_2:
 				t = False
-		ecx_2 = ecx_2.replace('-','')
-		ecx_add = 'push $0x%s\npop %%ebx\npush $0x%s\npop %%ecx\nneg %%ecx\nadd %%ecx,%%ebx\npush %%ebx\n_z3r0d4y_\n'%(str(ecx_1),str(ecx_2))
-		shellcode = shellcode.replace(ecx,ecx_add)
+		ebx_2 = ebx_2.replace('-','')
+		ebx_add = 'push $0x%s\npop %%ebx\npush $0x%s\npop %%ecx\nneg %%ecx\nadd %%ecx,%%ebx\npush %%ebx\n_z3r0d4y_\n'%(str(ebx_1),str(ebx_2))
+		shellcode = shellcode.replace(ebx,ebx_add)
 		n = 0
 		start = ''
 		middle = ''
@@ -65,15 +65,15 @@ def start(shellcode,job):
 			t = True
 			while t:
 				if 'push $0x' in l:
-					ebx = l.rsplit()[1][1:]
+					edx = l.rsplit()[1][1:]
 					if version is 2:
-						ebx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
+						edx_1 = binascii.b2a_hex(''.join(random.choice(chars) for i in range(4)))
 					if version is 3:
-						ebx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
-					ebx_2 = "%x" % (int(ebx[2:], 16) - int(ebx_1, 16))
-					if '00' not in str(ebx_1) and '00' not in str(ebx_2) and '-' in ebx_2 and int(len(ebx_2)) >=7 and int(len(ebx_1)) >= 7 and '-' not in ebx_1:
-						ebx_2 = ebx_2.replace('-','')
-						command = '\npush $0x%s\npop %%ebx\npush $0x%s\npop %%edx\nneg %%edx\nadd %%ebx,%%edx\npush %%edx\n'%(str(ebx_1),str(ebx_2))
+						edx_1 = (binascii.b2a_hex((''.join(random.choice(chars) for i in range(4))).encode('latin-1'))).decode('latin-1')
+					edx_2 = "%x" % (int(edx[2:], 16) - int(edx_1, 16))
+					if '00' not in str(edx_1) and '00' not in str(edx_2) and '-' in edx_2 and int(len(edx_2)) >=7 and int(len(edx_1)) >= 7 and '-' not in edx_1:
+						edx_2 = edx_2.replace('-','')
+						command = '\npush $0x%s\npop %%ebx\npush $0x%s\npop %%edx\nneg %%edx\nadd %%ebx,%%edx\npush %%edx\n'%(str(edx_1),str(edx_2))
 						middle = middle.replace(l,command)
 						t = False
 				else:
