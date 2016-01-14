@@ -50,7 +50,7 @@ def start():
 def menu():
 	print ('%sSwitches'%color.color('yellow'))
 	print ('%sHelp'%color.color('cyan'))
-	print ('%s-h%s, %s--h%s, %s-help%s, %s--help%s \t to see this help guide'%(color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple')))
+	print ('%s-h%s, %s--help%s \t to see this help guide'%(color.color('red'),color.color('purple'),color.color('red'),color.color('purple')))
 	print ('\n%sShellcode Generating'%color.color('cyan'))
 	print ('%s-os%s \t choose your os to create shellcode'%(color.color('red'),color.color('purple')))
 	print ('%s-oslist%s	\t list of os for -os switch'%(color.color('red'),color.color('purple')))
@@ -65,12 +65,11 @@ def menu():
 	print ('%s-lang-list%s \t list of languages for -language switch'%(color.color('red'),color.color('purple')))
 	print ('%s-lang-encode%s \t choose type of encoding/obfuscating'%(color.color('red'),color.color('purple')))
 	print ('%s-lang-encode-types%s \t type of encodes for -lang-encode switch'%(color.color('red'),color.color('purple')))
-	print ('%s-i%s \t input filename'%(color.color('red'),color.color('purple')))
-	print ('%s-o%s \t output filename'%(color.color('red'),color.color('purple')))
+	print ('%s-i%s \t input filename [file will re-write]'%(color.color('red'),color.color('purple')))
 	print ('\n%sOther Options'%color.color('cyan'))
 	print ('%s-update%s \t check for update'%(color.color('red'),color.color('purple')))
 	print ('%s-about%s \t about software'%(color.color('red'),color.color('purple')))
-	print ('%s-v%s \t show version'%(color.color('red'),color.color('purple')))
+	print ('%s-v%s,%s--version%s \t show version'%(color.color('red'),color.color('purple'),color.color('red'),color.color('purple')))
 	sys.exit(sig())
 def inputcheck():
 	print (color.color('yellow')+'''
@@ -99,7 +98,27 @@ def oslist(val):
 	if val is not 1:
 		if os_check(val) is True:
 			return True
-
+lang_list = ['bash [Not Available]','go [Not Available]','javascript','perl [Not Available]','php [Not Available]','python [Not Available]','ruby [Not Available]','swift [Not Available]']
+def lang_list_name():
+	for lang in lang_list:
+		if '[Not Available]' in lang:
+			print ('%s[+]%s '%(color.color('yellow'),color.color('purple')) + lang)
+		else:
+			print ('%s[+]%s '%(color.color('yellow'),color.color('green')) + lang)
+def lang_check(val):
+	exist = 0
+	for lang in lang_list:
+		if str(val) == str(lang):
+			exist = 1
+	if exist is 1:
+		return True
+def langlist(val):
+		if val is 1:
+			lang_list_name()
+			sys.exit(sig())
+		if val is not 1:
+			if lang_check(val) is True:
+				return True
 job_name_list = ['exec(\'/path/file\')','chmod(\'/path/file\',\'permission number\')',
 	'write(\'/path/file\',\'text to write\')','file_create(\'/path/file\',\'text to write\')',
 	'dir_create(\'/path/folder\')','download(\'url\',\'filename\')',

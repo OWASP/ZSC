@@ -12,6 +12,10 @@ from core import start
 from core import color
 from core.pyversion import version
 version = version()
+argv_which_must_run_alone = ['-oslist','-joblist','-types','-h','--help','-update','-about',
+							 '-v','--version','-wizard-shellcode','-lang-list','-lang-encode-types']
+argv_shellcode_base = ['-os','-o','-job','-encode']
+argv_code_obfuscate_base = ['-language','-lang-encode','-i']
 def exist():
 	check_num = False
 	if len(sys.argv) > 1:
@@ -20,6 +24,9 @@ def exist():
 def check():
 	checkargv = False
 	if len(sys.argv) is 2:
+		if str(sys.argv[1]) == '-lang-list':
+			checkargv = True
+			start.langlist(1)
 		if str(sys.argv[1]) == '-oslist':
 			checkargv = True
 			start.oslist(1)
@@ -30,12 +37,6 @@ def check():
 			checkargv = True
 			start.types(1)
 		if str(sys.argv[1]) == '-h':
-			checkargv = True
-			start.menu()
-		if str(sys.argv[1]) == '--h':
-			checkargv = True
-			start.menu()
-		if str(sys.argv[1]) == '-help':
 			checkargv = True
 			start.menu()
 		if str(sys.argv[1]) == '--help':
@@ -155,11 +156,9 @@ def check():
 	if len(sys.argv) > 2:
 		checkargv = True
 		for argv_check in sys.argv:
+			if argv_check == '-lang-list':
+				checkargv = False
 			if argv_check == '-h':
-				checkargv = False
-			if argv_check == '--h':
-				checkargv = False
-			if argv_check == '-help':
 				checkargv = False
 			if argv_check == '--help':
 				checkargv = False
