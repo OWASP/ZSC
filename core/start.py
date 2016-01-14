@@ -10,9 +10,9 @@ import sys
 from core import update as upd
 from core.pyversion import version
 version = version() #python version
-__version__ = '1.0.8'
-__key__ = 'F[ed]T'
-__release_date__ = '2015 October 25'
+__version__ = '1.0.9'
+__key__ = 'Reboot'
+__release_date__ = '2016 January 15'
 from core import color
 def zcr():
 	print (color.color('red') + '''
@@ -33,11 +33,8 @@ def zcr():
 def sig():
 	print ('''%s
 |----------------------------------------------------------------------------|
-|%sOWASP%s Page: https://www.%sowasp%s.org/index.php/OWASP_ZSC_Tool_Project ---------|
-|Author Website: http://%sz3r0d4y%s.com/ ----------------------------------------|
-|Project Home: http://%szsc%s.z3r0d4y.com/ --------------------------------------|
-|key: %s%s%s | version: %s%s%s | Release Date: %s%s%s ---------------|
-|----------------------------------------------------------------------------|%s'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),__key__,color.color('blue'),color.color('red'),__version__,color.color('blue'),color.color('red'),__release_date__,color.color('blue'),color.color('reset')))
+|%sVisit%s https://www.%sowasp%s.org/index.php/OWASP_ZSC_Tool_Project ---------------|
+|----------------------------------------------------------------------------|%s'''%(color.color('blue'),color.color('red'),color.color('blue'),color.color('red'),color.color('blue'),color.color('reset')))
 def start():
 	zcr()
 	print (color.color('cyan') + 'Please execute with ' + color.color('red') + '-h' + color.color('cyan') + '|' + color.color('red') + '--h' + color.color('cyan') +'|'+color.color('red')+'-help'+color.color('cyan')+'|' + color.color('red') +'--help ' + color.color('cyan') + 'switch to see help menu.' + color.color('reset'))
@@ -51,32 +48,43 @@ def start():
 		sys.exit(color.color('red')+'\n\nKeyboardInterrupt, aborted by user.\n'+color.color('reset')) 
 	sys.exit(0)
 def menu():
-	print ('''
-%sSwitches%s:
-%s-h%s, %s--h%s, %s-help%s, %s--help%s => to see this help guide  
-%s-os%s => choose your os to create shellcode
-%s-oslist%s	=> list os for switch -os
-%s-o%s => output filename
-%s-job%s => what shellcode gonna do for you ?
-%s-joblist%s => list of -job switch
-%s-encode%s => generate shellcode with encode
-%s-types%s => types of encode for -encode switch
-%s-wizard%s => wizard mod
-
-%s-update%s => check for update
-%s-about%s => about software and %sdevelopers%s.'''%(color.color('yellow'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple')))
-	
+	print ('%sSwitches'%color.color('yellow'))
+	print ('%sHelp'%color.color('cyan'))
+	print ('%s-h%s, %s--h%s, %s-help%s, %s--help%s \t to see this help guide'%(color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple'),color.color('red'),color.color('purple')))
+	print ('\n%sShellcode Generating'%color.color('cyan'))
+	print ('%s-os%s \t choose your os to create shellcode'%(color.color('red'),color.color('purple')))
+	print ('%s-oslist%s	\t list of os for -os switch'%(color.color('red'),color.color('purple')))
+	print ('%s-o%s \t output filename'%(color.color('red'),color.color('purple')))
+	print ('%s-job%s \t what shellcode gonna do for you ?'%(color.color('red'),color.color('purple')))
+	print ('%s-joblist%s \t list of jobs for -job switch'%(color.color('red'),color.color('purple')))
+	print ('%s-encode%s \t choose type of encoding/obfuscating'%(color.color('red'),color.color('purple')))
+	print ('%s-types%s \t type of encodes for -encode switch'%(color.color('red'),color.color('purple')))
+	print ('%s-wizard-shellcode%s \t wizard mode to generate shellcode'%(color.color('red'),color.color('purple')))
+	print ('\n%sCode Obfuscating'%color.color('cyan'))
+	print ('%s-language%s \t programming language of input file'%(color.color('red'),color.color('purple')))
+	print ('%s-lang-list%s \t list of languages for -language switch'%(color.color('red'),color.color('purple')))
+	print ('%s-lang-encode%s \t choose type of encoding/obfuscating'%(color.color('red'),color.color('purple')))
+	print ('%s-lang-encode-types%s \t type of encodes for -lang-encode switch'%(color.color('red'),color.color('purple')))
+	print ('%s-i%s \t input filename'%(color.color('red'),color.color('purple')))
+	print ('%s-o%s \t output filename'%(color.color('red'),color.color('purple')))
+	print ('\n%sOther Options'%color.color('cyan'))
+	print ('%s-update%s \t check for update'%(color.color('red'),color.color('purple')))
+	print ('%s-about%s \t about software'%(color.color('red'),color.color('purple')))
+	print ('%s-v%s \t show version'%(color.color('red'),color.color('purple')))
 	sys.exit(sig())
 def inputcheck():
 	print (color.color('yellow')+'''
 [+] Wrong input, Check Help Menu ,Execute: zsc ''' + color.color('red') + '-h'+ '\n' + color.color('reset'))
 	sys.exit(sig())
-os_name_list = ['linux_x86','linux_x64','linux_arm','linux_mips',
-	'freebsd_x86','freebsd_x64','windows_x86','windows_x64',
-	'osx','solaris_x86','solaris_x64']
+os_name_list = ['linux_x86','linux_x64 [Not Available]','linux_arm [Not Available]','linux_mips [Not Available]',
+	'freebsd_x86 [Not Available]','freebsd_x64 [Not Available]','windows_x86 [Not Available]','windows_x64 [Not Available]',
+	'osx [Not Available]','solaris_x86 [Not Available]','solaris_x64 [Not Available]']
 def os_names_list():
 	for os in os_name_list:
-		print ('%s[+]%s '%(color.color('yellow'),color.color('green')) + os)
+		if '[Not Available]' in os:
+			print ('%s[+]%s '%(color.color('yellow'),color.color('purple')) + os)
+		else:
+			print ('%s[+]%s '%(color.color('yellow'),color.color('green')) + os)
 def os_check(val):
 	exist = 0
 	for os in os_name_list:
@@ -267,10 +275,14 @@ def update():
 	upd.startu(__version__)
 	sys.exit(sig())
 def about():
-	zcr(),'\n'
-	developers = ['All Developers: owasp-zsc-tool-project[at]lists.owasp.org','Ali Razmjoo | OWASP:Ali Razmjoo | Twitter: @Ali_Razmjo0 | z3r0d4y.com',]
-	print (color.color('red') + 'Project Coordinator: ' + color.color('cyan') + 'Ali Razmjoo (Ali[dot]Razmjoo[at]owasp.org)\n\n' + color.color('yellow') + 'Developers:')
-	sys.stdout.write(color.color('cyan'))
-	for developer in developers:
-		print (developer)
+	zcr()
+	info = [['Code','https://github.com/Ali-Razmjoo/OWASP-ZSC'],['Contributors','https://github.com/Ali-Razmjoo/OWASP-ZSC/graphs/contributors'],['API','http://api.z3r0d4y.com/'],['Home','http://zsc.z3r0d4y.com/'],['Mailing List','https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project'],['Contact US Now','owasp-zsc-tool-project[at]lists[dot]owasp[dot]org']]
+	for section in info:
+		print('%s%s%s: %s%s%s'%(color.color('red'),section[0],color.color('reset'),color.color('yellow'),section[1],color.color('reset')))
+	sys.exit(sig())
+def soft_version():
+	zcr()
+	print '%sOWASP ZSC Version: %s%s'%(color.color('cyan'),color.color('red'),__version__)
+	print '%sKey: %s%s'%(color.color('cyan'),color.color('red'),__key__)
+	print '%sRelease Date: %s%s'%(color.color('cyan'),color.color('red'),__release_date__)
 	sys.exit(sig())

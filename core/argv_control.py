@@ -46,8 +46,10 @@ def check():
 			start.update()
 		if str(sys.argv[1]) == '-about':
 			checkargv = True
-			start.about()
-		if str(sys.argv[1]) == '-wizard':
+		if str(sys.argv[1]) == '-v':
+			checkargv = True
+			start.soft_version()
+		if str(sys.argv[1]) == '-wizard-shellcode':
 			checkargv = True
 			start.zcr()
 			try:
@@ -140,7 +142,11 @@ def check():
 				checkargv = False
 			if checkargv is False:
 				start.inputcheck()
-			content = osname + '\x90\x90\x90' + filename + '\x90\x90\x90' + encode + '\x90\x90\x90' + job
+			content = []
+			content.append(osname)
+			content.append(filename)
+			content.append(encode)
+			content.append(job)
 			analyser.do(content)
 			sys.exit(start.sig())
 		if checkargv is False:
@@ -165,7 +171,9 @@ def check():
 				checkargv = False
 			if argv_check == '-update':
 				checkargv = False
-			if argv_check == '-wizard':
+			if argv_check == '-wizard-shellcode':
+				checkargv = False
+			if argv_check == '-v':
 				checkargv = False
 		if checkargv is False:
 			start.inputcheck()
@@ -242,9 +250,14 @@ def run():
 	except:
 		print (color.color('red')+'File is not writable, Try other name or change directory'+color.color('reset'))
 		sys.exit(start.sig())
-	os = sys.argv[os_counter]
+	osname = sys.argv[os_counter]
 	filename = sys.argv[filename_counter]
 	encode = sys.argv[encode_counter]
 	job = sys.argv[job_counter]
-	content = os + '\x90\x90\x90' + filename + '\x90\x90\x90' + encode + '\x90\x90\x90' + job
+	content = []
+	content.append(osname)
+	content.append(filename)
+	content.append(encode)
+	content.append(job)
+	analyser.do(content)
 	return content

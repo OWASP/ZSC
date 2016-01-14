@@ -65,8 +65,7 @@ def file_writer(cont):
 	cont = cont.replace('\')','')
 	cont = cont.rsplit('\x90\x90\x90')
 	return cont[0] + '\x90\x90\x90' + cont[1]
-def do(cont):
-	content = cont.rsplit('\x90\x90\x90')
+def do(content):
 	os_name,filename,encode_type,job = content[0],content[1],content[2],content[3]
 	shellcode = None
 	if 'freebsd_x64' in os_name:
