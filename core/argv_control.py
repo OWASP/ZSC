@@ -27,6 +27,9 @@ def check():
 		if str(sys.argv[1]) == '-lang-list':
 			checkargv = True
 			start.langlist(1)
+		if str(sys.argv[1]) == '-lang-encode-types':
+			checkargv = True
+			start.langencode(1)
 		if str(sys.argv[1]) == '-oslist':
 			checkargv = True
 			start.oslist(1)
@@ -48,6 +51,9 @@ def check():
 		if str(sys.argv[1]) == '-about':
 			checkargv = True
 		if str(sys.argv[1]) == '-v':
+			checkargv = True
+			start.soft_version()
+		if str(sys.argv[1]) == '--version':
 			checkargv = True
 			start.soft_version()
 		if str(sys.argv[1]) == '-wizard-shellcode':
@@ -148,7 +154,7 @@ def check():
 			content.append(filename)
 			content.append(encode)
 			content.append(job)
-			analyser.do(content)
+			analyser.do(content,'shellcode')
 			sys.exit(start.sig())
 		if checkargv is False:
 			start.inputcheck()
@@ -157,6 +163,8 @@ def check():
 		checkargv = True
 		for argv_check in sys.argv:
 			if argv_check == '-lang-list':
+				checkargv = False
+			if argv_check == '-lang-encode-types':
 				checkargv = False
 			if argv_check == '-h':
 				checkargv = False
@@ -174,9 +182,64 @@ def check():
 				checkargv = False
 			if argv_check == '-v':
 				checkargv = False
+			if argv_check == '--version':
+				checkargv = False
 		if checkargv is False:
 			start.inputcheck()
 		checkargv = False
+		counter = 0
+		total_counter = 0
+		os_counter = 0
+		filename_counter = 0
+		job_counter = 0
+		encode_counter = 0
+		for argv_check in sys.argv:
+			if argv_check == '-os':
+				counter += 1
+				os_counter = total_counter + 1
+			if argv_check == '-o':
+				counter += 1
+				filename_counter = total_counter + 1
+			if argv_check == '-job':
+				counter += 1
+				job_counter = total_counter + 1
+			if argv_check == '-encode':
+				counter += 1
+				encode_counter = total_counter + 1
+			total_counter += 1
+		if counter is 4:
+			checkargv = False
+			if start.oslist(sys.argv[os_counter]) is not True:
+				return checkargv
+			if start.types(sys.argv[encode_counter]) is not True:
+				return checkargv
+			if start.joblist(sys.argv[job_counter]) is not True:
+				return checkargv
+			checkargv = True
+		elif checkargv is not True:
+			lang_counter = 0
+			lang_encode_counter = 0
+			input_file_counter = 0
+			counter = 0
+			total_counter = 0
+			for argv_check in sys.argv:
+				if argv_check == '-language':
+					counter += 1
+					lang_counter = total_counter + 1
+				if argv_check == '-i':
+					counter += 1
+					input_file_counter = total_counter + 1
+				if argv_check == '-lang-encode':
+					counter += 1
+					lang_encode_counter = total_counter + 1
+				total_counter+=1
+			if counter is 3:
+				checkargv = True
+		if checkargv is False:
+			start.inputcheck()
+		return checkargv
+def run():
+	if len(sys.argv) is 9:
 		counter = 0
 		total_counter = 0
 		os_counter = 0
@@ -208,55 +271,60 @@ def check():
 			return checkargv
 		if start.joblist(sys.argv[job_counter]) is not True:
 			return checkargv
-		checkargv = True
-		return checkargv
-def run():
-	counter = 0
-	total_counter = 0
-	os_counter = 0
-	filename_counter = 0
-	job_counter = 0
-	encode_counter = 0
-	for argv_check in sys.argv:
-		if argv_check == '-os':
-			counter += 1
-			os_counter = total_counter + 1
-		if argv_check == '-o':
-			counter += 1
-			filename_counter = total_counter + 1
-		if argv_check == '-job':
-			counter += 1
-			job_counter = total_counter + 1
-		if argv_check == '-encode':
-			counter += 1
-			encode_counter = total_counter + 1
-		total_counter += 1
-	if counter is 4:
-		checkargv = True
-	if checkargv is False:
+		try:
+			writer = open(sys.argv[filename_counter],'w')
+			writer.write('')
+			writer.close()
+		except:
+			print (color.color('red')+'File is not writable, Try other name or change directory'+color.color('reset'))
+			sys.exit(start.sig())
+		osname = sys.argv[os_counter]
+		filename = sys.argv[filename_counter]
+		encode = sys.argv[encode_counter]
+		job = sys.argv[job_counter]
+		content = []
+		content.append(osname)
+		content.append(filename)
+		content.append(encode)
+		content.append(job)
+		analyser.do(content,'shellcode')
+		return content
+	elif len(sys.argv) is 7:
+		lang_counter = 0
+		lang_encode_counter = 0
+		input_file_counter = 0
+		counter = 0
+		total_counter = 0
+		for argv_check in sys.argv:
+			if argv_check == '-language':
+				counter += 1
+				lang_counter = total_counter + 1
+			if argv_check == '-i':
+				counter += 1
+				input_file_counter = total_counter + 1
+			if argv_check == '-lang-encode':
+				counter += 1
+				lang_encode_counter = total_counter + 1
+			total_counter+=1
+		if start.langlist(sys.argv[lang_counter]) is not True:
+			start.inputcheck()
+		if start.langencode(sys.argv[lang_encode_counter]) is not True:
+			start.inputcheck()
+		content = []
+		try:
+			content.append(open(sys.argv[input_file_counter],'rb').read())
+		except:
+			print (color.color('red')+'Can\'t open the input file.'+color.color('reset'))
+			sys.exit(start.sig())
+		content.append(sys.argv[lang_counter])
+		content.append(sys.argv[lang_encode_counter])
+		content.append(lang_counter)
+		content.append(lang_encode_counter)
+		content.append(input_file_counter)
+		data = analyser.do(content,'code_obf')
+		f = open(sys.argv[input_file_counter],'w')
+		f.write(data[0])
+		f.write(data[1])
+		f.close()
+	else:
 		start.inputcheck()
-	checkargv = False
-	if start.oslist(sys.argv[os_counter]) is not True:
-		return checkargv
-	if start.types(sys.argv[encode_counter]) is not True:
-		return checkargv
-	if start.joblist(sys.argv[job_counter]) is not True:
-		return checkargv
-	try:
-		writer = open(sys.argv[filename_counter],'w')
-		writer.write('')
-		writer.close()
-	except:
-		print (color.color('red')+'File is not writable, Try other name or change directory'+color.color('reset'))
-		sys.exit(start.sig())
-	osname = sys.argv[os_counter]
-	filename = sys.argv[filename_counter]
-	encode = sys.argv[encode_counter]
-	job = sys.argv[job_counter]
-	content = []
-	content.append(osname)
-	content.append(filename)
-	content.append(encode)
-	content.append(job)
-	analyser.do(content)
-	return content

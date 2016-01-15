@@ -54,3 +54,11 @@ Output: %s%s%s'''%(color.color('yellow'),color.color('blue'),os_name,color.color
 def disable(os_name,job):
 	print (color.color('red')+'Note: %s%s%s function is not Activated for %s%s%s OS Yet, Please wait for update.\nTo see available modules take a look at the %sfeatures_table.html%s file in software folder.'%(color.color('cyan'),job,color.color('red'),color.color('blue'),os_name,color.color('red'),color.color('white'),color.color('red')))
 	return 0	
+def encode_res(lang,encode,filename):
+	print ('''%sFile Encoded!
+
+Langauge: %s%s%s
+Encode: %s%s%s
+Filename: %s%s%s
+	'''%(color.color('yellow'),color.color('blue'),lang,color.color('yellow'),color.color('red'),encode,color.color('yellow'),color.color('cyan'),filename,color.color('yellow')))
+	return 0

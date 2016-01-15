@@ -87,7 +87,7 @@ def os_names_list():
 def os_check(val):
 	exist = 0
 	for os in os_name_list:
-		if str(val) == str(os):
+		if str(val) == str(os.rsplit('[Not Available]')[0]):
 			exist = 1
 	if exist is 1:
 		return True
@@ -98,6 +98,27 @@ def oslist(val):
 	if val is not 1:
 		if os_check(val) is True:
 			return True
+def lang_encode_check(val):
+	exist = 0
+	for le in lang_encode_list:
+		if str(val) == str(le):
+			exist = 1
+	if exist is 1:
+		return True
+def lang_encoding_list():
+	for le in lang_encode_list:
+		if '[Not Available]' in le:
+			print ('%s[+]%s '%(color.color('yellow'),color.color('purple')) + le)
+		else:
+			print ('%s[+]%s '%(color.color('yellow'),color.color('green')) + le)
+lang_encode_list = ['simple_hex']
+def langencode(val):
+		if val is 1:
+			lang_encoding_list()
+			sys.exit(sig())
+		if val is not 1:
+				if lang_encode_check(val) is True:
+					return True
 lang_list = ['bash [Not Available]','go [Not Available]','javascript','perl [Not Available]','php [Not Available]','python [Not Available]','ruby [Not Available]','swift [Not Available]']
 def lang_list_name():
 	for lang in lang_list:
@@ -108,7 +129,7 @@ def lang_list_name():
 def lang_check(val):
 	exist = 0
 	for lang in lang_list:
-		if str(val) == str(lang):
+		if str(val) == str(lang.rsplit('[Not Available]')[0]):
 			exist = 1
 	if exist is 1:
 		return True
@@ -301,7 +322,7 @@ def about():
 	sys.exit(sig())
 def soft_version():
 	zcr()
-	print '%sOWASP ZSC Version: %s%s'%(color.color('cyan'),color.color('red'),__version__)
-	print '%sKey: %s%s'%(color.color('cyan'),color.color('red'),__key__)
-	print '%sRelease Date: %s%s'%(color.color('cyan'),color.color('red'),__release_date__)
+	print ('%sOWASP ZSC Version: %s%s'%(color.color('cyan'),color.color('red'),__version__))
+	print ('%sKey: %s%s'%(color.color('cyan'),color.color('red'),__key__))
+	print ('%sRelease Date: %s%s'%(color.color('cyan'),color.color('red'),__release_date__))
 	sys.exit(sig())

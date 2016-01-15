@@ -22,7 +22,7 @@ def main(): #main function
 		start.start() #show start page and exit
 	else:
 		if argv_control.check() is True: #check argv, if entered accurately
-			analyser.do(argv_control.run()) #go for generating
+			analyser.do(argv_control.run(),True) #go for generating
 			start.sig() #print software signature and exit
 		else:
 			start.inputcheck()
