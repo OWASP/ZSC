@@ -52,7 +52,7 @@ def check():
 			start.zcr()
 			try:
 				t = True
-				print ('\n'+color.color('yellow')+'Default OS Name is linux_x86, Enter OS Name or Enter "list" to see OS List')
+				print ('\n'+color.color('yellow')+'This version has one OS available which is linux_x86 (by Default), Enter OS Name or Enter "list" to see future OS List')
 				while t:
 					if version is 2:
 						osname = raw_input(color.color('cyan')+'OS Name: '+color.color('white')).replace('\n','')
