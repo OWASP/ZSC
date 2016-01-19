@@ -103,7 +103,7 @@ def getcommand(commands):
 					for encode in backup_commands['shellcode'][1]['generate'][os][func][backup_option]:
 						info(encode+'\n')
 					write('\n\n')
-					info('enter encode type')
+					info('enter encode type\n')
 					completer = autocomplete(backup_commands['shellcode'][1]['generate'][os][func][backup_option])
 					readline.set_completer(completer.complete)
 					readline.parse_and_bind('tab: complete')
