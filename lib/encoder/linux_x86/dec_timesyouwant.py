@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 '''
 OWASP ZSC | ZCR Shellcoder
-
-ZeroDay Cyber Research
-Z3r0D4y.Com
-Ali Razmjoo
+https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
+https://github.com/Ali-Razmjoo/OWASP-ZSC
+http://api.z3r0d4y.com/
+https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
 def start(type,shellcode,job):
-	if 'chmod(' in job:	
+	if 'chmod' == job:	
 		eax = str('0x0f')
 		times = int(type.rsplit('dec_')[1])
 		eax_2 = '%x'%(int('0f',16))
@@ -84,7 +84,7 @@ def start(type,shellcode,job):
 					command = 'push $0x%s\npop %%ebx\nneg %%ebx%s\npush %%ebx'%(str(ebx_2),dec_str)
 				middle = middle.replace(l,command)
 		shellcode = start + middle + end
-	if 'dir_create(' in job:
+	elif 'dir_create' == job:
 		times = int(type.rsplit('dec_')[1])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -106,7 +106,7 @@ def start(type,shellcode,job):
 				dec = 'dec %eax\n' * n
 				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
 				shellcode = shellcode.replace(line,command)
-	if 'download_execute(' in job:
+	elif 'download_execute' == job:
 		times = int(type.rsplit('dec_')[1])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -128,7 +128,7 @@ def start(type,shellcode,job):
 				dec = 'dec %eax\n' * n
 				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
 				shellcode = shellcode.replace(line,command)
-	if 'download(' in job:
+	elif 'download' == job:
 		times = int(type.rsplit('dec_')[1])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -150,7 +150,7 @@ def start(type,shellcode,job):
 				dec = 'dec %eax\n' * n
 				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
 				shellcode = shellcode.replace(line,command)
-	if 'exec(' in job:
+	elif 'exec' == job:
 		times = int(type.rsplit('dec_')[1])
 		t = True
 		eax_2,eax = str('0x46909090'),str('0x46909090')
@@ -184,7 +184,7 @@ def start(type,shellcode,job):
 				command = '\npush $0x%s\npop %%ebx\n%s\npush %%ebx\n'%(str(ebx_2),dec)
 				shellcode = shellcode.replace(line,command)
 		shellcode = shellcode.replace('_z3r0d4y_','')
-	if 'file_create(' in job:
+	elif 'file_create' == job:
 		times = int(type.rsplit('dec_')[1])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -206,7 +206,7 @@ def start(type,shellcode,job):
 				dec = 'dec %eax\n' * n
 				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
 				shellcode = shellcode.replace(line,command)
-	if 'script_executor(' in job:
+	elif 'script_executor' == job:
 		times = int(type.rsplit('dec_')[1])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -228,7 +228,7 @@ def start(type,shellcode,job):
 				dec = 'dec %eax\n' * n
 				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
 				shellcode = shellcode.replace(line,command)
-	if 'system(' in job:
+	elif 'system' == job:
 		times = int(type.rsplit('dec_')[1])
 		shellcode = 'xor %edx,%edx\n' + shellcode.replace('push   $0xb\npop    %eax\ncltd','').replace('push   %ebx\nmov    %esp,%ecx','push   %ebx\nmov    %esp,%ecx'+'\n'+'push   $0xb\npop    %eax\ncltd')
 		t = True
@@ -250,7 +250,7 @@ def start(type,shellcode,job):
 				dec = 'dec %eax\n' * n
 				command = '\npush $0x%s\npop %%eax\n%spush %%eax\n'%(str(ebx_2),str(dec))
 				shellcode = shellcode.replace(line,command)
-	if 'write(' in job:
+	elif 'write' == job:
 		times = int(type.rsplit('dec_')[1])
 		eax_2 = str('0x5')
 		n = 0
