@@ -1,5 +1,12 @@
 Changes
 -------
+version 1.0.9: Reboot
+---------------------
+ * fixed bug
+ * change structre
+ * add user friendly interface 
+ * add opensource language obfuscator
+
 version 1.0.8: F[ed]T
 ---------------------
 
