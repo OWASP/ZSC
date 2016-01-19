@@ -17,7 +17,10 @@ from lib.shell_storm_api.grab import _download_shellcode
 from core.encode import encode_process
 from core.get_input import _input
 from core.opcoder import op
-execfile('core/start.py')
+try:#python 2.x
+	execfile('core/commands.py')
+except:#python 3.x
+	exec(compile(open('core/commands.py', "rb").read(), 'core/commands.py', 'exec'))
 _reset = '''
 commands = backup_commands
 completer = autocomplete(commands)
@@ -66,10 +69,10 @@ def getcommand(commands):
 				if crawler is 2:
 					if command == 'search':
 						_search_shellcode()
-						exec _reset
+						exec (_reset)
 					elif command == 'download':
 						_download_shellcode()
-						exec _reset
+						exec (_reset)
 					elif command == 'generate':
 						commands = commands[option]
 					else:
@@ -120,7 +123,7 @@ def getcommand(commands):
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
 						
-					exec _reset
+					exec (_reset)
 				completer = autocomplete(commands) #main commands
 				readline.set_completer(completer.complete)
 				readline.parse_and_bind('tab: complete')
@@ -129,19 +132,19 @@ def getcommand(commands):
 			sys.exit('Exit')
 		elif command == 'update':
 			_update(__version__)
-			exec _reset
+			exec (_reset)
 		elif command == 'help':
 			exit_counter = 0
 			help_(help)
-			exec _reset
+			exec (_reset)
 		elif command == 'restart':
-			exec _reset
+			exec (_reset)
 		elif command == 'about':
 			about()
-			exec _reset
+			exec (_reset)
 		elif command == 'version':
 			_version()
-			exec _reset
+			exec (_reset)
 		else:
 			if command != '' and check is True:
 				exit_counter = 0
