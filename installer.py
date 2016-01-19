@@ -16,7 +16,7 @@ else:
 	sys.exit(color.color('red')+'Sorry, This version of software just could be INSTALL on linux/osx.'+color.color('reset'))
 if os.geteuid() is not 0:
 	sys.exit(color.color('red')+'Sorry, you most run this file as root.'+color.color('reset'))
-start.zcr()
+start.logo()
 executor = '''#!/bin/bash\npython /usr/share/owasp_zsc/zsc.py "$@"'''
 print (color.color('cyan')+'Building Commandline')
 commandline = open('/usr/bin/zsc','w')
