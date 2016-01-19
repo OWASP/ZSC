@@ -2,6 +2,8 @@ Changes
 -------
 version 1.0.9: Reboot
 ---------------------
+
+ * add shell-storm api
  * fixed bug
  * change structre
  * add user friendly interface 
