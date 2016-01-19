@@ -17,6 +17,7 @@ from lib.shell_storm_api.grab import _download_shellcode
 from core.encode import encode_process
 from core.get_input import _input
 from core.opcoder import op
+from core.obfuscate import obf_code
 try:#python 2.x
 	execfile('core/commands.py')
 except:#python 3.x
@@ -76,9 +77,27 @@ def getcommand(commands):
 					elif command == 'generate':
 						commands = commands[option]
 					else:
-						info('gone for code obuscate')
-						sys.exit(0)
-						pass # obfusctae(option)
+						while True:
+							filename = _input('filename','any',True)
+							try:
+								content = open(filename,'rb').read()
+								break
+							except:
+								warn('sorry, cann\'t find file\n')
+						commands = commands[option]
+						completer = autocomplete(commands)
+						readline.set_completer(completer.complete)
+						readline.parse_and_bind('tab: complete')
+						t = True
+						while t:
+							encode = _input('encode','any',True)
+							for en in commands:
+								if encode == en:
+									t = False
+							if t is True:
+								warn('please enter a valid encode name\n')
+						obf_code(option,encode,filename,content)
+						exec (_reset)
 				if crawler is 3:
 					os = option
 					commands = commands[option]
@@ -95,7 +114,6 @@ def getcommand(commands):
 						if version() is 3:
 							data.append(input('%s:'%o))
 					n = 0
-					
 					write('\n')
 					for o in options:
 						info('%s set to "%s"\n'%(o,data[n]))
@@ -122,7 +140,6 @@ def getcommand(commands):
 						write('\n'+op(encode_process(encode,shellcode,os,func),os)+'\n\n')
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
-						
 					exec (_reset)
 				completer = autocomplete(commands) #main commands
 				readline.set_completer(completer.complete)

@@ -21,6 +21,7 @@ def _input(name,type,_while):
 						data = raw_input('%s%s>%s '%(color.color('blue'),name,color.color('yellow')))
 					break
 				except:
+					write('wrong input!\n')
 					pass
 		if type == 'hex':
 			while _while:
@@ -33,7 +34,7 @@ def _input(name,type,_while):
 						binascii.a2b_hex(data)
 					break
 				except:
-					warn('you must enter a hex value')
+					warn('you must enter a hex value\n')
 					pass
 		if type == 'int':
 			while _while:
@@ -46,7 +47,7 @@ def _input(name,type,_while):
 						int(data)
 					break
 				except:
-					warn('you must enter a int value')
+					warn('you must enter a int value\n')
 					pass
 	elif _while is False:
 		if type == 'any':
@@ -56,6 +57,7 @@ def _input(name,type,_while):
 				if version() is 2:
 					data = raw_input('%s%s>%s '%(color.color('blue'),name,color.color('yellow')))
 			except:
+				write('wrong input!\n')
 				pass
 		if type == 'hex':
 			try:
@@ -66,7 +68,7 @@ def _input(name,type,_while):
 					data = raw_input('%s%s>%s '%(color.color('blue'),name,color.color('yellow')))
 					binascii.a2b_hex(data)
 			except:
-				warn('you must enter a hex value')
+				warn('you must enter a hex value\n')
 				pass
 		if type == 'int':
 			try:
@@ -77,6 +79,6 @@ def _input(name,type,_while):
 					data = raw_input('%s%s>%s '%(color.color('blue'),name,color.color('yellow')))
 					int(data)
 			except:
-				warn('you must enter a int value')
+				warn('you must enter a int value\n')
 				pass
 	return data

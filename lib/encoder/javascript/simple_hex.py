@@ -7,8 +7,9 @@ http://api.z3r0d4y.com/
 https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
 import binascii
-from core import pyversion
-version = pyversion.version()
+from core.compatible import version
+from core.alert import *
+_version = version()
 def encode(f):
 	arr = ''
 	data = ''
@@ -17,9 +18,9 @@ def encode(f):
 	n = 0
 	m = 1
 	for line in f:
-		if version is 2:
+		if _version is 2:
 			arr += str(binascii.b2a_hex(line)) + str('_')
-		if version is 3:
+		if _version is 3:
 			arr += (binascii.b2a_hex(str(line).encode('latin-1'))).decode('latin-1')
 	arr = arr.rsplit('_')[:-1]
 	for hex in arr:
@@ -42,8 +43,12 @@ data = %s;
 eval(hex2str(data));'''%(data,eval[:-1])
 	return f
 
-def start(content):
+def start(filename,content):
 	ret_value = []
 	ret_value.append((str('/*\n')+str(content)+str('\n*/')))
 	ret_value.append((str(encode(content))+str('\n')))
+	file = open(filename,'w')
+	file.write(ret_value[0]+'\n\n'+ret_value[1])
+	file.close
+	info('file "%s" encoded successfully!\n')
 	return ret_value

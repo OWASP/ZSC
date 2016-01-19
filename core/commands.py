@@ -39,7 +39,7 @@ commands = {
 			'generate obfuscate code', #description of obfuscate command
 			{
 				'javascript': #langauge name
-						['simple_hex','simple_hex_reverse'], #encode types
+						['simple_hex'], #encode types
 			}
 		],
 	'help' : ['show help menu',''],
