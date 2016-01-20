@@ -22,12 +22,21 @@ try:#python 2.x
 	execfile('core/commands.py')
 except:#python 3.x
 	exec(compile(open('core/commands.py', "rb").read(), 'core/commands.py', 'exec'))
+
 _reset = '''
 commands = backup_commands
 completer = autocomplete(commands)
 readline.set_completer(completer.complete)
 readline.parse_and_bind('tab: complete')
 crawler = 0
+'''
+_refresh = '''
+completer = autocomplete(commands)
+readline.set_completer(completer.complete)
+readline.parse_and_bind('tab: complete')
+'''
+_option_replace = '''
+commands = commands[option]
 '''
 
 class autocomplete(object): 
@@ -75,7 +84,7 @@ def getcommand(commands):
 						_download_shellcode()
 						exec (_reset)
 					elif command == 'generate':
-						commands = commands[option]
+						exec(_option_replace)
 					else:
 						while True:
 							filename = _input('filename','any',True)
@@ -84,10 +93,8 @@ def getcommand(commands):
 								break
 							except:
 								warn('sorry, cann\'t find file\n')
-						commands = commands[option]
-						completer = autocomplete(commands)
-						readline.set_completer(completer.complete)
-						readline.parse_and_bind('tab: complete')
+						exec(_option_replace)
+						exec(_refresh)
 						t = True
 						while t:
 							encode = _input('encode','any',True)
@@ -100,10 +107,10 @@ def getcommand(commands):
 						exec (_reset)
 				if crawler is 3:
 					os = option
-					commands = commands[option]
+					exec(_option_replace)
 				if crawler is 4:
 					func = option
-					commands = commands[option]
+					exec(_option_replace)
 				if crawler is 5:
 					data = []
 					backup_option = option
@@ -141,9 +148,7 @@ def getcommand(commands):
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
 					exec (_reset)
-				completer = autocomplete(commands) #main commands
-				readline.set_completer(completer.complete)
-				readline.parse_and_bind('tab: complete')
+				exec(_refresh)
 				check = False
 		if command == 'exit':
 			sys.exit('Exit')
@@ -168,7 +173,5 @@ def getcommand(commands):
 				info('Command not found!\n')
 def engine(commands):
 	''' engine function'''
-	completer = autocomplete(commands) #main commands
-	readline.set_completer(completer.complete)
-	readline.parse_and_bind('tab: complete')
+	exec(_refresh)
 	getcommand(commands)
