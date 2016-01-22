@@ -29,6 +29,7 @@ completer = autocomplete(commands)
 readline.set_completer(completer.complete)
 readline.parse_and_bind('tab: complete')
 crawler = 0
+command_path = ['zsc']
 '''
 _refresh = '''
 completer = autocomplete(commands)
@@ -37,6 +38,7 @@ readline.parse_and_bind('tab: complete')
 '''
 _option_replace = '''
 commands = commands[option]
+command_path.append(option)
 '''
 
 class autocomplete(object): 
@@ -57,10 +59,11 @@ def getcommand(commands):
 	exit_counter = 0
 	backup_commands = commands
 	crawler = 0
+	command_path = ['zsc']
 	command = ''
 	while True:
 		try:
-			command = _input('zsc','any',False)
+			command = _input('/'.join(command_path),'any',False)
 			if command is None:
 				_lets_error
 		except:
@@ -76,6 +79,7 @@ def getcommand(commands):
 				crawler += 1
 				if crawler is 1:
 					commands = commands[option][1]
+					command_path.append(option)
 				if crawler is 2:
 					if command == 'search':
 						_search_shellcode()
@@ -151,6 +155,7 @@ def getcommand(commands):
 				exec(_refresh)
 				check = False
 		if command == 'exit':
+			write(color.color('reset'))
 			sys.exit('Exit')
 		elif command == 'update':
 			_update(__version__)
