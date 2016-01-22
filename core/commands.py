@@ -68,7 +68,7 @@ def about():
 	info_ = [['Code','https://github.com/Ali-Razmjoo/OWASP-ZSC'],['Contributors','https://github.com/Ali-Razmjoo/OWASP-ZSC/graphs/contributors'],['API','http://api.z3r0d4y.com/'],['Home','http://zsc.z3r0d4y.com/'],['Mailing List','https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project'],['Contact US Now','owasp-zsc-tool-project[at]lists[dot]owasp[dot]org']]
 	for section in info_:
 		info('%s%s%s: %s%s%s\n'%(color.color('red'),section[0],color.color('reset'),color.color('yellow'),section[1],color.color('reset')))
-def help_(help):
+def _help(help):
 	write('\n')
 	for h in help:
 		info('%s%-10s%s\t%s'%(color.color('red'),h[0],color.color('green'),h[1])+'\n')

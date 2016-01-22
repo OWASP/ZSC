@@ -20,8 +20,10 @@ from core.opcoder import op
 from core.obfuscate import obf_code
 try:#python 2.x
 	execfile('core/commands.py')
+	execfile('core/start.py')
 except:#python 3.x
 	exec(compile(open('core/commands.py', "rb").read(), 'core/commands.py', 'exec'))
+	exec(compile(open('core/start.py', "rb").read(), 'core/start.py', 'exec'))
 
 _reset = '''
 commands = backup_commands
@@ -162,7 +164,7 @@ def getcommand(commands):
 			exec (_reset)
 		elif command == 'help':
 			exit_counter = 0
-			help_(help)
+			_help(help)
 			exec (_reset)
 		elif command == 'restart':
 			exec (_reset)
