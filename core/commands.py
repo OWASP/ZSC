@@ -46,7 +46,7 @@ commands = {
 	'update' : ['check for update',''],
 	'restart': ['restart the software',''],
 	'about': ['about owasp zsc',''],
-	'version':[['software version'],''],
+	'version':['software version',''],
 	'exit': ['to exit the software',''],
 	#add main command here
 }
