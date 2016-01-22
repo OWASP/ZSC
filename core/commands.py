@@ -10,7 +10,7 @@ from core.alert import *
 
 assembly_code = False #if True: show assembly code instead of shellcode
 
-commands = {
+commands = { #commands section
 	'shellcode' : #shellcode main command
 		['generate shellcode',
 		{ 'generate':  #shellcode sub command - to generate

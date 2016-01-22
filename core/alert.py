@@ -16,7 +16,7 @@ def write(content):
 	return
 def warn(content):
 	sys.stdout.write(content)
-	return content
+	return
 def error(content):
 	sys.stdout.write(content)
-	return content
+	return
