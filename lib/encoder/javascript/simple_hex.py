@@ -8,7 +8,6 @@ https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool
 '''
 import binascii
 from core.compatible import version
-from core.alert import *
 _version = version()
 def encode(f):
 	arr = ''
@@ -43,12 +42,10 @@ data = %s;
 eval(hex2str(data));'''%(data,eval[:-1])
 	return f
 
-def start(filename,content):
+def start(content):
+	content = content.replace('*/','*_/')
 	ret_value = []
 	ret_value.append((str('/*\n')+str(content)+str('\n*/')))
 	ret_value.append((str(encode(content))+str('\n')))
-	file = open(filename,'w')
-	file.write(ret_value[0]+'\n\n'+ret_value[1])
-	file.close
-	info('file "%s" encoded successfully!\n')
-	return ret_value
+	data = ret_value[0]+'\n\n'+ret_value[1]
+	return data

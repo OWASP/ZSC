@@ -6,9 +6,12 @@ https://github.com/Ali-Razmjoo/OWASP-ZSC
 http://api.z3r0d4y.com/
 https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
+from core.alert import *
 def obf_code(lang,encode,filename,content):
-	if lang == 'javascript':#add lang
-		start = getattr(__import__('lib.encoder.%s.%s'%(lang,encode), fromlist=['start']), 'start')
-		return start(filename,content)
-	#add other languages  in here
+	start = getattr(__import__('lib.encoder.%s.%s'%(lang,encode), fromlist=['start']), 'start') #import endoing module
+	content = start(content) #encoded content as returned value	
+	f = open(filename,'wb') #writing content
+	f.write(content)
+	f.close()
+	info('file "%s" encoded successfully!\n'%filename)
 	return 
