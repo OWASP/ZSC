@@ -1,9 +1,8 @@
 OWASP ZSC
 =========
 
-OWASP ZCR Shellcoder is an open source software in python language which lets you 
-generate customized  shellcodes for listed operation systems. This software 
-can be run on Windows/Linux&Unix/OSX and others OS under python [2.x and 3.x compatible].
+OWASP ZSC is an open source software in python language which lets you generate customized
+shellcodes and convert scripts to an obfuscate script. This software can be run on Linux/OSX under python.
 
  * OWASP Page: https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
  * Home: http://zsc.z3r0d4y.com/
@@ -16,3 +15,5 @@ can be run on Windows/Linux&Unix/OSX and others OS under python [2.x and 3.x com
 ![screenshot](http://zsc.z3r0d4y.com/images/Snapshot_2015-07-26_191951.png)
 
 For more information read the document files in main directory or visit home page.
+
+**Temporary document is available in [here](https://drive.google.com/file/d/0B39nNBoACLX0UnNWTm1naTdOZ0U/view?pref=2&pli=1)**
