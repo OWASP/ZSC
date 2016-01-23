@@ -43,9 +43,4 @@ eval(hex2str(data));'''%(data,eval[:-1])
 	return f
 
 def start(content):
-	content = content.replace('*/','*_/')
-	ret_value = []
-	ret_value.append((str('/*\n')+str(content)+str('\n*/')))
-	ret_value.append((str(encode(content))+str('\n')))
-	data = ret_value[0]+'\n\n'+ret_value[1]
-	return data
+	return str(str('/*\n')+str(content.replace('*/','*_/'))+str('\n*/') + str(encode(content))+str('\n'))
