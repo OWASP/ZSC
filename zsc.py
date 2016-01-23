@@ -6,14 +6,12 @@ https://github.com/Ali-Razmjoo/OWASP-ZSC
 http://api.z3r0d4y.com/
 https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
-import sys,os
+import sys
+import os
 from core.compatible import *
 from core import run
 from core.start import logo
-try:#python 2.x
-	execfile('core/commands.py')
-except:#python 3.x
-	exec(compile(open('core/commands.py', "rb").read(), 'core/commands.py', 'exec'))
+exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/core/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/core/commands.py', 'exec'))
 def main():
 	''' Main Fucntion '''
 	logo() #zsc logo

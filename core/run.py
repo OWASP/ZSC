@@ -8,6 +8,7 @@ https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool
 '''
 import sys
 import readline
+import os
 from core.compatible import *
 from core.alert import *
 from core.commands import *
@@ -18,12 +19,8 @@ from core.encode import encode_process
 from core.get_input import _input
 from core.opcoder import op
 from core.obfuscate import obf_code
-try:#python 2.x
-	execfile('core/commands.py')
-	execfile('core/start.py')
-except:#python 3.x
-	exec(compile(open('core/commands.py', "rb").read(), 'core/commands.py', 'exec'))
-	exec(compile(open('core/start.py', "rb").read(), 'core/start.py', 'exec'))
+exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/commands.py', 'exec'))
+exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', 'exec'))
 
 _reset = '''
 commands = backup_commands
