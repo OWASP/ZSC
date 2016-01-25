@@ -15,4 +15,4 @@ OWASP ZSC is an open source software in python language which lets you generate 
 
 For more information read the document files in main directory or visit home page.
 
-**Temporary document is available in [here](https://drive.google.com/file/d/0B39nNBoACLX0UnNWTm1naTdOZ0U/view?pref=2&pli=1)**
+**Temporary document is available in [here](https://docs.google.com/document/d/1FKLR1j1R8kFww0fqQAHiVlSP_SC6Z-eqkra9llW6570)**
