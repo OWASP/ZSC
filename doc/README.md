@@ -1,6 +1,6 @@
 # OWASP ZSC Document
 Last version of documents are available in **[HERE](https://www.gitbook.com/book/ali-razmjoo/owasp-zsc/details)**.
- * Read Online
+ * [Read Online](https://ali-razmjoo.gitbooks.io/owasp-zsc/content/)
  * [PDF Version](https://www.gitbook.com/download/pdf/book/ali-razmjoo/owasp-zsc)
  * [ePub Version](https://www.gitbook.com/download/epub/book/ali-razmjoo/owasp-zsc)
  * [Mobi Version](https://www.gitbook.com/download/mobi/book/ali-razmjoo/owasp-zsc)
