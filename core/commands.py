@@ -40,6 +40,10 @@ commands = { #commands section
 			{
 				'javascript': #langauge name
 						['simple_hex'], #encode types
+				'python':
+						['simple_hex'],
+				'php':
+						['simple_hex'],
 			}
 		],
 	'help' : ['show help menu',''],

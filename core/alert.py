@@ -15,7 +15,7 @@ def write(content):
 	sys.stdout.write(content)
 	return
 def warn(content):
-	sys.stdout.write(content)
+	sys.stdout.write(color.color('red')+'[!] '+color.color('yellow')+content+color.color('reset'))
 	return
 def error(content):
 	sys.stdout.write(content)
