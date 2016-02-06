@@ -9,22 +9,19 @@ https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool
 from core.compatible import *
 from core.alert import *
 from core import color
+from core.get_input import _input
 if version() is 2:
 	from urllib import urlopen
 if version() is 3:
 	from urllib.request import urlopen
 def _search_shellcode():
 	url = 'http://shell-storm.org/api/?s='
-	try:
-		if version() is 3:
-			keyword = input('%skeyword_to_search>%s '%(color.color('blue'),color.color('yellow')))
-		if version() is 2:
-			keyword = raw_input('%skeyword_to_search>%s '%(color.color('blue'),color.color('yellow')))
-	except:
-		return
+	keyword = _input('%skeyword_to_search>%s '%(color.color('blue'),color.color('yellow')),'any',True)
 	keyword=keyword.replace(' ','*')
 	try:
 		data = urlopen(url+keyword).read()
+		if version() is 3:
+			data = data.decode('utf-8')
 	except:
 		warn('connection error')
 		return
@@ -36,18 +33,15 @@ def _search_shellcode():
 			pass
 	write('\n')
 def _download_shellcode():
-	try:
-		if version() is 3:
-			id = input('%sshellcode_id>%s '%(color.color('blue'),color.color('yellow')))
-		if version() is 2:
-			id = raw_input('%sshellcode_id>%s '%(color.color('blue'),color.color('yellow')))
-	except:
-		return
+	id = _input('%sshellcode_id>%s '%(color.color('blue'),color.color('yellow')),'int',True)
 	url = 'http://shell-storm.org/shellcode/files/shellcode-%s.php'%(str(id))
 	try:
-		data = urlopen(url).read().rsplit('<pre>')[1].rsplit('<body>')[0]
+		if version() is 2:
+			data = urlopen(url).read().rsplit('<pre>')[1].rsplit('<body>')[0]
+		if version() is 3:
+			data = urlopen(url).read().decode('utf-8').rsplit('<pre>')[1].rsplit('<body>')[0]
 	except:
-		warn('connection error')
+		warn('connection error\n')
 		return
 	write(data)
 	
