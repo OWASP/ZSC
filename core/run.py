@@ -7,7 +7,6 @@ http://api.z3r0d4y.com/
 https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project [ owasp-zsc-tool-project[at]lists[dot]owasp[dot]org ]
 '''
 import sys
-import readline
 import os
 from core.compatible import *
 from core.alert import *
@@ -19,6 +18,14 @@ from core.encode import encode_process
 from core.get_input import _input
 from core.opcoder import op
 from core.obfuscate import obf_code
+if 'linux' in sys.platform:
+	import readline
+elif 'darwin' in sys.platform:
+	sys.path.insert(0, 'module/readline_osx')
+	import readline
+elif 'win32' == sys.platform or 'win64' == sys.platform:
+	sys.path.insert(0, 'module/readline_windows')
+	import readline
 exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/commands.py', 'exec'))
 exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', 'exec'))
 
