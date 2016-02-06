@@ -29,23 +29,6 @@ elif 'win32' == sys.platform or 'win64' == sys.platform:
 exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/commands.py', 'exec'))
 exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', 'exec'))
 
-_reset = '''
-commands = backup_commands
-completer = autocomplete(commands)
-readline.set_completer(completer.complete)
-readline.parse_and_bind('tab: complete')
-crawler = 0
-command_path = ['zsc']
-'''
-_refresh = '''
-completer = autocomplete(commands)
-readline.set_completer(completer.complete)
-readline.parse_and_bind('tab: complete')
-'''
-_option_replace = '''
-commands = commands[option]
-command_path.append(option)
-'''
 
 class autocomplete(object): 
     def __init__(self, options):
@@ -89,12 +72,23 @@ def getcommand(commands):
 				if crawler is 2:
 					if command == 'search':
 						_search_shellcode()
-						exec (_reset)
+						commands = backup_commands
+						completer = autocomplete(commands)
+						readline.set_completer(completer.complete)
+						readline.parse_and_bind('tab: complete')
+						crawler = 0
+						command_path = ['zsc']
 					elif command == 'download':
 						_download_shellcode()
-						exec (_reset)
+						commands = backup_commands
+						completer = autocomplete(commands)
+						readline.set_completer(completer.complete)
+						readline.parse_and_bind('tab: complete')
+						crawler = 0
+						command_path = ['zsc']
 					elif command == 'generate':
-						exec(_option_replace)
+						commands = commands[option]
+						command_path.append(option)
 					else:
 						while True:
 							filename = _input('filename','any',True)
@@ -103,8 +97,11 @@ def getcommand(commands):
 								break
 							except:
 								warn('sorry, cann\'t find file\n')
-						exec(_option_replace)
-						exec(_refresh)
+						commands = commands[option]
+						command_path.append(option)
+						completer = autocomplete(commands)
+						readline.set_completer(completer.complete)
+						readline.parse_and_bind('tab: complete')
 						t = True
 						while t:
 							encode = _input('encode','any',True)
@@ -114,13 +111,20 @@ def getcommand(commands):
 							if t is True:
 								warn('please enter a valid encode name\n')
 						obf_code(option,encode,filename,content)
-						exec (_reset)
+						commands = backup_commands
+						completer = autocomplete(commands)
+						readline.set_completer(completer.complete)
+						readline.parse_and_bind('tab: complete')
+						crawler = 0
+						command_path = ['zsc']
 				if crawler is 3:
 					os = option
-					exec(_option_replace)
+					commands = commands[option]
+					command_path.append(option)
 				if crawler is 4:
 					func = option
-					exec(_option_replace)
+					commands = commands[option]
+					command_path.append(option)
 				if crawler is 5:
 					data = []
 					backup_option = option
@@ -157,32 +161,66 @@ def getcommand(commands):
 						write('\n'+op(encode_process(encode,shellcode,os,func),os)+'\n\n')
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
-					exec (_reset)
-				exec(_refresh)
+					commands = backup_commands
+					completer = autocomplete(commands)
+					readline.set_completer(completer.complete)
+					readline.parse_and_bind('tab: complete')
+					crawler = 0
+					command_path = ['zsc']
+				completer = autocomplete(commands)
+				readline.set_completer(completer.complete)
+				readline.parse_and_bind('tab: complete')
 				check = False
 		if command == 'exit':
 			write(color.color('reset'))
 			sys.exit('Exit')
 		elif command == 'update':
 			_update(__version__)
-			exec (_reset)
+			commands = backup_commands
+			completer = autocomplete(commands)
+			readline.set_completer(completer.complete)
+			readline.parse_and_bind('tab: complete')
+			crawler = 0
+			command_path = ['zsc']
 		elif command == 'help':
 			exit_counter = 0
 			_help(help)
-			exec (_reset)
+			commands = backup_commands
+			completer = autocomplete(commands)
+			readline.set_completer(completer.complete)
+			readline.parse_and_bind('tab: complete')
+			crawler = 0
+			command_path = ['zsc']
 		elif command == 'restart':
-			exec (_reset)
+			commands = backup_commands
+			completer = autocomplete(commands)
+			readline.set_completer(completer.complete)
+			readline.parse_and_bind('tab: complete')
+			crawler = 0
+			command_path = ['zsc']
 		elif command == 'about':
 			about()
-			exec (_reset)
+			commands = backup_commands
+			completer = autocomplete(commands)
+			readline.set_completer(completer.complete)
+			readline.parse_and_bind('tab: complete')
+			crawler = 0
+			command_path = ['zsc']
 		elif command == 'version':
 			_version()
-			exec (_reset)
+			commands = backup_commands
+			completer = autocomplete(commands)
+			readline.set_completer(completer.complete)
+			readline.parse_and_bind('tab: complete')
+			crawler = 0
+			command_path = ['zsc']
 		else:
 			if command != '' and check is True:
 				exit_counter = 0
 				info('Command not found!\n')
 def engine(commands):
 	''' engine function'''
-	exec(_refresh)
+	completer = autocomplete(commands)
+	readline.set_completer(completer.complete)
+	readline.parse_and_bind('tab: complete')
 	getcommand(commands)
