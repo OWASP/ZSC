@@ -91,7 +91,16 @@ def getcommand(commands):
 						command_path.append(option)
 					else:
 						while True:
+							f = []
+							import os as OS
+							for (dirpath, dirnames, filenames) in OS.walk('.'):
+								f.extend(filenames)
+								break
+							completer = autocomplete(f)
+							readline.set_completer(completer.complete)
 							filename = _input('filename','any',True)
+							completer = autocomplete(commands)
+							readline.set_completer(completer.complete)
 							try:
 								content = open(filename,'rb').read()
 								break
