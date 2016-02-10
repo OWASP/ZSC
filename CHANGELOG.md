@@ -1,5 +1,10 @@
 Changes
 -------
+
+version 1.0.9: Reboot
+---------------------
+ * bugs fixed
+
 version 1.0.9: Reboot
 ---------------------
 
