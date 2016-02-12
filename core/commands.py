@@ -44,6 +44,8 @@ commands = { #commands section
 						['simple_hex'],
 				'php':
 						['simple_hex'],
+				'perl': 
+						['simple_hex'],
 			}
 		],
 	'help' : ['show help menu',''],
