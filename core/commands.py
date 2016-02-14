@@ -19,7 +19,7 @@ commands = { #commands section
 					{   
 						'chmod' : {'file_to_perm&&perm_number':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'dir_create' : {'directory_to_create':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
-						'download' : {'download_url':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
+						'download' : {'download_url&&filename':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'download_execute' : {'download_url&&filename&&command_to_execute':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'exec' : {'file_to_execute':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'file_create' : {'filename&&content':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
