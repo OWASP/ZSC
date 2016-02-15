@@ -16,7 +16,7 @@ if version() is 3:
 	from urllib.request import urlopen
 def _search_shellcode():
 	url = 'http://shell-storm.org/api/?s='
-	keyword = _input('%skeyword_to_search>%s '%(color.color('blue'),color.color('yellow')),'any',True)
+	keyword = _input('%skeyword_to_search%s'%(color.color('blue'),color.color('yellow')),'any',True)
 	keyword=keyword.replace(' ','*')
 	try:
 		data = urlopen(url+keyword).read()
@@ -33,7 +33,7 @@ def _search_shellcode():
 			pass
 	write('\n')
 def _download_shellcode():
-	id = _input('%sshellcode_id>%s '%(color.color('blue'),color.color('yellow')),'int',True)
+	id = _input('%sshellcode_id%s'%(color.color('blue'),color.color('yellow')),'int',True)
 	url = 'http://shell-storm.org/shellcode/files/shellcode-%s.php'%(str(id))
 	try:
 		if version() is 2:
