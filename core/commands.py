@@ -71,7 +71,7 @@ help = [
 			['exit',commands['exit'][0]],
 ]
 def about():
-	info_ = [['Code','https://github.com/Ali-Razmjoo/OWASP-ZSC'],['Contributors','https://github.com/Ali-Razmjoo/OWASP-ZSC/graphs/contributors'],['API','http://api.z3r0d4y.com/'],['Home','http://zsc.z3r0d4y.com/'],['Mailing List','https://lists.owasp.org/mailman/listinfo/owasp-zsc-tool-project'],['Contact US Now','owasp-zsc-tool-project[at]lists[dot]owasp[dot]org']]
+	info_ = [['Code','https://github.com/Ali-Razmjoo/OWASP-ZSC'],['Contributors','https://github.com/Ali-Razmjoo/OWASP-ZSC/graphs/contributors'],['API','http://api.z3r0d4y.com/'],['Home','http://zsc.z3r0d4y.com/'],['Mailing List','https://groups.google.com/d/forum/owasp-zsc'],['Contact US Now','owasp-zsc[at]googlegroups[dot]com']]
 	for section in info_:
 		info('%s%s%s: %s%s%s\n'%(color.color('red'),section[0],color.color('reset'),color.color('yellow'),section[1],color.color('reset')))
 def _help(help):
