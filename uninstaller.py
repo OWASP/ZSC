@@ -19,6 +19,7 @@ if 'linux' in sys.platform or 'darwin' in sys.platform:
 	os.system('rm -rf /usr/share/owasp_zsc /usr/bin/zsc')
 	print (color.color('green')+'Files Removed!'+color.color('white'))
 elif 'win32' in sys.platform or 'win64' in sys.platform:
+	#import ctypes
 	#if ctypes.windll.shell32.IsUserAnAdmin() != 1:
 	#	sys.exit(color.color('red')+'Sorry, you most run this file as admin.'+color.color('reset'))
 	print (color.color('green')+'Removing Files'+color.color('white'))
