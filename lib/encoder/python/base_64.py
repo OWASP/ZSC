@@ -21,8 +21,12 @@ def encode(f):
     eval = ''
     n = 0
     m = 0
-    
-    data = val_name + ' = "' + str(binascii.b2a_base64(f)) +'"'
+
+    if _version is 2:
+        data = val_name + ' = "' + str(binascii.b2a_base64(f)).replace('\n','') +'"'
+    if _version is 3:
+        data = val_name + ' = "' + str(binascii.b2a_base64(f).replace('\n','').encode('latin-1')).decode('latin-1') +'"'
+
     eval = 'str('+ val_name + ')+'
     var_b64 = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))    
     var_data = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
@@ -36,7 +40,7 @@ def %s(%s):
     if sys.version_info.major is 2:
         return str(binascii.a2b_base64(%s))
     elif sys.version_info.major is 3:
-        return str(binascii.a2b_base64(%s))
+        return str(binascii.a2b_base64(%s).encode('latin-1')).decode('latin-1')
     else:
         sys.exit('Your python version is not supported!')
 %s = %s
