@@ -15,7 +15,7 @@ def check_prv():
 	try:
 		if os.geteuid() is not 0:
 			sys.exit(color.color('red')+'Sorry, you most run this file as root.'+color.color('reset'))
-	except:
+	except AttributeError:
 		import ctypes
 		if ctypes.windll.shell32.IsUserAnAdmin() != 1:
 			sys.exit(color.color('red')+'Sorry, you most run this file as admin.'+color.color('reset'))
