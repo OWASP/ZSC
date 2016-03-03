@@ -43,7 +43,7 @@ commands = { #commands section
 				'python':
 						['simple_hex'],
 				'php':
-						['simple_hex'],
+						['simple_hex', 'base64'],
 				'perl': 
 						['simple_hex'],
 			}
