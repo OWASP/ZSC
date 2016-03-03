@@ -20,7 +20,7 @@ def encode(f):
         data = val_name + ' = "' + str(binascii.b2a_base64(f)).replace('\n','') +'";'
 
     if _version is 3:
-        data = val_name + ' = "' + str(binascii.b2a_base64(f).replace('\n','').encode('latin-1')).decode('latin-1') +'"'
+        data = val_name + ' = "' + str(binascii.b2a_base64(f.encode('latin-1')).decode('latin-1').replace('\n','')) +'"'
 
     var_b64 = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
     var_str = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
