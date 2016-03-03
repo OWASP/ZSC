@@ -28,5 +28,5 @@ elif 'win32' in sys.platform or 'win64' in sys.platform:
 	os.system('del %s\\..\\zsc.bat /f'%installing_path)
 	print (color.color('green')+'Files Removed!'+color.color('white'))
 else:
-	sys.exit(color.color('red')+'Sorry, This version of software just could be INSTALL on windows/linux/osx. How do you want to UNINSTALL!?'+color.color('reset'))
+	sys.exit(color.color('red')+'OWASP ZSC currently supports uninstall on windows/linux/osx only, for other platforms please remove source files.'+color.color('reset'))
 start.sig()
