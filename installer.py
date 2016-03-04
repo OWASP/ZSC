@@ -50,6 +50,5 @@ elif 'win32' in sys.platform or 'win64' in sys.platform:
 	os.system('cls')
 	windows()
 else:
-	sys.exit(color.color('red')+'Sorry, This version of software just could be INSTALL on windows/linux/osx.'+color.color('reset'))
 	sys.exit(color.color('red')+'OWASP ZSC currently supports install on windows/linux/osx only, for other platforms please copy source files to a directory and run'+color.color('reset'))
 start.sig()
