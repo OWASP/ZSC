@@ -294,4 +294,23 @@ def convert(shellcode):
 					rep = str('68') + stack.st(((binascii.a2b_hex((line.rsplit('$0x')[1]).encode('latin-1'))).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 	shellcode = stack.shellcoder(shellcode.replace('\n','').replace(' ',''))
+        filename = raw_input('Enter output filename : ')
+        f = open(filename,'w')
+        python_shellcode = '''
+import ctypes
+shellcode_data = b'%s'
+
+shellcode = ctypes.c_char_p(shellcode_data)
+libc = ctypes.CDLL('libc.so.6')
+size = len(shellcode_data)
+addr = ctypes.c_void_p(libc.valloc(size))
+ctypes.memmove(addr,shellcode,size)
+if libc.mprotect(addr, size, 0x7) != 0:
+   raise Exception('Failed to set protection')
+function = ctypes.cast(addr,ctypes.CFUNCTYPE(None))
+
+function()
+''' %(shellcode)
+        f.write(python_shellcode)
+        f.close()
 	return shellcode
