@@ -45,19 +45,11 @@ def _download_shellcode():
 		warn('connection error\n')
 		return
 	write(data+'\n\n')	
-	write("Do you want downloaded shellcode to be output as a .c file to be run when needed(y or n)?\n")
-	if version() is 2:
-		file_or_not=raw_input()
-	if version() is 3:
-		file_or_not=input()
-
-	if file_or_not=='y':
-		write('Target .c file?\n')
-		if version() is 2:
-			target=raw_input()
-		if version() is 3:
-			target=input()
-		downloaded_file_output(target, data)		
+	file_or_not=_input('Shellcode output to a .c file?(y or n)', 'any', True)
+	if file_or_not[0]=='y':
+		target=_input('Target .c file?', 'any', True)
+		downloaded_file_output(target, data)
+				
 
 					
 	

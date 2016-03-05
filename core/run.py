@@ -167,21 +167,15 @@ def getcommand(commands):
 						encode = 'none'
 						warn('\n"none" encode selected\nplease use "exit" or "quit" to exit software.\n')
 						exit_counter += 1
+					write('\n')	
 					if assembly_code is False:
 						shellcode_op=op(encode_process(encode,shellcode,os,func),os)
-						write("Do you want shellcode to be output as a .c file to be run when needed(y or n)?\n")
-						if version() is 2:
-							file_or_not=raw_input()
-						if version() is 3:
-							file_or_not=input()		
-						if file_or_not=='y':
-							write("Target .c file?\n")
-							if version() is 2:
-								target=raw_input()
-							if version() is 3:
-								target=input()
+						info('Generated shellcode is:\n'+shellcode_op+'\n\n')
+						file_or_not=_input('Shellcode output to .c file?(y or n)','any', True)	
+						if file_or_not == 'y':
+							target=_input('Target .c file?', 'any', True)
 							file_output(target, func, data, os, encode, shellcode, shellcode_op)
-						write('\n'+shellcode_op+'\n\n')
+						
 
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')

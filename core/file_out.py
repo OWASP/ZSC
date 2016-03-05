@@ -46,12 +46,12 @@ int main(void)
 '''%(func, args, os, encode, len(shellcode_op), shellcode, target, shellcode_op)
 	fileout.write(file_output)
 	fileout.close()
-	info('\nFile saved as %s .\nThe generated shellcode is: \n'%target)
+	info('File saved as %s .\n'%target)
 
 def downloaded_file_output(target, data):
 	fileout=open(target, 'w')
 	fileout.write(data)
 	fileout.close()
-	info('\nFile saved as %s . \n'%target)
+	info('File saved as %s . \n'%target)
 
 						
