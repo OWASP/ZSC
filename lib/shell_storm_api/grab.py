@@ -10,6 +10,7 @@ from core.compatible import *
 from core.alert import *
 from core import color
 from core.get_input import _input
+from core.file_out import downloaded_file_output
 if version() is 2:
 	from urllib import urlopen
 if version() is 3:
@@ -43,5 +44,21 @@ def _download_shellcode():
 	except:
 		warn('connection error\n')
 		return
-	write(data)
+	write(data+'\n\n')	
+	write("Do you want downloaded shellcode to be output as a .c file to be run when needed(y or n)?\n")
+	if version() is 2:
+		file_or_not=raw_input()
+	if version() is 3:
+		file_or_not=input()
+
+	if file_or_not=='y':
+		write('Target .c file?\n')
+		if version() is 2:
+			target=raw_input()
+		if version() is 3:
+			target=input()
+		downloaded_file_output(target, data)		
+
+					
+	
 	

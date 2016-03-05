@@ -18,6 +18,7 @@ from core.encode import encode_process
 from core.get_input import _input
 from core.opcoder import op
 from core.obfuscate import obf_code
+from core.file_out import file_output
 if 'linux' in sys.platform:
 	import readline
 elif 'darwin' in sys.platform:
@@ -167,7 +168,21 @@ def getcommand(commands):
 						warn('\n"none" encode selected\nplease use "exit" or "quit" to exit software.\n')
 						exit_counter += 1
 					if assembly_code is False:
-						write('\n'+op(encode_process(encode,shellcode,os,func),os)+'\n\n')
+						shellcode_op=op(encode_process(encode,shellcode,os,func),os)
+						write("Do you want shellcode to be output as a .c file to be run when needed(y or n)?\n")
+						if version() is 2:
+							file_or_not=raw_input()
+						if version() is 3:
+							file_or_not=input()		
+						if file_or_not=='y':
+							write("Target .c file?\n")
+							if version() is 2:
+								target=raw_input()
+							if version() is 3:
+								target=input()
+							file_output(target, func, data, os, encode, shellcode, shellcode_op)
+						write('\n'+shellcode_op+'\n\n')
+
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
 					commands = backup_commands

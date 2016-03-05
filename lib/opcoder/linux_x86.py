@@ -8,6 +8,7 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 import binascii
 from core import stack
+from core import color
 from core.alert import info
 from core.compatible import version
 _version = version()
@@ -295,18 +296,4 @@ def convert(shellcode):
 					rep = str('68') + stack.st(((binascii.a2b_hex((line.rsplit('$0x')[1]).encode('latin-1'))).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 	shellcode = stack.shellcoder(shellcode.replace('\n','').replace(' ',''))
-	file_output=open('zsc_shellcode.c', 'w')
-	shell_code_c='''#include <stdio.h>
-#include <string.h>
- 
-char *shellcode = "%s";
-
-int main(void)
-{
-	(*(void(*)()) shellcode)();
-	return 0;
-}'''%shellcode
-	file_output.write(shell_code_c)
-	file_output.close()	
-	info('Shellcode output to the file zsc_shellcode.c in current direcory. Compile and run when needed.')
 	return shellcode
