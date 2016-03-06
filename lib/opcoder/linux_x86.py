@@ -8,6 +8,8 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 import binascii
 from core import stack
+from core import color
+from core.alert import info
 from core.compatible import version
 _version = version()
 replace_values_static = {'pop %eax':'db',
