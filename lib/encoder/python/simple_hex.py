@@ -45,7 +45,7 @@ def %s(%s):
 	if sys.version_info.major is 2:
 		return str(binascii.a2b_hex(%s))
 	elif sys.version_info.major is 3:
-		return str((binascii.a2b_hex(str(%s).encode('latin-1'))).decode('latin-1'))
+		return str(binascii.a2b_base64(%s).decode('latin-1'))
 	else:
 		sys.exit('Your python version is not supported!')
 %s = %s
