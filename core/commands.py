@@ -46,6 +46,8 @@ commands = { #commands section
 						['simple_hex', 'base64'],
 				'perl': 
 						['simple_hex', 'base64'],
+                                'ruby':
+                                                ['simple_hex'],
 			}
 		],
 	'help' : ['show help menu',''],
