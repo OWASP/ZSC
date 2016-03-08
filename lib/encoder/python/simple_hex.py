@@ -22,7 +22,7 @@ def encode(f):
 		if _version is 2:
 			hex_arr.append(str(binascii.b2a_hex(line)))
 		if _version is 3:
-			hex_arr.append(str((binascii.b2a_hex(str(line))).decode('latin-1')))
+			hex_arr.append(binascii.b2a_hex(str(line).encode('utf8')).decode('utf8'))
 	length = len(hex_arr)
 	while(length != 0):
 		val_names.append(''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50)))
@@ -45,7 +45,7 @@ def %s(%s):
 	if sys.version_info.major is 2:
 		return str(binascii.a2b_hex(%s))
 	elif sys.version_info.major is 3:
-		return str(binascii.a2b_base64(%s).decode('latin-1'))
+		return str(binascii.a2b_hex(%s).decode('utf8'))
 	else:
 		sys.exit('Your python version is not supported!')
 %s = %s
