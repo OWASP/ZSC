@@ -22,7 +22,7 @@ def encode(f):
 		if _version is 2:
 			hex_arr.append(str(binascii.b2a_hex(line)))
 		if _version is 3:
-			hex_arr.append(str((binascii.b2a_hex(str(line).encode('latin-1'))).decode('latin-1')))
+			hex_arr.append(str((binascii.b2a_hex(str(line))).decode('latin-1')))
 	length = len(hex_arr)
 	while(length != 0):
 		val_names.append(''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50)))
