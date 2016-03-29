@@ -168,6 +168,11 @@ def getcommand(commands):
 						warn('\n"none" encode selected\nplease use "exit" or "quit" to exit software.\n')
 						exit_counter += 1
 					write('\n')	
+					assembly_code_or_not=_input('Output assembly code?(y or n)', 'any', True)
+					if assembly_code_or_not == 'y':
+						assembly_code=True
+					else:
+						assembly_code=False
 					if assembly_code is False:
 						shellcode_op=op(encode_process(encode,shellcode,os,func),os)
 						info('Generated shellcode is:\n'+shellcode_op+'\n\n')
@@ -179,6 +184,14 @@ def getcommand(commands):
 
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
+						output_shellcode_too=_input('Output shellcode too?(y or n)', 'any', True)
+						if output_shellcode_too=='y':
+							shellcode_op=op(encode_process(encode,shellcode,os,func),os)
+							info('Generated shellcode is:\n'+shellcode_op+'\n\n')
+							file_or_not=_input('Shellcode output to .c file?(y or n)','any', True)	
+							if file_or_not == 'y':
+								target=_input('Target .c file?', 'any', True)
+								file_output(target, func, data, os, encode, shellcode, shellcode_op)
 					commands = backup_commands
 					completer = autocomplete(commands)
 					readline.set_completer(completer.complete)
