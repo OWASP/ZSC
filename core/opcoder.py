@@ -10,5 +10,8 @@ def op(shellcode,os):
 	if os == 'linux_x86': #for linux_x86 os
 		from lib.opcoder.linux_x86 import convert
 		return convert(shellcode)
+	if os == 'windows': #for windows os
+		from lib.opcoder.windows import convert
+		return convert(shellcode)
 	#add os opcoder here
 	return shellcode
