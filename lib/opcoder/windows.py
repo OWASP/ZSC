@@ -122,6 +122,5 @@ def convert(shellcode):
 			rep = str('75') + hex(int('f4', 16) - last*9)[2:]
 			shellcode = shellcode.replace(line,rep)
 			last += 1
-	print(shellcode)
 	shellcode = stack.shellcoder(shellcode.replace('\n','').replace(' ',''))
 	return shellcode
