@@ -139,7 +139,7 @@ def convert(shellcode):
 
 		if 'jne' in line:
 			rep = str('75') + hex(int('f4', 16) - last*9)[2:]
-			shellcode = shellcode.replace(line,rep)
+			shellcode = shellcode.replace(line,rep,1)
 			last += 1
 	shellcode = stack.shellcoder(shellcode.replace('\n','').replace(' ',''))
 	return shellcode
