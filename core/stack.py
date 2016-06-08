@@ -88,3 +88,7 @@ def generate(data,register,gtype):
 				file_z = file_shellcode.replace(rep1,rep2)
 		data = file_z
 	return data
+def toHex(value):
+	if len(value) == 1:
+		return '0' + value
+	return value

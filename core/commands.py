@@ -27,6 +27,13 @@ commands = { #commands section
 						'system' : {'command_to_execute':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'write' : {'file_to_write&&content':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 					},
+				'windows' : #generate sub command -os name
+					{
+						'exec' : {'file_to_execute':
+['none']},
+						'dir_create' : {'directory_to_create':
+['none']},
+					},
 				#add generate sub command - os name
 				},
 		  'search':  ['search for shellcode in shellstorm','keyword_to_search'],   #shellcode sub command  
