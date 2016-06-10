@@ -9,7 +9,7 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 from core.alert import *
 
 def file_output(target, func, data, os, encode, shellcode, shellcode_op):
-	args=""
+	args=""1
 	for value in data:
 		if args=="":
 			args=value
@@ -27,7 +27,7 @@ owasp-zsc[at]googlegroups[dot]com
 Title: %s('%s')
 OS: %s
 Encode: %s
-Length: %d
+Length: %s
 Assembly code:\n
 %s
 
