@@ -33,6 +33,9 @@ commands = { #commands section
 ['none']},
 						'dir_create' : {'directory_to_create':
 ['none']},
+						'create_file' : {'filename&&content':
+['none']},
+
 					},
 				#add generate sub command - os name
 				},
