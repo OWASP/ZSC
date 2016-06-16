@@ -128,7 +128,7 @@ def convert(shellcode):
 				shellcode = shellcode.replace(line,rep)
 			if '%dx' in line:
 				if _version is 2:
-					rep = str('66 b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
+					rep = str('66 ba') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
 				if _version is 3:
 					rep = str('66 ba') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
