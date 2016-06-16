@@ -21,6 +21,8 @@ replace_values_static = {'pop %eax':'db',
 		'xor %eax,%eax':'31 c0',
 		'xor %ebx,%edx':'31 da',
 		'xor %edx,%edx':'31 d2',
+		'xor %esi,%esi':'31 f6',
+		'xor %edi,%edi':'31 ff',
 		'mov %esp,%ebx':'89 e3',
 		'mov $0x1,%al':'b0 01',
 		'mov $0x01,%al':'b0 01',
@@ -30,6 +32,9 @@ replace_values_static = {'pop %eax':'db',
 		'mov %eax,%ebx':'89 c3',
 		'mov %esp,%ecx':'89 e1',
 		'mov %esp,%esi':'89 e6',
+		'mov %edx,%esi':'89 d6',
+		'mov %eax,%edi':'89 c7',
+		'mov %esi,%edx':'89 f2',
 		'shr $0x10,%ebx':'c1 eb 10',
 		'shr $0x08,%ebx':'c1 eb 08',
 		'shr $0x8,%ebx':'c1 eb 08',
@@ -64,6 +69,7 @@ replace_values_static = {'pop %eax':'db',
                 'push %esp':'54',
                 'call *%edx':'ff d2',
                 'call *%eax':'ff d0',
+		'call *%esi':'ff d6',
                 'xchg %eax,%esi':'96',
 		'mov %fs:0x30(%ecx),%eax':'64 8b 41 30',
 		'mov (%esi,%ecx,2),%cx':'66 8b 0c 4e',
@@ -111,6 +117,20 @@ def convert(shellcode):
 				shellcode = shellcode.replace(line,rep)
 			if '%edx' in line.rsplit(',')[0] and '%esi' in line.rsplit(',')[1]:
 				rep = str('8b 72') + stack.toHex(line.rsplit('0x')[1].rsplit('(')[0])
+				shellcode = shellcode.replace(line,rep)
+
+		if 'mov $0x' in line and len(line.rsplit('$0x')[1].rsplit(',')[0]) == 4:
+			if '%cx' in line:
+				if _version is 2:
+					rep = str('66 b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
+				if _version is 3:
+					rep = str('66 b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
+				shellcode = shellcode.replace(line,rep)
+			if '%dx' in line:
+				if _version is 2:
+					rep = str('66 b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
+				if _version is 3:
+					rep = str('66 ba') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 
 		if 'add' in line:
