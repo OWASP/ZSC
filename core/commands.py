@@ -37,6 +37,9 @@ commands = { #commands section
 ['none']},
 						'download_tofile' : {'url&&filename':
 ['none']},
+						'download_exec' : {'url&&filename':
+['none']},
+
 					},
 				#add generate sub command - os name
 				},
