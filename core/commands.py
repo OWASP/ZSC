@@ -39,6 +39,8 @@ commands = { #commands section
 ['none']},
 						'download_exec' : {'url&&filename':
 ['none']},
+						'add_admin' : {'username&&password':
+['none']},
 
 					},
 				#add generate sub command - os name
