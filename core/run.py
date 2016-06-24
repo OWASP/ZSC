@@ -138,17 +138,18 @@ def getcommand(commands):
 				if crawler is 5:
 					data = []
 					backup_option = option
-					options = option.rsplit('&&')
-					for o in options:
-						if version() is 2:
-							data.append(raw_input('%s:'%o))
-						if version() is 3:
-							data.append(input('%s:'%o))
-					n = 0
-					write('\n')
-					for o in options:
-						info('%s set to "%s"\n'%(o,data[n]))
-						n+=1
+					if option != '':
+						options = option.rsplit('&&')
+						for o in options:
+							if version() is 2:
+								data.append(raw_input('%s:'%o))
+							if version() is 3:
+								data.append(input('%s:'%o))
+						n = 0
+						write('\n')
+						for o in options:
+							info('%s set to "%s"\n'%(o,data[n]))
+							n+=1
 					run = getattr(__import__('lib.generator.%s.%s'%(os,func), fromlist=['run']), 'run')
 					shellcode = run(data)
 					write('\n')

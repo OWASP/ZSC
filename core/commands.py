@@ -41,6 +41,8 @@ commands = { #commands section
 ['none']},
 						'add_admin' : {'username&&password':
 ['none']},
+						'disable_firewall' : {'':
+['none']},
 
 					},
 				#add generate sub command - os name
