@@ -31,7 +31,7 @@ exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','
 exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/start.py', 'exec'))
 
 
-class autocomplete(object): 
+class autocomplete(object):
     def __init__(self, options):
         self.options = sorted(options)
     def complete(self, text, state):
@@ -168,7 +168,7 @@ def getcommand(commands):
 						encode = 'none'
 						warn('\n"none" encode selected\nplease use "exit" or "quit" to exit software.\n')
 						exit_counter += 1
-					write('\n')	
+					write('\n')
 					assembly_code_or_not=_input('Output assembly code?(y or n)', 'any', True)
 					if assembly_code_or_not == 'y':
 						assembly_code=True
@@ -177,11 +177,11 @@ def getcommand(commands):
 					if assembly_code is False:
 						shellcode_op=op(encode_process(encode,shellcode,os,func),os)
 						info('Generated shellcode is:\n'+shellcode_op+'\n\n')
-						file_or_not=_input('Shellcode output to .c file?(y or n)','any', True)	
+						file_or_not=_input('Shellcode output to .c file?(y or n)','any', True)
 						if file_or_not == 'y':
 							target=_input('Target .c file?', 'any', True)
 							file_output(target, func, data, os, encode, shellcode, shellcode_op)
-						
+
 
 					elif assembly_code is True:
 						write('\n'+encode_process(encode,shellcode,os,func)+'\n\n')
@@ -189,7 +189,7 @@ def getcommand(commands):
 						if output_shellcode_too=='y':
 							shellcode_op=op(encode_process(encode,shellcode,os,func),os)
 							info('Generated shellcode is:\n'+shellcode_op+'\n\n')
-							file_or_not=_input('Shellcode output to .c file?(y or n)','any', True)	
+							file_or_not=_input('Shellcode output to .c file?(y or n)','any', True)
 							if file_or_not == 'y':
 								target=_input('Target .c file?', 'any', True)
 								file_output(target, func, data, os, encode, shellcode, shellcode_op)
@@ -203,7 +203,7 @@ def getcommand(commands):
 				readline.set_completer(completer.complete)
 				readline.parse_and_bind('tab: complete')
 				check = False
-		if command == 'exit':
+		if command == 'exit' or command == 'quit':
 			write(color.color('reset'))
 			sys.exit('Exit')
 		elif command == 'update':

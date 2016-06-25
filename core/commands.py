@@ -74,6 +74,7 @@ commands = { #commands section
 	'about': ['about owasp zsc',''],
 	'version':['software version',''],
 	'exit': ['to exit the software',''],
+	'quit': ['to exit the software',''],
 	#add main command here
 }
 
@@ -88,7 +89,7 @@ help = [
 			['about',commands['about'][0]],
 			['restart',commands['restart'][0]],
 			['version',commands['version'][0]],
-			['exit',commands['exit'][0]],
+			['exit/quit',commands['exit'][0]],
 ]
 def about():
 	info_ = [['Code','https://github.com/Ali-Razmjoo/OWASP-ZSC'],['Contributors','https://github.com/Ali-Razmjoo/OWASP-ZSC/graphs/contributors'],['API','http://api.z3r0d4y.com/'],['Home','http://zsc.z3r0d4y.com/'],['Mailing List','https://groups.google.com/d/forum/owasp-zsc'],['Contact US Now','owasp-zsc[at]googlegroups[dot]com']]
