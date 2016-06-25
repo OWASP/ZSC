@@ -65,7 +65,7 @@ def getcommand(commands):
 			sys.exit(0)
 		check = True
 		for option in commands:
-			if command == option:
+			if command == option and command != 'clear':
 				crawler += 1
 				if crawler is 1:
 					commands = commands[option][1]
@@ -247,12 +247,6 @@ def getcommand(commands):
 			command_path = ['zsc']
 		elif command == 'clear':
 			_clear()
-			commands = backup_commands
-			completer = autocomplete(commands)
-			readline.set_completer(completer.complete)
-			readline.parse_and_bind('tab: complete')
-			crawler = 0
-			command_path = ['zsc']
 		else:
 			if command != '' and check is True:
 				exit_counter = 0
