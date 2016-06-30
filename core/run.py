@@ -64,8 +64,9 @@ def getcommand(commands):
 			error('\nExit\n')
 			sys.exit(0)
 		check = True
+		inContext = ['clear', 'help', 'about', 'version']
 		for option in commands:
-			if command == option and command != 'clear':
+			if command == option and command not in inContext:
 				crawler += 1
 				if crawler is 1:
 					commands = commands[option][1]
@@ -217,12 +218,6 @@ def getcommand(commands):
 		elif command == 'help':
 			exit_counter = 0
 			_help(help)
-			commands = backup_commands
-			completer = autocomplete(commands)
-			readline.set_completer(completer.complete)
-			readline.parse_and_bind('tab: complete')
-			crawler = 0
-			command_path = ['zsc']
 		elif command == 'restart':
 			commands = backup_commands
 			completer = autocomplete(commands)
@@ -232,20 +227,8 @@ def getcommand(commands):
 			command_path = ['zsc']
 		elif command == 'about':
 			about()
-			commands = backup_commands
-			completer = autocomplete(commands)
-			readline.set_completer(completer.complete)
-			readline.parse_and_bind('tab: complete')
-			crawler = 0
-			command_path = ['zsc']
 		elif command == 'version':
 			_version()
-			commands = backup_commands
-			completer = autocomplete(commands)
-			readline.set_completer(completer.complete)
-			readline.parse_and_bind('tab: complete')
-			crawler = 0
-			command_path = ['zsc']
 		elif command == 'clear':
 			_clear()
 		else:
