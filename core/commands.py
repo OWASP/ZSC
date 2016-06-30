@@ -7,6 +7,7 @@ http://api.z3r0d4y.com/
 https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com ]
 '''
 from core.alert import *
+from core.start import *
 
 assembly_code = False #if True: show assembly code instead of shellcode
 
@@ -68,6 +69,7 @@ commands = { #commands section
                                                 ['simple_hex', 'base64'],
 			}
 		],
+	'clear' : ['clears the screen',''],
 	'help' : ['show help menu',''],
 	'update' : ['check for update',''],
 	'restart': ['restart the software',''],
@@ -84,6 +86,7 @@ help = [
 			['shellcode>generate','to generate shellcode'],
 			['shellcode>search',commands['shellcode'][1]['search'][0]],
 			['obfuscate',commands['obfuscate'][0]],
+			['clear',commands['clear'][0]],
 			['help',commands['help'][0]],
 			['update',commands['update'][0]],
 			['about',commands['about'][0]],
@@ -100,3 +103,10 @@ def _help(help):
 	for h in help:
 		info('%s%-10s%s\t%s'%(color.color('red'),h[0],color.color('green'),h[1])+'\n')
 	write('\n')
+
+def _clear():
+	if 'linux' in sys.platform or 'darwin' in sys.platform:
+		os.system('clear')
+	elif 'win32' == sys.platform or 'win64' == sys.platform:
+		os.system('cls')
+	logo()
