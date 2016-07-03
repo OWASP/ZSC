@@ -59,7 +59,7 @@ commands = { #commands section
 				'javascript': #langauge name
 						['simple_hex', 'base64'], #encode types
 				'python':
-						['simple_hex'],
+						['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
 				'php':
 						['simple_hex', 'base64'],
 				'perl': 
