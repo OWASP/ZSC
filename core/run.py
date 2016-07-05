@@ -64,7 +64,7 @@ def getcommand(commands):
 			error('\nExit\n')
 			sys.exit(0)
 		check = True
-		inContext = ['clear', 'help', 'about', 'version']
+		inContext = ['clear', 'help', 'about', 'version', 'back']
 		for option in commands:
 			if command == option and command not in inContext:
 				crawler += 1
@@ -231,6 +231,23 @@ def getcommand(commands):
 			_version()
 		elif command == 'clear':
 			_clear()
+		elif command == 'back':
+			if len(command_path) > 1:
+				command_path.pop()
+				commands = backup_commands
+				for option in command_path:
+					if option == 'zsc':
+						pass
+					elif option == command_path[1]:
+						commands = commands[option][1]
+					else:
+						commands = commands[option]
+				completer = autocomplete(commands)
+				readline.set_completer(completer.complete)
+				readline.parse_and_bind('tab: complete')
+				crawler -= 1
+			else:
+				info('Can\'t go back from here!\n')
 		else:
 			if command != '' and check is True:
 				exit_counter = 0
