@@ -62,7 +62,7 @@ commands = { #commands section
 				'python':
 						['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
 				'php':
-						['simple_hex', 'base64','simple_hex_rev'],
+						['simple_hex', 'base64','simple_hex_rev','base64_rev'],
 				'perl': 
 						['simple_hex', 'base64', 'simple_hex_rev','simple_base64_rev'],
                                 'ruby':
