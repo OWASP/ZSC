@@ -15,9 +15,9 @@ commands = { #commands section
 	'shellcode' : #shellcode main command
 		['generate shellcode',
 		{ 'generate':  #shellcode sub command - to generate
-			{  
+			{
 				'linux_x86' :  #generate sub command - os name
-					{   
+					{
 						'chmod' : {'file_to_perm&&perm_number':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'dir_create' : {'directory_to_create':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
 						'download' : {'download_url&&filename':['none','xor_random','xor_yourvalue','add_random','add_yourvalue','sub_random','sub_yourvalue','inc','inc_timesyouwant','dec','dec_timesyouwant','mix_all']}, #function of shellcode
@@ -63,12 +63,13 @@ commands = { #commands section
 						['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
 				'php':
 						['simple_hex', 'base64'],
-				'perl': 
+				'perl':
 						['simple_hex', 'base64'],
                                 'ruby':
                                                 ['simple_hex', 'base64'],
 			}
 		],
+	'back' : ['Go back one step', ''],
 	'clear' : ['clears the screen',''],
 	'help' : ['show help menu',''],
 	'update' : ['check for update',''],
@@ -81,11 +82,12 @@ commands = { #commands section
 }
 
 
-help = [ 
+help = [
 			['shellcode',commands['shellcode'][0]],
 			['shellcode>generate','to generate shellcode'],
 			['shellcode>search',commands['shellcode'][1]['search'][0]],
 			['obfuscate',commands['obfuscate'][0]],
+			['back',commands['back'][0]],
 			['clear',commands['clear'][0]],
 			['help',commands['help'][0]],
 			['update',commands['update'][0]],
