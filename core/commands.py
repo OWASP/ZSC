@@ -64,7 +64,7 @@ commands = { #commands section
 				'php':
 						['simple_hex', 'base64'],
 				'perl': 
-						['simple_hex', 'base64', 'simple_hex_rev'],
+						['simple_hex', 'base64', 'simple_hex_rev','simple_base64_rev'],
                                 'ruby':
                                                 ['simple_hex', 'base64'],
 			}
