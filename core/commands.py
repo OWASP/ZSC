@@ -112,3 +112,4 @@ def _clear():
 	elif 'win32' == sys.platform or 'win64' == sys.platform:
 		os.system('cls')
 	logo()
+
