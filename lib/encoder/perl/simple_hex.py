@@ -28,16 +28,29 @@ def encode(f):
 		val_names.append(''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50)))
 		length -= 1
 	for hex in hex_arr:
-		data += '$' + val_names[n] + ' = chr(hex("' + str(hex) + '"));\n'
+		data += '$' + val_names[n] + ' = "' + str(hex) + '";\n'
 		n+=1
 	while(m<=n-1):
-		eval += '$' + val_names[m]
+		eval += '$' + val_names[m] + '.'
 		m+=1
+	var_str = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    	var_counter = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    	var_data = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    	func_name = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    	func_argv = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
 
 	f = '''
 %s
-eval "%s";
-'''%(data,eval)
+sub %s {
+    %s = shift;
+    for(%s = 0; %s < length %s; %s += 2) {
+        %s .= chr(hex(substr(%s,%s,2)));
+    }
+    return %s;
+}
+%s = %s;
+eval %s(%s);
+'''%(data,func_name,func_argv,var_counter,var_counter,func_argv,var_counter,var_str,func_argv,var_counter,var_str,var_data,eval[:-1],func_name,var_data)
 	return f
 
 def start(content):
