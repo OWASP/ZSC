@@ -31,7 +31,7 @@ commands = { #commands section
 				'windows' : #generate sub command -os name
 					{
 						'exec' : {'file_to_execute':
-['none']},
+['none','xor_random']},
 						'dir_create' : {'directory_to_create':
 ['none']},
 						'create_file' : {'filename&&content':
@@ -41,7 +41,7 @@ commands = { #commands section
 						'download_exec' : {'url&&filename':
 ['none']},
 						'add_admin' : {'username&&password':
-['none']},
+['none','xor_random']},
 						'disable_firewall' : {'':
 ['none']},
 
