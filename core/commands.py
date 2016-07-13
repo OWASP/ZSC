@@ -46,6 +46,10 @@ commands = { #commands section
 ['none']},
 
 					},
+				'osx_x86' :  #generate sub command - os name
+					{
+						'exec' : {'file_to_execute':['none']}, #function of shellcode
+					},
 				#add generate sub command - os name
 				},
 		  'search':  ['search for shellcode in shellstorm','keyword_to_search'],   #shellcode sub command  
