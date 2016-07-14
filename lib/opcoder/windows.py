@@ -12,7 +12,7 @@ from core import color
 from core.alert import info
 from core.compatible import version
 _version = version()
-replace_values_static = {'pop %eax':'db',
+replace_values_static = {
 		'xor %ebx,%ebx':'31 db',
 		'xor %ecx,%ecx':'31 c9',
 		'xor %eax,%ebx':'31 c3',
