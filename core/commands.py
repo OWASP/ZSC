@@ -33,17 +33,17 @@ commands = { #commands section
 						'exec' : {'file_to_execute':
 ['none','xor_random']},
 						'dir_create' : {'directory_to_create':
-['none']},
+['none','xor_random']},
 						'create_file' : {'filename&&content':
-['none']},
+['none','xor_random']},
 						'download_tofile' : {'url&&filename':
-['none']},
+['none','xor_random']},
 						'download_exec' : {'url&&filename':
-['none']},
+['none','xor_random']},
 						'add_admin' : {'username&&password':
 ['none','xor_random']},
 						'disable_firewall' : {'':
-['none']},
+['none','xor_random']},
 
 					},
 				#add generate sub command - os name
