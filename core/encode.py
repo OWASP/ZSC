@@ -47,7 +47,4 @@ def encode_process(encode,shellcode,os,func):
 		if encode == 'xor_random':
 			from lib.encoder.windows.xor_random import start
 			return start(shellcode,func)
-		elif encode == 'add_random':
-			from lib.encoder.windows.add_random import start
-                        return start(shellcode,func)
 	return shellcode

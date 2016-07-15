@@ -31,9 +31,8 @@ commands = { #commands section
 				'windows' : #generate sub command -os name
 					{
 						'exec' : {'file_to_execute':
-['none','xor_random','add_random']},
+['none','xor_random']},
 						'dir_create' : {'directory_to_create':
-<<<<<<< HEAD
 ['none','xor_random']},
 						'create_file' : {'filename&&content':
 ['none','xor_random']},
@@ -41,23 +40,10 @@ commands = { #commands section
 ['none','xor_random']},
 						'download_exec' : {'url&&filename':
 ['none','xor_random']},
-=======
-['none','xor_random','add_random']},
-						'create_file' : {'filename&&content':
-['none','xor_random','add_random']},
-						'download_tofile' : {'url&&filename':
-['none','xor_random','add_random']},
-						'download_exec' : {'url&&filename':
-['none','xor_random','add_random']},
->>>>>>> 8dd47cf6d27014b757418f54e4d42b15ec28fed3
 						'add_admin' : {'username&&password':
-['none','xor_random','add_random']},
-						'disable_firewall' : {'':
-<<<<<<< HEAD
 ['none','xor_random']},
-=======
-['none','xor_random','add_random']},
->>>>>>> 8dd47cf6d27014b757418f54e4d42b15ec28fed3
+						'disable_firewall' : {'':
+['none','xor_random']},
 
 					},
 				'osx_x86' :  #generate sub command - os name

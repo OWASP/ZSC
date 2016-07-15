@@ -54,10 +54,8 @@ replace_values_static = {
 		'inc %ecx':'41',
 		'add %ecx,%ebx':'01 cb',
 		'add %eax,%ebx':'01 c3',
-		'add %eax,%ecx':'01 c1',
 		'add %ebx,%edx':'01 da',
-		'add %ebx,%eax':'01 d8',
-		'add %ebx,%ecx':'01 d9',	
+		'add %ebx,%eax':'01 d8',		
 		'push %eax':'50',
 		'push %ebx':'53',
 		'push %ecx':'51',
@@ -69,8 +67,6 @@ replace_values_static = {
 		'pop %ecx':'59',
 		'pop %edx':'5a',
 		'dec %ecx':'49',
-		'neg %ecx':'f7 d9',
-		'neg %eax':'f7 d8',
                 'subl $0x61,0x3(%esp)':'83 6c 24 03 61',
                 'lods %ds:(%esi),%eax':'ad',
                 'add %ebx,%esi':'01 de',
@@ -92,12 +88,6 @@ def convert(shellcode):
 	last = 0
 	for line in new_shellcode:
 		if 'push $0x' in line:
-			if len(line) is 15:
-				if _version is 2:
-					rep = str('68') + stack.st(str(binascii.a2b_hex(str('0') + str(line.rsplit('$0x')[1]))))
-				if _version is 3:
-					rep = str('68') + stack.st(str(binascii.a2b_hex(str('0') + line.rsplit('$0x')[1].encode('latin-1')).decode('latin-1')))
-				shellcode = shellcode.replace(line,rep)
 			if len(line) is 16:
 				if _version is 2:
 					rep = str('68') + stack.st(str(binascii.a2b_hex(str(line.rsplit('$0x')[1]))))
