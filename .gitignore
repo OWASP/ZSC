@@ -10,3 +10,6 @@
 
 #peda
 peda-session*
+
+#tmp files
+*.py~
