@@ -53,6 +53,7 @@ replace_values_static = {
 		'inc %ecx':'41',
 		'add %ecx,%ebx':'01 cb',
 		'add %eax,%ebx':'01 c3',
+		'add %eax,%ecx':'01 c1',
 		'add %ebx,%edx':'01 da',
 		'add %ebx,%eax':'01 d8',
 		'add %ebx,%ecx':'01 d9',	
