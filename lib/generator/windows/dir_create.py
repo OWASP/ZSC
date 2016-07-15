@@ -8,8 +8,10 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core import stack
 from math import ceil
-def dir_create(directory_to_create,dir_name):
-        return '''
+
+
+def dir_create(directory_to_create, dir_name):
+    return '''
 xor    %ecx,%ecx
 mov    %fs:0x30(%ecx),%eax
 mov    0xc(%eax),%eax
@@ -80,8 +82,12 @@ call   *%edx
 xor    %ecx,%ecx
 push   %ecx
 call   *%eax
-'''.format(directory_to_create,hex(int(8 + 4*(ceil(len(dir_name)/float(4))))))
+'''.format(directory_to_create,
+           hex(int(8 + 4 * (ceil(len(dir_name) / float(4))))))
+
 
 def run(data):
-   directory_to_create = data[0]
-   return dir_create(stack.generate(directory_to_create,"%ecx","string"),directory_to_create)
+    directory_to_create = data[0]
+    return dir_create(
+        stack.generate(directory_to_create, "%ecx", "string"),
+        directory_to_create)

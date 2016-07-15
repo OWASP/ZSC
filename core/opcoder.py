@@ -6,15 +6,17 @@ https://github.com/zscproject/OWASP-ZSC
 http://api.z3r0d4y.com/
 https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com ]
 '''
-def op(shellcode,os):
-	if os == 'linux_x86': #for linux_x86 os
-		from lib.opcoder.linux_x86 import convert
-		return convert(shellcode)
-	if os == 'windows': #for windows os
-		from lib.opcoder.windows import convert
-		return convert(shellcode)
-	if os == 'osx_x86': # for osx_x86 os
-		from lib.opcoder.osx_x86 import convert
-		return convert(shellcode)
-	#add os opcoder here
-	return shellcode
+
+
+def op(shellcode, os):
+    if os == 'linux_x86':  #for linux_x86 os
+        from lib.opcoder.linux_x86 import convert
+        return convert(shellcode)
+    if os == 'windows':  #for windows os
+        from lib.opcoder.windows import convert
+        return convert(shellcode)
+    if os == 'osx_x86':  # for osx_x86 os
+        from lib.opcoder.osx_x86 import convert
+        return convert(shellcode)
+    #add os opcoder here
+    return shellcode

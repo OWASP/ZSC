@@ -8,15 +8,25 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 import sys
 from core import color
+
+
 def info(content):
-	sys.stdout.write(color.color('yellow')+'[+] '+color.color('green')+content+color.color('reset'))
-	return
+    sys.stdout.write(color.color('yellow') + '[+] ' + color.color('green') +
+                     content + color.color('reset'))
+    return
+
+
 def write(content):
-	sys.stdout.write(content)
-	return
+    sys.stdout.write(content)
+    return
+
+
 def warn(content):
-	sys.stdout.write(color.color('red')+'[!] '+color.color('yellow')+content+color.color('reset'))
-	return
+    sys.stdout.write(color.color('red') + '[!] ' + color.color('yellow') +
+                     content + color.color('reset'))
+    return
+
+
 def error(content):
-	sys.stdout.write(content)
-	return
+    sys.stdout.write(content)
+    return

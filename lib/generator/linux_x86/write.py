@@ -9,8 +9,10 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 import binascii
 from core import stack
 from lib.opcoder.linux_x86 import convert
-def write(null,file_name,content,length):
-	return '''
+
+
+def write(null, file_name, content, length):
+    return '''
 push   $0x5
 pop    %%eax
 %s
@@ -30,12 +32,18 @@ int    $0x80
 mov    $0x1,%%al
 mov    $0x1,%%bl
 int    $0x80
-'''%(str(null),str(file_name),str(content),str(length))
+''' % (str(null), str(file_name), str(content), str(length))
+
+
 def run(data):
-	path_file,content=data[0],data[1]
-	null = len(path_file) % 4
-	if null is not 0:
-		null = ''
-	if null is 0:
-		null = 'xor %ebx,%ebx\npush %ebx\n'
-	return write(str(null),stack.generate(str(path_file),'%ebx','string'),stack.generate(str(content),'%ecx','string'),stack.generate(str(len(content)),'%edx','int'))
+    path_file, content = data[0], data[1]
+    null = len(path_file) % 4
+    if null is not 0:
+        null = ''
+    if null is 0:
+        null = 'xor %ebx,%ebx\npush %ebx\n'
+    return write(
+        str(null), stack.generate(
+            str(path_file), '%ebx', 'string'), stack.generate(
+                str(content), '%ecx', 'string'), stack.generate(
+                    str(len(content)), '%edx', 'int'))

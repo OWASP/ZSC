@@ -18,6 +18,6 @@ else:
         success = True
     except ImportError as x:
         pass
-    
+
 if not success:
     raise ImportError("Could not import keysym for local pythonversion", x)

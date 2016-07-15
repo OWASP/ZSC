@@ -65,18 +65,15 @@ Features:
 
 license = 'BSD'
 
-authors = {'Jorgen' : ('Jorgen Stenarson','jorgen.stenarson@kroywen.se'),
-           'Gary':    ('Gary Bishop', ''),
-           'Jack':    ('Jack Trainor', ''),
-           }
+authors = {'Jorgen': ('Jorgen Stenarson', 'jorgen.stenarson@kroywen.se'),
+           'Gary': ('Gary Bishop', ''),
+           'Jack': ('Jack Trainor', ''), }
 
 url = 'http://ipython.org/pyreadline.html'
 download_url = 'https://pypi.python.org/pypi/pyreadline/'
-platforms = ['Windows XP/2000/NT',
-             'Windows 95/98/ME']
+platforms = ['Windows XP/2000/NT', 'Windows 95/98/ME']
 
-keywords = ['readline',
-            'pyreadline']
+keywords = ['readline', 'pyreadline']
 
 classifiers = ['Development Status :: 5 - Production/Stable',
                'Environment :: Console',
@@ -86,5 +83,4 @@ classifiers = ['Development Status :: 5 - Production/Stable',
                'Programming Language :: Python :: 3.2',
                'Programming Language :: Python :: 3.3',
                'Programming Language :: Python :: 3.4',
-               'Programming Language :: Python :: 3.5',
-               ]
+               'Programming Language :: Python :: 3.5', ]
