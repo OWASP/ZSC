@@ -1,9 +1,10 @@
 from __future__ import print_function, unicode_literals, absolute_import
 
+
 class baseconsole(object):
     def __init__(self):
         pass
-        
+
     def bell(self):
         raise NotImplementedError
 
@@ -33,14 +34,14 @@ class baseconsole(object):
 
         '''
         raise NotImplementedError
-    
+
     def getkeypress(self):
         '''Return next key press event from the queue, ignoring others.'''
         raise NotImplementedError
-        
+
     def write(self, text):
         raise NotImplementedError
-    
+
     def page(self, attr=None, fill=' '):
         '''Fill the entire screen.'''
         raise NotImplementedError
@@ -50,5 +51,3 @@ class baseconsole(object):
 
     def flush(self):
         pass
-
-    

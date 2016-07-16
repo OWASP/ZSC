@@ -10,5 +10,5 @@ from __future__ import print_function, unicode_literals, absolute_import
 
 from . import unicode_helper
 from . import logger, clipboard, lineeditor, modes, console
-from . rlmain import *
+from .rlmain import *
 from . import rlmain

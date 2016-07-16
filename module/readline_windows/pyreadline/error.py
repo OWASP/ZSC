@@ -11,5 +11,6 @@ from __future__ import print_function, unicode_literals, absolute_import
 class ReadlineError(Exception):
     pass
 
+
 class GetSetError(ReadlineError):
     pass

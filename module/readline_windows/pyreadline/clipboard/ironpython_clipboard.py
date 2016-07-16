@@ -10,6 +10,7 @@ import clr
 clr.AddReferenceByPartialName("System.Windows.Forms")
 import System.Windows.Forms.Clipboard as cb
 
+
 def GetClipboardText():
     text = ""
     if cb.ContainsText():
@@ -17,13 +18,11 @@ def GetClipboardText():
 
     return text
 
+
 def SetClipboardText(text):
-    cb.SetText(text)    
+    cb.SetText(text)
+
 
 if __name__ == '__main__':
-    txt = GetClipboardText()                            # display last text clipped
+    txt = GetClipboardText()  # display last text clipped
     print(txt)
-     
-     
-     
-     

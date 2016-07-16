@@ -5,43 +5,46 @@
 from __future__ import print_function, unicode_literals, absolute_import
 from pyreadline.rlmain import Readline
 
-__all__ = [ 'parse_and_bind',
-            'get_line_buffer',
-            'insert_text',
-            'clear_history',
-            'read_init_file',
-            'read_history_file',
-            'write_history_file',
-            'get_current_history_length',
-            'get_history_length',
-            'get_history_item',
-            'set_history_length',
-            'set_startup_hook',
-            'set_pre_input_hook',
-            'set_completer',
-            'get_completer',
-            'get_begidx',
-            'get_endidx',
-            'set_completer_delims',
-            'get_completer_delims',
-            'add_history',
-            'callback_handler_install',
-            'callback_handler_remove',
-            'callback_read_char',] #Some other objects are added below
-
+__all__ = ['parse_and_bind',
+           'get_line_buffer',
+           'insert_text',
+           'clear_history',
+           'read_init_file',
+           'read_history_file',
+           'write_history_file',
+           'get_current_history_length',
+           'get_history_length',
+           'get_history_item',
+           'set_history_length',
+           'set_startup_hook',
+           'set_pre_input_hook',
+           'set_completer',
+           'get_completer',
+           'get_begidx',
+           'get_endidx',
+           'set_completer_delims',
+           'get_completer_delims',
+           'add_history',
+           'callback_handler_install',
+           'callback_handler_remove',
+           'callback_read_char', ]  #Some other objects are added below
 
 # create a Readline object to contain the state
 rl = Readline()
 
 if rl.disable_readline:
+
     def dummy(completer=""):
         pass
+
     for funk in __all__:
         globals()[funk] = dummy
 else:
+
     def GetOutputFile():
         '''Return the console object used by readline so that it can be used for printing in color.'''
         return rl.console
+
     __all__.append("GetOutputFile")
 
     import pyreadline.console as console
@@ -71,9 +74,9 @@ else:
     set_pre_input_hook = rl.set_pre_input_hook
     set_startup_hook = rl.set_startup_hook
 
-    callback_handler_install=rl.callback_handler_install
-    callback_handler_remove=rl.callback_handler_remove
-    callback_read_char=rl.callback_read_char
+    callback_handler_install = rl.callback_handler_install
+    callback_handler_remove = rl.callback_handler_remove
+    callback_read_char = rl.callback_read_char
 
     console.install_readline(rl.readline)
 

@@ -17,9 +17,9 @@ except ImportError:
     msvcrt = None
     print("problem")
 
-
 port = logging.handlers.DEFAULT_TCP_LOGGING_PORT
 host = 'localhost'
+
 
 def check_key():
     if msvcrt is None:
@@ -31,7 +31,8 @@ def check_key():
     return ""
 
 
-singleline=False
+singleline = False
+
 
 def main():
     print("Starting TCP logserver on port:", port)
@@ -51,7 +52,8 @@ def main():
                 print("Quitting logserver")
                 break
             elif "c" == key:
-                print("\n" * 100)  
+                print("\n" * 100)
+
 
 if __name__ == "__main__":
     main()

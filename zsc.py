@@ -11,12 +11,19 @@ import os
 from core.compatible import *
 from core import run
 from core.start import logo
-exec(compile(open( str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/core/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(__file__)).replace('\\','/')) + '/core/commands.py', 'exec'))
+exec (compile(
+    open(
+        str(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')) +
+        '/core/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(
+            __file__)).replace('\\', '/')) + '/core/commands.py', 'exec'))
+
+
 def main():
-	''' Main Fucntion '''
-	logo() #zsc logo
-	run.engine(commands) #run engine
-	
+    ''' Main Fucntion '''
+    logo()  #zsc logo
+    run.engine(commands)  #run engine
+
+
 if __name__ == "__main__":
-	check() #check os and python version if compatible
-	main() #execute main function
+    check()  #check os and python version if compatible
+    main()  #execute main function

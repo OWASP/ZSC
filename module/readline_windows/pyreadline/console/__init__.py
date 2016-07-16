@@ -20,4 +20,4 @@ else:
 
 if not success:
     raise ImportError(
-            "Could not find a console implementation for your platform")
+        "Could not find a console implementation for your platform")

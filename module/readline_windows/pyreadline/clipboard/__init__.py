@@ -13,14 +13,15 @@ else:
         from .win32_clipboard import GetClipboardText, SetClipboardText
     except ImportError:
         from .no_clipboard import GetClipboardText, SetClipboardText
-    
+
 
 def send_data(lists):
     SetClipboardText(make_tab(lists))
-    
+
 
 def set_clipboard_text(toclipboard):
     SetClipboardText(str(toclipboard))
+
 
 def make_tab(lists):
     if hasattr(lists, "tolist"):
@@ -28,11 +29,12 @@ def make_tab(lists):
     ut = []
     for rad in lists:
         if type(rad) in [list, tuple]:
-            ut.append("\t".join(["%s"%x for x in rad]))
+            ut.append("\t".join(["%s" % x for x in rad]))
         else:
-            ut.append("%s"%rad)
-    return "\n".join(ut)            
-    
+            ut.append("%s" % rad)
+    return "\n".join(ut)
+
+
 def make_list_of_list(txt):
     def make_num(x):
         try:
@@ -45,12 +47,13 @@ def make_list_of_list(txt):
                     return complex(x)
                 except ValueError:
                     return x
-        return x                
+        return x
+
     ut = []
     flag = False
     for rad in [x for x in txt.split("\r\n") if x != ""]:
-        raden=[make_num(x) for x in rad.split("\t")]
-        if str in list(map(type,raden)):
+        raden = [make_num(x) for x in rad.split("\t")]
+        if str in list(map(type, raden)):
             flag = True
         ut.append(raden)
     return ut, flag
@@ -67,7 +70,6 @@ def get_clipboard_text_and_convert(paste_list=False):
             if flag:
                 txt = repr(array)
             else:
-                txt = "array(%s)"%repr(array)
+                txt = "array(%s)" % repr(array)
             txt = "".join([c for c in txt if c not in " \t\r\n"])
     return txt
-

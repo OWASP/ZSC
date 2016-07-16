@@ -8,8 +8,9 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core import stack
 
+
 def create_file(create_command):
-        return '''
+    return '''
 xor    %ecx,%ecx
 mov    %fs:0x30(%ecx),%eax
 mov    0xc(%eax),%eax
@@ -88,7 +89,9 @@ push   %ecx
 call   *%eax
 '''.format(create_command)
 
+
 def run(data):
-   file_to_create = data[0]
-   file_content = data[1]
-   return create_file(stack.generate("echo "+file_content+">"+file_to_create,"%ecx","string"))
+    file_to_create = data[0]
+    file_content = data[1]
+    return create_file(stack.generate("echo " + file_content + ">" +
+                                      file_to_create, "%ecx", "string"))

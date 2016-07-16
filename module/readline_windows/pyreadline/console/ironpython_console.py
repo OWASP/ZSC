@@ -7,7 +7,6 @@
 #  the file COPYING, distributed as part of this software.
 #*****************************************************************************
 from __future__ import print_function, unicode_literals, absolute_import
-
 '''Cursor control and color for the .NET console.
 '''
 
@@ -26,7 +25,7 @@ from __future__ import print_function, unicode_literals, absolute_import
 #
 # primitive debug printing that won't interfere with the screen
 
-import clr,sys
+import clr, sys
 clr.AddReferenceToFileAndPath(sys.executable)
 import IronPythonConsole
 
@@ -44,32 +43,40 @@ from pyreadline.keysyms import \
 from pyreadline.console.ansi import AnsiState
 color = System.ConsoleColor
 
-ansicolor={"0;30": color.Black,
-           "0;31": color.DarkRed,
-           "0;32": color.DarkGreen,
-           "0;33": color.DarkYellow,
-           "0;34": color.DarkBlue,
-           "0;35": color.DarkMagenta,
-           "0;36": color.DarkCyan,
-           "0;37": color.DarkGray,
-           "1;30": color.Gray,
-           "1;31": color.Red,
-           "1;32": color.Green,
-           "1;33": color.Yellow,
-           "1;34": color.Blue,
-           "1;35": color.Magenta,
-           "1;36": color.Cyan,
-           "1;37": color.White
-          }
+ansicolor = {"0;30": color.Black,
+             "0;31": color.DarkRed,
+             "0;32": color.DarkGreen,
+             "0;33": color.DarkYellow,
+             "0;34": color.DarkBlue,
+             "0;35": color.DarkMagenta,
+             "0;36": color.DarkCyan,
+             "0;37": color.DarkGray,
+             "1;30": color.Gray,
+             "1;31": color.Red,
+             "1;32": color.Green,
+             "1;33": color.Yellow,
+             "1;34": color.Blue,
+             "1;35": color.Magenta,
+             "1;36": color.Cyan,
+             "1;37": color.White}
 
-winattr = {"black" : 0,        "darkgray" : 0+8,
-           "darkred" : 4,      "red" : 4+8,
-           "darkgreen" : 2,    "green" : 2+8,
-           "darkyellow" : 6,   "yellow" : 6+8,
-           "darkblue" : 1,     "blue" : 1+8,
-           "darkmagenta" : 5,  "magenta" : 5+8,
-           "darkcyan" : 3,     "cyan" : 3+8,
-           "gray" : 7,         "white" : 7+8}
+winattr = {"black": 0,
+           "darkgray": 0 + 8,
+           "darkred": 4,
+           "red": 4 + 8,
+           "darkgreen": 2,
+           "green": 2 + 8,
+           "darkyellow": 6,
+           "yellow": 6 + 8,
+           "darkblue": 1,
+           "blue": 1 + 8,
+           "darkmagenta": 5,
+           "magenta": 5 + 8,
+           "darkcyan": 3,
+           "cyan": 3 + 8,
+           "gray": 7,
+           "white": 7 + 8}
+
 
 class Console(object):
     '''Console driver for Windows.
@@ -90,12 +97,12 @@ class Console(object):
 
     def _get(self):
         top = System.Console.WindowTop
-        log("WindowTop:%s"%top)
+        log("WindowTop:%s" % top)
         return top
 
     def _set(self, value):
         top = System.Console.WindowTop
-        log("Set WindowTop:old:%s,new:%s"%(top, value))
+        log("Set WindowTop:old:%s,new:%s" % (top, value))
 
     WindowTop = property(_get, _set)
     del _get, _set
@@ -108,11 +115,11 @@ class Console(object):
     def pos(self, x=None, y=None):
         '''Move or query the window cursor.'''
         if x is not None:
-            System.Console.CursorLeft=x
+            System.Console.CursorLeft = x
         else:
             x = System.Console.CursorLeft
         if y is not None:
-            System.Console.CursorTop=y
+            System.Console.CursorTop = y
         else:
             y = System.Console.CursorTop
         return x, y
@@ -146,53 +153,63 @@ class Console(object):
         '''
         x, y = self.pos()
         w, h = self.size()
-        scroll = 0 # the result
+        scroll = 0  # the result
 
         # split the string into ordinary characters and funny characters
         chunks = self.motion_char_re.split(text)
         for chunk in chunks:
             n = self.write_color(chunk, attr)
-            if len(chunk) == 1: # the funny characters will be alone
-                if chunk[0] == '\n': # newline
+            if len(chunk) == 1:  # the funny characters will be alone
+                if chunk[0] == '\n':  # newline
                     x = 0
                     y += 1
-                elif chunk[0] == '\r': # carriage return
+                elif chunk[0] == '\r':  # carriage return
                     x = 0
-                elif chunk[0] == '\t': # tab
+                elif chunk[0] == '\t':  # tab
                     x = 8 * (int(x / 8) + 1)
-                    if x > w: # newline
+                    if x > w:  # newline
                         x -= w
                         y += 1
-                elif chunk[0] == '\007': # bell
+                elif chunk[0] == '\007':  # bell
                     pass
                 elif chunk[0] == '\010':
                     x -= 1
                     if x < 0:
-                        y -= 1 # backed up 1 line
-                else: # ordinary character
+                        y -= 1  # backed up 1 line
+                else:  # ordinary character
                     x += 1
-                if x == w: # wrap
+                if x == w:  # wrap
                     x = 0
                     y += 1
-                if y == h: # scroll
+                if y == h:  # scroll
                     scroll += 1
                     y = h - 1
-            else: # chunk of ordinary characters
+            else:  # chunk of ordinary characters
                 x += n
-                l = int(x / w) # lines we advanced
-                x = x % w # new x value
+                l = int(x / w)  # lines we advanced
+                x = x % w  # new x value
                 y += l
-                if y >= h: # scroll
+                if y >= h:  # scroll
                     scroll += y - h + 1
                     y = h - 1
         return scroll
 
-    trtable = {0 : color.Black,      4 : color.DarkRed,  2 : color.DarkGreen,
-               6 : color.DarkYellow, 1 : color.DarkBlue, 5 : color.DarkMagenta,  
-               3 : color.DarkCyan,   7 : color.Gray,     8 : color.DarkGray,   
-               4+8 : color.Red,      2+8 : color.Green,  6+8 : color.Yellow,
-               1+8 : color.Blue,     5+8 : color.Magenta,3+8 : color.Cyan,
-               7+8 : color.White}
+    trtable = {0: color.Black,
+               4: color.DarkRed,
+               2: color.DarkGreen,
+               6: color.DarkYellow,
+               1: color.DarkBlue,
+               5: color.DarkMagenta,
+               3: color.DarkCyan,
+               7: color.Gray,
+               8: color.DarkGray,
+               4 + 8: color.Red,
+               2 + 8: color.Green,
+               6 + 8: color.Yellow,
+               1 + 8: color.Blue,
+               5 + 8: color.Magenta,
+               3 + 8: color.Cyan,
+               7 + 8: color.White}
 
     def write_color(self, text, attr=None):
         '''write text at current cursor position and interpret color escapes.
@@ -203,15 +220,15 @@ class Console(object):
         chunks = self.terminal_escape.split(text)
         log('chunks=%s' % repr(chunks))
         bg = self.savebg
-        n = 0 # count the characters we actually write, omitting the escapes
-        if attr is None:#use attribute from initial console
+        n = 0  # count the characters we actually write, omitting the escapes
+        if attr is None:  #use attribute from initial console
             attr = self.attr
         try:
-            fg = self.trtable[(0x000f&attr)]
-            bg = self.trtable[(0x00f0&attr)>>4]
+            fg = self.trtable[(0x000f & attr)]
+            bg = self.trtable[(0x00f0 & attr) >> 4]
         except TypeError:
             fg = attr
-            
+
         for chunk in chunks:
             m = self.escape_parts.match(chunk)
             if m:
@@ -225,19 +242,21 @@ class Console(object):
 
     def write_plain(self, text, attr=None):
         '''write text at current cursor position.'''
-        log('write("%s", %s)' %(text, attr))
+        log('write("%s", %s)' % (text, attr))
         if attr is None:
             attr = self.attr
         n = c_int(0)
         self.SetConsoleTextAttribute(self.hout, attr)
         self.WriteConsoleA(self.hout, text, len(text), byref(n), None)
         return len(text)
-        
+
     if "EMACS" in os.environ:
+
         def write_color(self, text, attr=None):
             junk = c_int(0)
             self.WriteFile(self.hout, text, len(text), byref(junk), None)
             return len(text)
+
         write_plain = write_color
 
     # make this class look like a file object
@@ -264,14 +283,14 @@ class Console(object):
 
     def clear_to_end_of_window(self):
         oldtop = self.WindowTop
-        lastline = self.WindowTop+System.Console.WindowHeight
+        lastline = self.WindowTop + System.Console.WindowHeight
         pos = self.pos()
         w, h = self.size()
         length = w - pos[0] + min((lastline - pos[1] - 1), 5) * w - 1
         self.write_color(length * " ")
         self.pos(*pos)
         self.WindowTop = oldtop
-        
+
     def rectangle(self, rect, attr=None, fill=' '):
         '''Fill Rectangle.'''
         oldtop = self.WindowTop
@@ -285,8 +304,8 @@ class Console(object):
         else:
             rowfill = ' ' * abs(x1 - x0)
         for y in range(y0, y1):
-                System.Console.SetCursorPosition(x0, y)
-                self.write_color(rowfill, attr)
+            System.Console.SetCursorPosition(x0, y)
+            self.write_color(rowfill, attr)
         self.pos(*oldpos)
 
     def scroll(self, rect, dx, dy, attr=None, fill=' '):
@@ -307,12 +326,12 @@ class Console(object):
         ck = System.ConsoleKey
         while 1:
             e = System.Console.ReadKey(True)
-            if e.Key == System.ConsoleKey.PageDown: #PageDown
+            if e.Key == System.ConsoleKey.PageDown:  #PageDown
                 self.scroll_window(12)
-            elif e.Key == System.ConsoleKey.PageUp:#PageUp
+            elif e.Key == System.ConsoleKey.PageUp:  #PageUp
                 self.scroll_window(-12)
-            elif str(e.KeyChar) == "\000":#Drop deadkeys
-                log("Deadkey: %s"%e)
+            elif str(e.KeyChar) == "\000":  #Drop deadkeys
+                log("Deadkey: %s" % e)
                 return event(self, e)
             else:
                 return event(self, e)
@@ -328,15 +347,15 @@ class Console(object):
         '''Set/get window size.'''
         sc = System.Console
         if width is not None and height is not None:
-            sc.BufferWidth, sc.BufferHeight = width,height
+            sc.BufferWidth, sc.BufferHeight = width, height
         else:
             return sc.BufferWidth, sc.BufferHeight
 
         if width is not None and height is not None:
-            sc.WindowWidth, sc.WindowHeight = width,height
+            sc.WindowWidth, sc.WindowHeight = width, height
         else:
             return sc.WindowWidth - 1, sc.WindowHeight - 1
-    
+
     def cursor(self, visible=True, size=None):
         '''Set cursor on or off.'''
         System.Console.CursorVisible = visible
@@ -349,8 +368,10 @@ class Console(object):
         self.serial += 1
         return self.serial
 
+
 class event(Event):
     '''Represent events from the console.'''
+
     def __init__(self, console, input):
         '''Initialize an event from the Windows input structure.'''
         self.type = '??'
@@ -362,31 +383,35 @@ class event(Event):
         self.char = str(input.KeyChar)
         self.keycode = input.Key
         self.state = input.Modifiers
-        log("%s,%s,%s"%(input.Modifiers, input.Key, input.KeyChar))
+        log("%s,%s,%s" % (input.Modifiers, input.Key, input.KeyChar))
         self.type = "KeyRelease"
         self.keysym = make_keysym(self.keycode)
         self.keyinfo = make_KeyPress(self.char, self.state, self.keycode)
 
+
 def make_event_from_keydescr(keydescr):
     def input():
         return 1
+
     input.KeyChar = "a"
     input.Key = System.ConsoleKey.A
     input.Modifiers = System.ConsoleModifiers.Shift
     input.next_serial = input
-    e = event(input,input)
+    e = event(input, input)
     del input.next_serial
     keyinfo = make_KeyPress_from_keydescr(keydescr)
     e.keyinfo = keyinfo
     return e
 
-CTRL_C_EVENT=make_event_from_keydescr("Control-c")
+
+CTRL_C_EVENT = make_event_from_keydescr("Control-c")
+
 
 def install_readline(hook):
     def hook_wrap():
         try:
             res = hook()
-        except KeyboardInterrupt as x:   #this exception does not seem to be caught
+        except KeyboardInterrupt as x:  #this exception does not seem to be caught
             res = ""
         except EOFError:
             return None
@@ -394,15 +419,18 @@ def install_readline(hook):
             return res[:-1]
         else:
             return res
+
     class IronPythonWrapper(IronPythonConsole.IConsole):
-        def ReadLine(self, autoIndentSize): 
+        def ReadLine(self, autoIndentSize):
             return hook_wrap()
+
         def Write(self, text, style):
             System.Console.Write(text)
-        def WriteLine(self, text, style): 
-            System.Console.WriteLine(text)
-    IronPythonConsole.PythonCommandLine.MyConsole = IronPythonWrapper()
 
+        def WriteLine(self, text, style):
+            System.Console.WriteLine(text)
+
+    IronPythonConsole.PythonCommandLine.MyConsole = IronPythonWrapper()
 
 
 if __name__ == '__main__':
@@ -414,7 +442,7 @@ if __name__ == '__main__':
     c.pos(5, 10)
     c.write('hi there')
     c.title("Testing console")
-#    c.bell()
+    #    c.bell()
     print()
     print("size", c.size())
     print('  some printed output')
