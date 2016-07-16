@@ -31,19 +31,19 @@ commands = { #commands section
 				'windows' : #generate sub command -os name
 					{
 						'exec' : {'file_to_execute':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 						'dir_create' : {'directory_to_create':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 						'create_file' : {'filename&&content':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 						'download_tofile' : {'url&&filename':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 						'download_exec' : {'url&&filename':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 						'add_admin' : {'username&&password':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 						'disable_firewall' : {'':
-['none','xor_random']},
+['none','xor_random','add_admin']},
 
 					},
 				'osx_x86' :  #generate sub command - os name

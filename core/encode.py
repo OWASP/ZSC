@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-OWASP ZSC
+OWASP ZSC | ZCR Shellcoder
 https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
 https://github.com/zscproject/OWASP-ZSC
 http://api.z3r0d4y.com/
@@ -47,4 +47,8 @@ def encode_process(encode,shellcode,os,func):
 		if encode == 'xor_random':
 			from lib.encoder.windows.xor_random import start
 			return start(shellcode,func)
+		elif encode == 'add_random':
+			from lib.encoder.windows.add_random import start
+                        return start(shellcode,func)
 	return shellcode
+
