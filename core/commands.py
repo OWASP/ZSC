@@ -46,12 +46,11 @@ commands = {  #commands section
                         'add_yourvalue', 'sub_random', 'sub_yourvalue', 'inc',
                         'inc_timesyouwant', 'dec', 'dec_timesyouwant',
                         'mix_all']},  #function of shellcode
-              'file_create': {
-                  'filename&&content':
-                  ['none', 'xor_random', 'xor_yourvalue', 'add_random',
-                   'add_yourvalue', 'sub_random', 'sub_yourvalue', 'inc',
-                   'inc_timesyouwant', 'dec', 'dec_timesyouwant', 'mix_all']
-              },  #function of shellcode
+              'file_create': {'filename&&content': [
+                  'none', 'xor_random', 'xor_yourvalue', 'add_random',
+                  'add_yourvalue', 'sub_random', 'sub_yourvalue', 'inc',
+                  'inc_timesyouwant', 'dec', 'dec_timesyouwant', 'mix_all'
+              ]},  #function of shellcode
               'script_executor':
               {'name_of_script&&name_of_your_script_in_your_pc&&execute_to_command':
                ['none', 'xor_random', 'xor_yourvalue', 'add_random',
@@ -72,19 +71,19 @@ commands = {  #commands section
           'windows':  #generate sub command -os name
           {
               'exec': {'file_to_execute':
-                       ['none', 'xor_random']},
+                       ['none', 'xor_random', 'add_random']},
               'dir_create': {'directory_to_create':
-                             ['none', 'xor_random']},
+                             ['none', 'xor_random', 'add_random']},
               'create_file': {'filename&&content':
-                              ['none', 'xor_random']},
+                              ['none', 'xor_random', 'add_random']},
               'download_tofile': {'url&&filename':
-                                  ['none', 'xor_random']},
+                                  ['none', 'xor_random', 'add_random']},
               'download_exec': {'url&&filename':
-                                ['none', 'xor_random']},
+                                ['none', 'xor_random', 'add_random']},
               'add_admin': {'username&&password':
-                            ['none', 'xor_random']},
+                            ['none', 'xor_random', 'add_random']},
               'disable_firewall': {'':
-                                   ['none', 'xor_random']},
+                                   ['none', 'xor_random', 'add_random']},
           },
           'osx_x86':  #generate sub command - os name
           {
@@ -94,8 +93,8 @@ commands = {  #commands section
           },
           #add generate sub command - os name
       },
-      'search': ['search for shellcode in shellstorm',
-                 'keyword_to_search'],  #shellcode sub command  
+      'search': ['search for shellcode in shellstorm', 'keyword_to_search'
+                 ],  #shellcode sub command  
       'download': ['download shellcodes from shellstorm', 'id_to_download']
       #add shellcode sub command
       }],
@@ -104,8 +103,8 @@ commands = {  #commands section
         'generate obfuscate code',  #description of obfuscate command
         {
             'javascript':  #langauge name
-            ['simple_hex', 'base64', 'simple_hex_rev',
-             'simple_base64_rev'],  #encode types
+            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev'
+             ],  #encode types
             'python':
             ['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
             'php':
