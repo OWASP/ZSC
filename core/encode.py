@@ -52,4 +52,7 @@ def encode_process(encode, shellcode, os, func):
         elif encode == 'add_random':
             from lib.encoder.windows.add_random import start
             return start(shellcode, func)
+	elif encode == 'sub_random':
+	    from lib.encoder.windows.sub_random import start
+	    return start(shellcode,func)
     return shellcode
