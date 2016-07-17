@@ -85,7 +85,7 @@ replace_values_static = {
 
 
 def convert(shellcode):
-	shellcode = shellcode.replace('\n\n','\n').replace('\n\n','\n').replace('    ',' ').replace('   ',' ')
+	shellcode = shellcode.replace('\n\n','\n').replace('\n\n','\n').replace('    ',' ').replace('   ',' ').replace('	',' ')
 	for data in replace_values_static:
 		shellcode = shellcode.replace(data,replace_values_static[data])
 
