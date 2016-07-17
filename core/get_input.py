@@ -28,9 +28,6 @@ def _input(name, type, _while):
 						_lets_error
 					break
 				except:
-					if data == None:
-						warn('interrupted by user!\nExit\n')
-						sys.exit(0)
 					write('wrong input!\n')
 					pass
 		if type == 'hex':
@@ -50,9 +47,6 @@ def _input(name, type, _while):
 						_lets_error
 					break
 				except:
-					if data == None:
-						warn('interrupted by user!\nExit\n')
-						sys.exit(0)
 					warn('you must enter a hex value\n')
 					pass
 		if type == 'int':
@@ -67,9 +61,6 @@ def _input(name, type, _while):
 					int(data) #if empty, jump to exception and error!
 					break
 				except:
-					if data == None:
-						warn('interrupted by user!\nExit\n')
-						sys.exit(0)
 					warn('you must enter a int value\n')
 					pass
 	elif _while is False:
@@ -82,9 +73,6 @@ def _input(name, type, _while):
 					data = raw_input('%s%s>%s ' % (color.color('blue'), name,
 												   color.color('yellow')))
 			except:
-				if data == None:
-					warn('interrupted by user!\nExit\n')
-					sys.exit(0)
 				write('wrong input!\n')
 				pass
 		if type == 'hex':
@@ -99,9 +87,6 @@ def _input(name, type, _while):
 												   color.color('yellow')))
 					binascii.a2b_hex(data)
 			except:
-				if data == None:
-					warn('interrupted by user!\nExit\n')
-					sys.exit(0)
 				warn('you must enter a hex value\n')
 				pass
 		if type == 'int':
@@ -115,9 +100,6 @@ def _input(name, type, _while):
 												   color.color('yellow')))
 					int(data)
 			except:
-				if data == None:
-					warn('interrupted by user!\nExit\n')
-					sys.exit(0)
 				warn('you must enter a int value\n')
 				pass
 	return data
