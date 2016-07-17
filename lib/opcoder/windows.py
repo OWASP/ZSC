@@ -56,7 +56,9 @@ replace_values_static = {
 	'add %eax,%ecx':'01 c1',
 	'add %ebx,%edx':'01 da',
 	'add %ebx,%eax':'01 d8',
-	'add %ebx,%ecx':'01 d9',	
+	'add %ebx,%ecx':'01 d9',
+	'sub %eax,%ecx':'29 c1',
+	'sub %ebx,%ecx':'29 d9',
 	'push %eax':'50',
 	'push %ebx':'53',
 	'push %ecx':'51',
@@ -85,7 +87,7 @@ replace_values_static = {
 
 
 def convert(shellcode):
-	shellcode = shellcode.replace('\n\n','\n').replace('\n\n','\n').replace('    ',' ').replace('   ',' ')
+	shellcode = shellcode.replace('\n\n','\n').replace('\n\n','\n').replace('    ',' ').replace('   ',' ').replace('	',' ')
 	for data in replace_values_static:
 		shellcode = shellcode.replace(data,replace_values_static[data])
 
