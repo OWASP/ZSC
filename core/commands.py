@@ -71,19 +71,26 @@ commands = {  #commands section
           'windows':  #generate sub command -os name
           {
               'exec': {'file_to_execute':
-                       ['none', 'xor_random', 'add_random']},
+                       ['none', 'xor_random', 'add_random',
+			'sub_random']},
               'dir_create': {'directory_to_create':
-                             ['none', 'xor_random', 'add_random','sub_random']},
+                             ['none', 'xor_random', 'add_random',
+			     'sub_random']},
               'create_file': {'filename&&content':
-                              ['none', 'xor_random', 'add_random''sub_random']},
+                              ['none', 'xor_random', 'add_random', 
+			       'sub_random']},
               'download_tofile': {'url&&filename':
-                                  ['none', 'xor_random', 'add_random','sub_random']},
+                                  ['none', 'xor_random', 'add_random',
+			           'sub_random']},
               'download_exec': {'url&&filename':
-                                ['none', 'xor_random', 'add_random','sub_random']},
+                                ['none', 'xor_random', 'add_random',
+			         'sub_random']},
               'add_admin': {'username&&password':
-                            ['none', 'xor_random', 'add_random','sub_random']},
+                            ['none', 'xor_random', 'add_random',
+			     'sub_random']},
               'disable_firewall': {'':
-                                   ['none', 'xor_random', 'add_random','sub_random']},
+                                   ['none', 'xor_random', 'add_random',
+				    'sub_random']},
           },
           'osx_x86':  #generate sub command - os name
           {
@@ -108,11 +115,11 @@ commands = {  #commands section
             'python':
             ['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
             'php':
-            ['simple_hex', 'base64'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev'],
             'perl':
-            ['simple_hex', 'base64'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev'],
             'ruby':
-            ['simple_hex', 'base64'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev'],
         }
     ],
     'back': ['Go back one step', ''],
