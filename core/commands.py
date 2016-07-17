@@ -93,8 +93,8 @@ commands = {  #commands section
           },
           #add generate sub command - os name
       },
-      'search': ['search for shellcode in shellstorm', 'keyword_to_search'
-                 ],  #shellcode sub command  
+      'search': ['search for shellcode in shellstorm',
+                 'keyword_to_search'],  #shellcode sub command  
       'download': ['download shellcodes from shellstorm', 'id_to_download']
       #add shellcode sub command
       }],
@@ -103,8 +103,8 @@ commands = {  #commands section
         'generate obfuscate code',  #description of obfuscate command
         {
             'javascript':  #langauge name
-            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev'
-             ],  #encode types
+            ['simple_hex', 'base64', 'simple_hex_rev',
+             'simple_base64_rev'],  #encode types
             'python':
             ['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
             'php':
