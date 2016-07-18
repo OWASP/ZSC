@@ -9,19 +9,13 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 import sys
 import os
 from core.compatible import *
-from core import run
 from core.start import logo
-exec (compile(
-    open(
-        str(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')) +
-        '/core/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(
-            __file__)).replace('\\', '/')) + '/core/commands.py', 'exec'))
-
+from core.controller import _interface
 
 def main():
     ''' Main Fucntion '''
     logo()  #zsc logo
-    run.engine(commands)  #run engine
+    _interface()
 
 
 if __name__ == "__main__":

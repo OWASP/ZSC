@@ -68,7 +68,7 @@ commands = {  #commands section
                          'inc_timesyouwant', 'dec', 'dec_timesyouwant',
                          'mix_all']},  #function of shellcode
           },
-          'windows':  #generate sub command -os name
+          'windows_x86':  #generate sub command -os name
           {
               'exec': {'file_to_execute':
                        ['none', 'xor_random', 'add_random',
@@ -138,6 +138,7 @@ help = [
     ['shellcode', commands['shellcode'][0]],
     ['shellcode>generate', 'to generate shellcode'],
     ['shellcode>search', commands['shellcode'][1]['search'][0]],
+	['shellcode>download', commands['shellcode'][1]['download'][0]],
     ['obfuscate', commands['obfuscate'][0]],
     ['back', commands['back'][0]],
     ['clear', commands['clear'][0]],
@@ -147,6 +148,36 @@ help = [
     ['restart', commands['restart'][0]],
     ['version', commands['version'][0]],
     ['exit/quit', commands['exit'][0]],
+]
+
+help_cli = [
+	[['-l','--show-payloads'],'show list of available payloads and required inputs'],
+	[['-s','--shel-storm'],'download or search shellcode from shell-storm'],
+	[['-p','--payload'],'select a payload'],
+	[['-i','--input'],'enter the required inputs'],
+	[['-c','--assembly-code'],'show assembly code instead of shellcode'],
+	[['-o','--output'],'save output [shellcode and assembly code] in a file'],
+	[['-u','--update'],commands['update'][0]],
+	[['-a','--about'],commands['about'][0]],
+	[['-v','--version'],commands['version'][0]],
+	[['-e','--samples-cmd'],'show command line samples'],
+	[['-h','--help'],commands['help'][0]],
+]
+
+cmd_samples = [
+	'zsc.py --show-payloads',
+	'zsc.py --show-payloads windows',
+	'zsc.py -l php',
+	'zsc.py --shell-storm search word1',
+	'zsc.py -s search "word1 word2"',
+	'zsc.py -s download id',
+	'zsc.py --payload windows_x86/system/mix_all --input "ls -la"',
+	'zsc.py -p linux_x86/chmod/xor_random -i "/etc/passwd~777"',
+	'zsc.py --payload osx_x86/system/none --input "ls -la" --assembly-code',
+	'zsc.py -p linux_x86/write/inc -i "/etc/passwd~ali" -c',
+	'zsc.py -p linux_x86/system/dec_15 -i "dir" --output shellcode.c',
+	'zsc.py -p windows_x86/exec/add_0x4b5ff271 -i "calc.exe" -o shellcode.c',
+	'zsc.py -p php/simple_hex -i "/path/file.php"',
 ]
 
 
@@ -164,12 +195,64 @@ def about():
 
 
 def _help(help):
-    write('\n')
-    for h in help:
-        info('%s%-10s%s\t%s' % (color.color('red'), h[0], color.color('green'),
-                                h[1]) + '\n')
-    write('\n')
+	write('\n')
+	for item in help:
+		info('%s%-10s%s\t%s' % (color.color('red'), item[0], color.color('green'),
+                                item[1]) + '\n')
+	info('%s%-10s%s\t%s' % (color.color('red'), 'python zsc.py -h/--help', color.color('green'),
+                                'basic interface help') + '\n') #add basic interface help
+	write('\n')
+def _help_cli(help_cli):
+	write('\n')
+	for item in help_cli:
+		items = ''
+		for i in item[0]:
+			items += str(i) + ' or '
+		items= items[:-4]
+		info('%s%-10s%s\t%s' % (color.color('red'), items, color.color('green'),
+			item[1]) + '\n')
+	write('\n')
 
+def _show_samples(cmd_samples):
+	write('\n')
+	for item in cmd_samples:
+		info(item+'\n')
+	write('\n')
+
+def _show_payloads(commands,check_payload):
+	shellcodes = commands['shellcode'][1]['generate']
+	obfuscate = commands['obfuscate'][1]
+	payloads = []
+	for a in shellcodes:
+		for b in shellcodes[a]:
+			for c in shellcodes[a][b]:
+				if check_payload is False:
+					y = b + '('
+					data = ''
+					for z in c.rsplit('&&'):
+						data += '\'' + z + '\''+ ','
+					y += data[:-1] + ')'
+					y = y.replace('(\'\')','()')
+					write('\n')
+					warn(y+'\n')
+				for d in shellcodes[a][b][c]:
+					if check_payload is False:
+						info(a+'/'+b+'/'+d+'\n')
+					if check_payload is True:
+						payloads.append(a+'/'+b+'/'+d)
+	for a in obfuscate:
+		if check_payload is False:
+			write('\n')
+			warn(a+'\n')
+		for b in obfuscate[a]:
+			if check_payload is False:
+				info(a+'/'+b+'\n')
+			if check_payload is True:
+				payloads.append(a+'/'+b)
+		if check_payload is False:
+			write('\n')
+	if check_payload is True:
+		return payloads
 
 def _clear():
     if 'linux' in sys.platform or 'darwin' in sys.platform:

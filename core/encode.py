@@ -11,7 +11,7 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 def encode_process(encode, shellcode, os, func):
     if encode == 'none':
         return shellcode
-    elif 'linux_x86' in os:
+    elif 'linux_x86' == os:
         if encode == 'add_random':
             from lib.encoder.linux_x86.add_random import start
             return start(shellcode, func)
@@ -45,17 +45,17 @@ def encode_process(encode, shellcode, os, func):
         elif 'xor_' in encode:
             from lib.encoder.linux_x86.xor_yourvalue import start
             return start(encode, shellcode, func)
-    elif 'windows' in os:
+    elif 'windows_x86' == os:
         if encode == 'xor_random':
-            from lib.encoder.windows.xor_random import start
+            from lib.encoder.windows_x86.xor_random import start
             return start(shellcode, func)
         elif encode == 'add_random':
-            from lib.encoder.windows.add_random import start
+            from lib.encoder.windows_x86.add_random import start
             return start(shellcode, func)
-	elif encode == 'sub_random':
-	    from lib.encoder.windows.sub_random import start
-	    return start(shellcode,func)
-	elif 'xor_' in encode:
-	    from lib.encoder.windows.xor_yourvalue import start
-	    return start(encode, shellcode, func)
+        elif encode == 'sub_random':
+            from lib.encoder.windows_x86.sub_random import start
+            return start(shellcode,func)
+        elif 'xor_' in encode:
+            from lib.encoder.windows_x86.xor_yourvalue import start
+            return start(encode, shellcode, func)
     return shellcode
