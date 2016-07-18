@@ -9,6 +9,8 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 import sys
 import os
 from core.update import _update
+from lib.shell_storm_api.grab import _search_shellcode
+from lib.shell_storm_api.grab import _download_shellcode
 exec (compile(
     open(
         str(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')) +
@@ -55,19 +57,35 @@ def _cli_start(commands):
 			_help_cli(help_cli)
 		sys.exit(0)
 	elif len(sys.argv) is 4:
-		pass
-		#zsc --shell-storm search word1
-		#zsc -j search "word1 word2"
-		#zsc -j download id
+		if sys.argv[1] == '--shell-storm' or sys.argv[1] == '-s':
+			if sys.argv[2] == 'search':
+				_search_shellcode(True,sys.argv[3])
+			elif sys.argv[2] == 'download':
+				_download_shellcode(True,sys.argv[3],'')
+			else:
+				warn('command not found!\n')
+				_help_cli(help_cli)
+		else:
+			warn('command not found!\n')
+			_help_cli(help_cli)
+		sys.exit(0)
 	elif len(sys.argv) is 5:
 		pass
 		#zsc --payload windows_x86/system --input "ls -la"
 		#zsc -p linux_x86/chmod -i "/etc/passwd~777" 
 		#zsc -p php/simple_hex -i "/path/file"
 	elif len(sys.argv) is 6:
-		pass
+		if (sys.argv[1] == '--shell-storm' or sys.argv[1] == '-s') and (sys.argv[4] == '--output' or sys.argv[4] == '-o'):
+			if sys.argv[2] == 'download':
+				_download_shellcode(True,sys.argv[3],sys.argv[5])
+			
+		else:
+			warn('command not found!\n')
+			_help_cli(help_cli)
+		sys.exit(0)
 		#zsc --payload windows_x86/system --input "ls -la" --assembly-code
 		#zsc -p linux_x86/chmod -i "/etc/passwd~777"  -c
+		#zsc -s download 887 -o shellcode.c
 	elif len(sys.argv) is 7:
 		pass
 		#zsc --payload windows_x86/system --input "ls -la" --output shellcode.c

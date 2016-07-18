@@ -171,6 +171,7 @@ cmd_samples = [
 	'zsc.py --shell-storm search word1',
 	'zsc.py -s search "word1 word2"',
 	'zsc.py -s download id',
+	'zsc.py -s download id -o shellcode.c',
 	'zsc.py --payload windows_x86/system/mix_all --input "ls -la"',
 	'zsc.py -p linux_x86/chmod/xor_random -i "/etc/passwd~777"',
 	'zsc.py --payload osx_x86/system/none --input "ls -la" --assembly-code',

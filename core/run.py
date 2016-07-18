@@ -80,7 +80,7 @@ def getcommand(commands):
 					command_path.append(option)
 				if crawler is 2:
 					if command == 'search':
-						_search_shellcode()
+						_search_shellcode(False,0)
 						commands = backup_commands
 						completer = autocomplete(commands)
 						readline.set_completer(completer.complete)
@@ -88,7 +88,7 @@ def getcommand(commands):
 						crawler = 0
 						command_path = ['zsc']
 					elif command == 'download':
-						_download_shellcode()
+						_download_shellcode(False,0,'')
 						commands = backup_commands
 						completer = autocomplete(commands)
 						readline.set_completer(completer.complete)
