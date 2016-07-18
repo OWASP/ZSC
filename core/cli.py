@@ -33,6 +33,8 @@ def _cli_start(commands):
 		elif sys.argv[1] == '--version' or sys.argv[1] == '-v':
 			_version()
 		elif sys.argv[1] == '--show-payloads' or sys.argv[1] == '-l':
+			warn('Note: Shellcode Payloads Sorted By OperatingSystem_Architecture/Function_Name/Encode_Name\n')
+			warn('Note: Programming Languages Payloads Sorted By ProgrammingLanguagesName/Encode_Name\n')
 			_show_payloads(commands,False)
 		elif sys.argv[1] == '--samples-cmd' or sys.argv[1] == '-e':
 			_show_samples(cmd_samples)
@@ -44,9 +46,9 @@ def _cli_start(commands):
 		if sys.argv[1] == '--show-payloads' or sys.argv[1] == '-l':
 			payloads = _show_payloads(commands,True)
 			if len(payloads) >= 1:
-				n = -1
+				warn('Note: Shellcode Payloads Sorted By OperatingSystem_Architecture/Function_Name/Encode_Name\n')
+				warn('Note: Programming Languages Payloads Sorted By ProgrammingLanguagesName/Encode_Name\n')
 				for payload in payloads:
-					n += 1
 					if str(sys.argv[2]) == payload.rsplit('/')[0]:
 						info(payload+'\n')
 			else:
@@ -91,5 +93,6 @@ def _cli_start(commands):
 		#zsc --payload windows_x86/system --input "ls -la" --output shellcode.c
 		#zsc -p linux_x86/chmod -i "/etc/passwd~777"  -o shellcode.c
 	else:
-		pass
-		#print help + command not found.
+		warn('command not found!\n')
+		_help_cli(help_cli)
+	sys.exit(0)
