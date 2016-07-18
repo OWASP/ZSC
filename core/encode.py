@@ -55,4 +55,7 @@ def encode_process(encode, shellcode, os, func):
 	elif encode == 'sub_random':
 	    from lib.encoder.windows.sub_random import start
 	    return start(shellcode,func)
+	elif 'xor_' in encode:
+	    from lib.encoder.windows.xor_yourvalue import start
+	    return start(encode, shellcode, func)
     return shellcode
