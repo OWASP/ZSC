@@ -10,14 +10,14 @@ from core.alert import *
 from core.compatible import version
 
 
-def obf_code(lang, encode, filename, content):
+def obf_code(lang, encode, filename, content,cli):
     if version() is 3:
         content = content.decode('utf-8')
     start = getattr(
         __import__('lib.encoder.%s.%s' % (lang, encode),
                    fromlist=['start']),
         'start')  #import endoing module
-    content = start(content)  #encoded content as returned value
+    content = start(content,cli)  #encoded content as returned value
     if version() is 3:
         content = bytes(content, 'utf-8')
     f = open(filename, 'wb')  #writing content

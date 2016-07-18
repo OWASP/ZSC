@@ -52,6 +52,6 @@ exec(%s(%s))
     return f
 
 
-def start(content):
+def start(content,cli):
     return str(str('\'\'\'\n') + str(content.replace('\'\'\'', '\\\'\\\'\\\''))
                + str('\n\'\'\'') + str(encode(content)) + str('\n'))

@@ -55,6 +55,6 @@ eval(%s(%s));''' % (data, func_name, func_argv, var_b64, func_argv, var_str,
     return f
 
 
-def start(content):
+def start(content,cli):
     return str(str('/*\n') + str(content.replace('*/', '*_/')) + str('\n*/') +
                str(encode(content)) + str('\n'))

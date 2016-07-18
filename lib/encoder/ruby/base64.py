@@ -51,7 +51,7 @@ eval(%s(%s));''' % (data, func_name, func_argv, var_str, func_argv, var_str,
     return f
 
 
-def start(content):
+def start(content,cli):
     return str(str('=begin\n') + str(content.replace(
         '=begin', '#=begin').replace('=end', '#=end')) + str('\n=end') + str(
             encode(content)) + str('\n'))

@@ -128,7 +128,7 @@ def getcommand(commands):
 									t = False
 							if t is True:
 								warn('please enter a valid encode name\n')
-						obf_code(option, encode, filename, content)
+						obf_code(option, encode, filename, content,False)
 						commands = backup_commands
 						completer = autocomplete(commands)
 						readline.set_completer(completer.complete)

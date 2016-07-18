@@ -71,7 +71,7 @@ eval %s(%s);
     return f
 
 
-def start(content):
+def start(content,cli):
     return str(str('=begin\n') + str(content.replace(
         '=begin', '#=begin').replace('=cut', '#=cut')) + str('\n=cut') + str(
             encode(content)) + str('\n'))

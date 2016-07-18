@@ -11,6 +11,7 @@ import os
 from core.update import _update
 from lib.shell_storm_api.grab import _search_shellcode
 from lib.shell_storm_api.grab import _download_shellcode
+from core.obfuscate import obf_code
 exec (compile(
     open(
         str(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')) +
@@ -72,26 +73,48 @@ def _cli_start(commands):
 			_help_cli(help_cli)
 		sys.exit(0)
 	elif len(sys.argv) is 5:
-		pass
+		if (sys.argv[1] == '--payload' or sys.argv[1] == '-p') and (sys.argv[3] == '--input' or sys.argv[3] == '-i'):
+			if sys.argv[2] in _show_payloads(commands,True):
+				if len(sys.argv[2].rsplit('/')) is 2:
+					filename = sys.argv[4]
+					language = sys.argv[2].rsplit('/')[0]
+					encode = sys.argv[2].rsplit('/')[1]
+					try:
+						content = open(filename, 'rb').read()
+					except:
+						warn('sorry, cann\'t find file\n')
+						sys.exit(0)
+					obf_code(language, encode, filename, content,True)
+				if len(sys.argv[2].rsplit('/')) is 3:
+					pass
+			else:
+				warn('no payload find for your , to show all of payloads please use "--show-payloads" switch\n')
+				sys.exit(0)
+		else:
+			warn('command not found!\n')
+			_help_cli(help_cli)
+		sys.exit(0)
 		#zsc --payload windows_x86/system --input "ls -la"
-		#zsc -p linux_x86/chmod -i "/etc/passwd~777" 
+		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777" 
 		#zsc -p php/simple_hex -i "/path/file"
 	elif len(sys.argv) is 6:
 		if (sys.argv[1] == '--shell-storm' or sys.argv[1] == '-s') and (sys.argv[4] == '--output' or sys.argv[4] == '-o'):
 			if sys.argv[2] == 'download':
 				_download_shellcode(True,sys.argv[3],sys.argv[5])
-			
+			else:
+				warn('command not found!\n')
+				_help_cli(help_cli)
 		else:
 			warn('command not found!\n')
 			_help_cli(help_cli)
 		sys.exit(0)
 		#zsc --payload windows_x86/system --input "ls -la" --assembly-code
-		#zsc -p linux_x86/chmod -i "/etc/passwd~777"  -c
-		#zsc -s download 887 -o shellcode.c
+		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777"  -c
+	
 	elif len(sys.argv) is 7:
 		pass
 		#zsc --payload windows_x86/system --input "ls -la" --output shellcode.c
-		#zsc -p linux_x86/chmod -i "/etc/passwd~777"  -o shellcode.c
+		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777"  -o shellcode.c
 	else:
 		warn('command not found!\n')
 		_help_cli(help_cli)
