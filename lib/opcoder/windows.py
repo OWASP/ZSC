@@ -23,6 +23,7 @@ replace_values_static = {
 	'xor %edx,%edx':'31 d2',
 	'xor %ebx,%ecx':'31 d9',
 	'xor %esi,%esi':'31 f6',
+	'xor %eax,%ecx':'31 c1',
 	'xor %edi,%edi':'31 ff',
 	'mov %esp,%ebx':'89 e3',
 	'mov $0x1,%al':'b0 01',

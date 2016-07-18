@@ -72,25 +72,25 @@ commands = {  #commands section
           {
               'exec': {'file_to_execute':
                        ['none', 'xor_random', 'add_random',
-			'sub_random']},
+			'sub_random', 'xor_yourvalue']},
               'dir_create': {'directory_to_create':
                              ['none', 'xor_random', 'add_random',
-			     'sub_random']},
+			     'sub_random', 'xor_yourvalue']},
               'create_file': {'filename&&content':
                               ['none', 'xor_random', 'add_random', 
-			       'sub_random']},
+			       'sub_random', 'xor_yourvalue']},
               'download_tofile': {'url&&filename':
                                   ['none', 'xor_random', 'add_random',
-			           'sub_random']},
+			           'sub_random', 'xor_yourvalue']},
               'download_exec': {'url&&filename':
                                 ['none', 'xor_random', 'add_random',
-			         'sub_random']},
+			         'sub_random', 'xor_yourvalue']},
               'add_admin': {'username&&password':
                             ['none', 'xor_random', 'add_random',
-			     'sub_random']},
+			     'sub_random', 'xor_yourvalue']},
               'disable_firewall': {'':
                                    ['none', 'xor_random', 'add_random',
-				    'sub_random']},
+				    'sub_random', 'xor_yourvalue']},
           },
           'osx_x86':  #generate sub command - os name
           {
