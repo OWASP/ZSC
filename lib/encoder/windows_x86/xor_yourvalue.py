@@ -27,7 +27,6 @@ def start(type, shellcode, job):
                 if str('00') not in str(ebx_1) and str('00') not in str(
                         ebx_2) and len(ebx_2.replace('-', '')) >= 7 and len(
                             ebx_1) >= 7 and '-' not in ebx_1:
-		    print data
                     ebx_2 = ebx_2.replace('-', '')
                     if job == 'exec':
                         command = '\npush %%ebx\npush $0x%s\npop %%ebx\npush $0x%s\npop %%ecx\nxor %%ebx,%%ecx\npop %%ebx\npush %%ecx\n' % (
