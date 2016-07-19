@@ -212,8 +212,6 @@ def _cli_start(commands):
 			warn('command not found!\n')
 			_help_cli(help_cli)
 		sys.exit(0)	
-		#zsc --payload windows_x86/system --input "ls -la" --output shellcode.c
-		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777"  -o shellcode.c
 	else:
 		warn('command not found!\n')
 		_help_cli(help_cli)
