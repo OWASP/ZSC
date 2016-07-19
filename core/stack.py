@@ -8,7 +8,7 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 import binascii
 from core.compatible import version
-
+from core.alert import *
 
 def shellcoder(shellcode):
     n = 0
@@ -33,10 +33,17 @@ def st(data):
 def generate(data, register, gtype):
     length = len(data)
     if gtype == 'int':
+        flag_8 = True
         try:
             data = hex(int(data, 8))
         except:
-            data = hex(int(data, 16))
+            flag_8 = False
+        if flag_8 is False:
+            try:
+                data = hex(int(data, 16))
+            except:
+                error('hex or digit required!\nExit\n')
+                sys.exit(0)
     if gtype == 'string':
         data = st(data)
     if length <= 3:
