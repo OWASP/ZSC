@@ -12,6 +12,9 @@ from core.update import _update
 from lib.shell_storm_api.grab import _search_shellcode
 from lib.shell_storm_api.grab import _download_shellcode
 from core.obfuscate import obf_code
+from core.encode import encode_process
+from core.opcoder import op
+from core.file_out import file_output
 exec (compile(
     open(
         str(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')) +
@@ -74,8 +77,8 @@ def _cli_start(commands):
 		sys.exit(0)
 	elif len(sys.argv) is 5:
 		if (sys.argv[1] == '--payload' or sys.argv[1] == '-p') and (sys.argv[3] == '--input' or sys.argv[3] == '-i'):
-			if sys.argv[2] in _show_payloads(commands,True):
-				if len(sys.argv[2].rsplit('/')) is 2:
+			if len(sys.argv[2].rsplit('/')) is 2:	
+				if sys.argv[2] in _show_payloads(commands,True):
 					filename = sys.argv[4]
 					language = sys.argv[2].rsplit('/')[0]
 					encode = sys.argv[2].rsplit('/')[1]
@@ -85,18 +88,36 @@ def _cli_start(commands):
 						warn('sorry, cann\'t find file\n')
 						sys.exit(0)
 					obf_code(language, encode, filename, content,True)
-				if len(sys.argv[2].rsplit('/')) is 3:
-					pass
+			if len(sys.argv[2].rsplit('/')) is 3:
+				os = sys.argv[2].rsplit('/')[0]
+				func = sys.argv[2].rsplit('/')[1]
+				encode = sys.argv[2].rsplit('/')[2]
+				encode_tmp = sys.argv[2].rsplit('/')[2][:3]
+				data = sys.argv[4].rsplit('~~~')
+				payload_tmp = os+'/'+func+'/'+encode_tmp
+				payload_flag = False
+				for _ in _show_payloads(commands,True):
+					if payload_tmp in _:
+						payload_flag = True
+				if payload_flag is True:
+					run = getattr(
+						__import__('lib.generator.%s.%s' % (os, func),
+								   fromlist=['run']),
+						'run')
+					shellcode = run(data)
+					info('Generated shellcode is:\n\n' +op(encode_process(encode, shellcode, os, func),os) +
+								 '\n\n')
+				else:
+					warn('no payload find, to show all of payloads please use "--show-payloads" switch\n')
+					sys.exit(0)
 			else:
-				warn('no payload find for your , to show all of payloads please use "--show-payloads" switch\n')
+				warn('no payload find, to show all of payloads please use "--show-payloads" switch\n')
 				sys.exit(0)
 		else:
 			warn('command not found!\n')
 			_help_cli(help_cli)
 		sys.exit(0)
-		#zsc --payload windows_x86/system --input "ls -la"
-		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777" 
-		#zsc -p php/simple_hex -i "/path/file"
+
 	elif len(sys.argv) is 6:
 		if (sys.argv[1] == '--shell-storm' or sys.argv[1] == '-s') and (sys.argv[4] == '--output' or sys.argv[4] == '-o'):
 			if sys.argv[2] == 'download':
@@ -104,15 +125,93 @@ def _cli_start(commands):
 			else:
 				warn('command not found!\n')
 				_help_cli(help_cli)
+		elif (sys.argv[1] == '--payload' or sys.argv[1] == '-p') and (sys.argv[3] == '--input' or sys.argv[3] == '-i') and (sys.argv[5] == '--assembly-code' or sys.argv[5] == '-c'):
+			if len(sys.argv[2].rsplit('/')) is 2:	
+				if sys.argv[2] in _show_payloads(commands,True):
+					filename = sys.argv[4]
+					language = sys.argv[2].rsplit('/')[0]
+					encode = sys.argv[2].rsplit('/')[1]
+					try:
+						content = open(filename, 'rb').read()
+					except:
+						warn('sorry, cann\'t find file\n')
+						sys.exit(0)
+					obf_code(language, encode, filename, content,True)
+			if len(sys.argv[2].rsplit('/')) is 3:
+				os = sys.argv[2].rsplit('/')[0]
+				func = sys.argv[2].rsplit('/')[1]
+				encode = sys.argv[2].rsplit('/')[2]
+				encode_tmp = sys.argv[2].rsplit('/')[2][:3]
+				data = sys.argv[4].rsplit('~~~')
+				payload_tmp = os+'/'+func+'/'+encode_tmp
+				payload_flag = False
+				for _ in _show_payloads(commands,True):
+					if payload_tmp in _:
+						payload_flag = True
+				if payload_flag is True:
+					run = getattr(
+						__import__('lib.generator.%s.%s' % (os, func),
+								   fromlist=['run']),
+						'run')
+					shellcode = run(data)
+					info('Generated shellcode(Assembly) is:\n\n' +encode_process(encode, shellcode, os, func) +
+								 '\n\n')
+				else:
+					warn('no payload find, to show all of payloads please use "--show-payloads" switch\n')
+					sys.exit(0)
+			else:
+				warn('no payload find, to show all of payloads please use "--show-payloads" switch\n')
+				sys.exit(0)
 		else:
 			warn('command not found!\n')
 			_help_cli(help_cli)
-		sys.exit(0)
-		#zsc --payload windows_x86/system --input "ls -la" --assembly-code
-		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777"  -c
-	
+		sys.exit(0)	
 	elif len(sys.argv) is 7:
-		pass
+		if (sys.argv[1] == '--payload' or sys.argv[1] == '-p') and (sys.argv[3] == '--input' or sys.argv[3] == '-i') and (sys.argv[5] == '--output' or sys.argv[5] == '-o'):
+			if len(sys.argv[2].rsplit('/')) is 2:	
+				if sys.argv[2] in _show_payloads(commands,True):
+					filename = sys.argv[4]
+					language = sys.argv[2].rsplit('/')[0]
+					encode = sys.argv[2].rsplit('/')[1]
+					try:
+						content = open(filename, 'rb').read()
+					except:
+						warn('sorry, cann\'t find file\n')
+						sys.exit(0)
+					obf_code(language, encode, filename, content,True)
+			if len(sys.argv[2].rsplit('/')) is 3:
+				os = sys.argv[2].rsplit('/')[0]
+				func = sys.argv[2].rsplit('/')[1]
+				encode = sys.argv[2].rsplit('/')[2]
+				encode_tmp = sys.argv[2].rsplit('/')[2][:3]
+				data = sys.argv[4].rsplit('~~~')
+				payload_tmp = os+'/'+func+'/'+encode_tmp
+				payload_flag = False
+				for _ in _show_payloads(commands,True):
+					if payload_tmp in _:
+						payload_flag = True
+				if payload_flag is True:
+					run = getattr(
+						__import__('lib.generator.%s.%s' % (os, func),
+								   fromlist=['run']),
+						'run')
+					shellcode = run(data)
+					shellcode_asm = encode_process(encode, shellcode, os, func)
+					shellcode_op = op(encode_process(encode, shellcode, os, func),os)
+					info('Generated shellcode is:\n\n' +op(encode_process(encode, shellcode, os, func),os) +
+								 '\n\n')
+					file_output(sys.argv[6], func, data, os, encode,
+										shellcode_asm, shellcode_op)
+				else:
+					warn('no payload find, to show all of payloads please use "--show-payloads" switch\n')
+					sys.exit(0)
+			else:
+				warn('no payload find, to show all of payloads please use "--show-payloads" switch\n')
+				sys.exit(0)
+		else:
+			warn('command not found!\n')
+			_help_cli(help_cli)
+		sys.exit(0)	
 		#zsc --payload windows_x86/system --input "ls -la" --output shellcode.c
 		#zsc -p linux_x86/chmod -i "/etc/passwd~~~777"  -o shellcode.c
 	else:
