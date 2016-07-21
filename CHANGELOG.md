@@ -1,7 +1,75 @@
 Changes
 -------
 
-version 1.0.9: Reboot
+version 1.1.0: ST
+---------------------
+ * bugs fixed
+ * wizard base interface
+ * argv command line interface
+ * define output file
+ * code style changed to PEP8 standard
+ * assembly/shellcode output
+ * add user guide in help menu
+ * add exec() [osx_x86]
+ * add system() [osx_x86]
+ * add create_file() [windows_x86]
+ * add xor_random encoding in create_file() [windows_x86]
+ * add add_random encoding in create_file() [windows_x86]
+ * add sub_rabdom encoding in create_file() [windows_x86]
+ * add xor_yourvalue encoding in create_file() [windows_x86]
+ * add create_dir() [windows_x86]
+ * add xor_random encoding in create_dir() [windows_x86]
+ * add add_random encoding in create_dir() [windows_x86]
+ * add sub_rabdom encoding in create_dir() [windows_x86]
+ * add xor_yourvalue encoding in create_dir() [windows_x86]
+ * add add_admin() [windows_x86]
+ * add xor_random encoding in add_admin() [windows_x86]
+ * add add_random encoding in add_admin() [windows_x86]
+ * add sub_rabdom encoding in add_admin() [windows_x86]
+ * add xor_yourvalue encoding in add_admin() [windows_x86]
+ * add download_exec() [windows_x86]
+ * add xor_random encoding in download_exec() [windows_x86]
+ * add add_random encoding in download_exec() [windows_x86]
+ * add sub_rabdom encoding in download_exec() [windows_x86]
+ * add xor_yourvalue encoding in download_exec() [windows_x86]
+ * add exec() [windows_x86]
+ * add xor_random encoding in exec() [windows_x86]
+ * add add_random encoding in exec() [windows_x86]
+ * add sub_rabdom encoding in exec() [windows_x86]
+ * add xor_yourvalue encoding in exec() [windows_x86]
+ * add disable_firewall() [windows_x86]
+ * add xor_random encoding in disable_firewall() [windows_x86]
+ * add add_random encoding in disable_firewall() [windows_x86]
+ * add sub_rabdom encoding in disable_firewall() [windows_x86]
+ * add xor_yourvalue encoding in disable_firewall() [windows_x86]
+ * add download_tofile() [windows_x86]
+ * add xor_random encoding in download_tofile() [windows_x86]
+ * add add_random encoding in download_tofile() [windows_x86]
+ * add sub_rabdom encoding in download_tofile() [windows_x86]
+ * add xor_yourvalue encoding in download_tofile() [windows_x86]
+ * add code obfuscator tool
+ * add code obfuscating module python [simple_hex]
+ * add code obfuscating module python [simple_hex_rev]
+ * add code obfuscating module python [simple_base64_rev]
+ * add code obfuscating module javascript [simple_hex]
+ * add code obfuscating module javascript [base64]
+ * add code obfuscating module javascript [simple_hex_rev]
+ * add code obfuscating module javascript [simple_base64_rev]
+ * add code obfuscating module ruby [simple_hex]
+ * add code obfuscating module ruby [base64]
+ * add code obfuscating module ruby [simple_hex_rev]
+ * add code obfuscating module ruby [base64_rev]
+ * add code obfuscating module php [simple_hex]
+ * add code obfuscating module php [base64]
+ * add code obfuscating module php [simple_hex_rev]
+ * add code obfuscating module php [base64_rev]
+ * add code obfuscating module perl [simple_hex]
+ * add code obfuscating module perl [base64]
+ * add code obfuscating module perl [simple_hex_rev]
+ * add code obfuscating module perl [simple_base64_rev
+
+
+version 1.0.9.1: Reboot
 ---------------------
  * bugs fixed
 

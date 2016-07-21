@@ -9,9 +9,9 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 import sys
 #from core import update as upd
 from core.compatible import version
-__version__ = '1.0.9'
-__key__ = 'Reboot'
-__release_date__ = '2016 January 19'
+__version__ = '1.1.0'
+__key__ = 'ST'
+__release_date__ = '2016 July 22'
 from core import color
 
 
