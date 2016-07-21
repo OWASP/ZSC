@@ -198,9 +198,9 @@ def about():
 def _help(help):
 	write('\n')
 	for item in help:
-		info('%s%-10s%s\t%s' % (color.color('red'), item[0], color.color('green'),
+		info('%s%-15s%s\t%s' % (color.color('red'), item[0], color.color('green'),
                                 item[1]) + '\n')
-	info('%s%-10s%s\t%s' % (color.color('red'), 'python zsc.py -h/--help', color.color('green'),
+	info('%s%-10s%s\t%s' % (color.color('red'), 'zsc -h, --help', color.color('green'),
                                 'basic interface help') + '\n') #add basic interface help
 	write('\n')
 def _help_cli(help_cli):
@@ -208,9 +208,9 @@ def _help_cli(help_cli):
 	for item in help_cli:
 		items = ''
 		for i in item[0]:
-			items += str(i) + ' or '
-		items= items[:-4]
-		info('%s%-10s%s\t%s' % (color.color('red'), items, color.color('green'),
+			items += str(i) + ', '
+		items= items[:-2]
+		info('%s%-15s%s\t%s' % (color.color('red'), items, color.color('green'),
 			item[1]) + '\n')
 	write('\n')
 

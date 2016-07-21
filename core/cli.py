@@ -27,6 +27,8 @@ exec (compile(
 			__file__)).replace('\\', '/')) + '/start.py', 'exec'))
 
 def _cli_start(commands):
+
+	
 	if len(sys.argv) is 2:
 		if sys.argv[1] == '--help' or sys.argv[1] == '-h':
 			_help_cli(help_cli)
@@ -76,7 +78,26 @@ def _cli_start(commands):
 			_help_cli(help_cli)
 		sys.exit(0)
 	elif len(sys.argv) is 5:
-		if (sys.argv[1] == '--payload' or sys.argv[1] == '-p') and (sys.argv[3] == '--input' or sys.argv[3] == '-i'):
+		counter = {
+		'--payload' : '',
+		'--input' : '',
+		}
+		n = 0
+		for arg in sys.argv:
+			if arg == '-p' or arg == '--payload':
+				try:
+					counter['--payload'] = sys.argv[n+1]
+				except:
+					pass
+			elif arg == '-i' or arg == '--input':
+				try:
+					counter['--input'] = sys.argv[n+1]
+				except:
+					pass
+			n+=1
+		if counter['--payload'] != '' and counter['--input'] != '':
+			sys.argv[2] = counter['--payload'] 
+			sys.argv[4] = counter['--input'] 
 			if len(sys.argv[2].rsplit('/')) is 2:	
 				if sys.argv[2] in _show_payloads(commands,True):
 					filename = sys.argv[4]
@@ -119,6 +140,54 @@ def _cli_start(commands):
 		sys.exit(0)
 
 	elif len(sys.argv) is 6:
+		counter = {
+		'--shell-storm' : '',
+		'--output' : '',
+		'--assembly-code':'',
+		'--payload': '',
+		'--input':'',
+		}
+		n = 0
+		for arg in sys.argv:
+			if arg == '-s' or arg == '--shell-storm':
+				if sys.argv[n+1] == 'download':
+					try:
+						counter['--shell-storm'] = sys.argv[n+2]
+					except:
+						pass
+			elif arg == '-o' or arg == '--output':
+				try:
+					counter['--output'] = sys.argv[n+1]
+				except:
+					pass
+			elif arg == '-i' or arg == '--input':
+				try:
+					counter['--input'] = sys.argv[n+1]
+				except:
+					pass
+			elif arg == '-p' or arg == '--payload':
+				try:
+					counter['--payload'] = sys.argv[n+1]
+				except:
+					pass		
+			elif arg == '-c' or arg == '--assembly-code':
+				try:
+					counter['--assembly-code'] = True
+				except:
+					pass
+			n+=1
+		if counter['--shell-storm'] != '' and counter['--output'] != '':
+			sys.argv[1] = '--shell-storm'
+			sys.argv[2] = 'download'
+			sys.argv[3] = counter['--shell-storm']
+			sys.argv[4] = '--output'
+			sys.argv[5] = counter['--output']
+		if counter['--payload'] != '' and counter['--input'] != '' and counter['--assembly-code'] is True:
+			sys.argv[1] = '--payload'
+			sys.argv[2] = counter['--payload']
+			sys.argv[3] = '--input'
+			sys.argv[4] = counter['--input']
+			sys.argv[5] = '--assembly-code'
 		if (sys.argv[1] == '--shell-storm' or sys.argv[1] == '-s') and (sys.argv[4] == '--output' or sys.argv[4] == '-o'):
 			if sys.argv[2] == 'download':
 				_download_shellcode(True,sys.argv[3],sys.argv[5])
@@ -167,6 +236,36 @@ def _cli_start(commands):
 			_help_cli(help_cli)
 		sys.exit(0)	
 	elif len(sys.argv) is 7:
+		counter = {
+		'--payload': '',
+		'--output' : '',
+		'--input':'',
+		}
+		n = 0
+		for arg in sys.argv:
+			if arg == '-o' or arg == '--output':
+				try:
+					counter['--output'] = sys.argv[n+1]
+				except:
+					pass
+			elif arg == '-i' or arg == '--input':
+				try:
+					counter['--input'] = sys.argv[n+1]
+				except:
+					pass
+			elif arg == '-p' or arg == '--payload':
+				try:
+					counter['--payload'] = sys.argv[n+1]
+				except:
+					pass		
+			n+=1
+		if counter['--payload'] != '' and counter['--output'] != '' and counter['--input'] != '':
+			sys.argv[1] = '--payload'
+			sys.argv[2] = counter['--payload']
+			sys.argv[3] = '--input'
+			sys.argv[4] = counter['--input']
+			sys.argv[5] = '--output'
+			sys.argv[6] = counter['--output']
 		if (sys.argv[1] == '--payload' or sys.argv[1] == '-p') and (sys.argv[3] == '--input' or sys.argv[3] == '-i') and (sys.argv[5] == '--output' or sys.argv[5] == '-o'):
 			if len(sys.argv[2].rsplit('/')) is 2:	
 				if sys.argv[2] in _show_payloads(commands,True):
