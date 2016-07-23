@@ -209,13 +209,13 @@ def getcommand(commands):
 								os)
 							info('Generated shellcode is:\n' + shellcode_op +
 								 '\n\n')
-							file_or_not = _input(
-								'Shellcode output to .c file?(y or n)', 'any',
-								True)
-							if file_or_not == 'y':
-								target = _input('Target .c file?', 'any', True)
-								file_output(target, func, data, os, encode,
-											shellcode, shellcode_op)
+						file_or_not = _input(
+							'Shellcode output to .c file?(y or n)', 'any',
+							True)
+						if file_or_not == 'y':
+							target = _input('Target .c file?', 'any', True)
+							file_output(target, func, data, os, encode,
+										shellcode, shellcode_op)
 					commands = backup_commands
 					completer = autocomplete(commands)
 					readline.set_completer(completer.complete)
