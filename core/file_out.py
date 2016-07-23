@@ -34,7 +34,9 @@ Assembly code:\n
 
 
 
-compile example(Linux): gcc -m32  -o shellcode_compiled %s
+compile example(OSX x86): gcc -m32  -o shellcode_compiled %s
+compile example(Linux x86): gcc -m32  -z execstack -o shellcode_compiled %s
+compile example(Windows x86): gcc -o shellcode_compiled %s
 followed by(to run): ./shellcode_compiled
 */
 \n\n
@@ -45,7 +47,7 @@ int main(void)
 	return 0;
 }
 ''' % (func, args, os, encode, str(len(shellcode_op) / 4), shellcode, target,
-       shellcode_op)
+       target, target, shellcode_op)
     fileout.write(file_output)
     fileout.close()
     info('File saved as %s .\n' % target)
