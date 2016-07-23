@@ -8,6 +8,7 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 '''
 from core.alert import *
 from core.start import *
+import os
 
 assembly_code = False  #if True: show assembly code instead of shellcode
 
@@ -97,6 +98,8 @@ commands = {  #commands section
               'exec': {'file_to_execute': ['none']},  #function of shellcode
               'system':
               {'command_to_execute': ['none']},  #function of shellcode
+              'chmod': {'file_to_perm&&perm_number':
+                        ['none']},  # function of shellcode
           },
           #add generate sub command - os name
       },
