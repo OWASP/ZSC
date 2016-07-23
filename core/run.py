@@ -188,8 +188,8 @@ def getcommand(commands):
 					if assembly_code is True:
 						write('\n'+encode_process(encode, shellcode, os, func) + '\n\n')
 					output_shellcode = _input('Output shellcode to screen?(y or n)', 'any', True)
+					shellcode_op = op( encode_process(encode, shellcode, os, func), os)
 					if output_shellcode == 'y':
-						shellcode_op = op( encode_process(encode, shellcode, os, func), os)
 						info('Generated shellcode is:\n' + shellcode_op +'\n\n')
 					file_or_not = _input('Shellcode output to a .c file?(y or n)', 'any', True)
 					if file_or_not == 'y':
