@@ -34,7 +34,7 @@ Assembly code:\n
 
 
 
-compile example: gcc -ggdb -static -m32 -fno-stack-protector -z execstack -mpreferred-stack-boundary=2 -o shellcode_compiled %s
+compile example(Linux): gcc -m32  -o shellcode_compiled %s
 followed by(to run): ./shellcode_compiled
 */
 \n\n
