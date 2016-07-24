@@ -171,7 +171,7 @@ def getcommand(commands):
 					readline.set_completer(completer.complete)
 					readline.parse_and_bind('tab: complete')
 					try:
-						encode = _input('zsc', 'any', False)
+						encode = _input('/'.join(command_path) + "/encode_type", 'any', False)
 						if encode is None:
 							_lets_error
 					except:
