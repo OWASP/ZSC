@@ -54,7 +54,7 @@ def windows():
     tmp_copy = os.popen('xcopy /y /s /i . %s' % installing_path).read()
     print(color.color('cyan') + 'Building Commandline')
     tmp_add_command_line = open('%s\\..\\zsc.bat' % installing_path, 'w')
-    tmp_add_command_line.write('@echo off\npython %s\\zsc.py' %
+    tmp_add_command_line.write('@echo off\npython %s\\zsc.py %%*' %
                                installing_path)
     tmp_add_command_line.close()
     print(
