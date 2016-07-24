@@ -14,6 +14,7 @@ from core.commands import *
 from core.update import _update
 from lib.shell_storm_api.grab import _search_shellcode
 from lib.shell_storm_api.grab import _download_shellcode
+from lib.shell_storm_api.grab import _grab_all
 from core.encode import encode_process
 from core.get_input import _input
 from core.opcoder import op
@@ -89,6 +90,14 @@ def getcommand(commands):
 						command_path = ['zsc']
 					elif command == 'download':
 						_download_shellcode(False,0,'')
+						commands = backup_commands
+						completer = autocomplete(commands)
+						readline.set_completer(completer.complete)
+						readline.parse_and_bind('tab: complete')
+						crawler = 0
+						command_path = ['zsc']
+					elif command == 'shell_storm_list':
+						_grab_all()
 						commands = backup_commands
 						completer = autocomplete(commands)
 						readline.set_completer(completer.complete)

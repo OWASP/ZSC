@@ -11,6 +11,7 @@ import os
 from core.update import _update
 from lib.shell_storm_api.grab import _search_shellcode
 from lib.shell_storm_api.grab import _download_shellcode
+from lib.shell_storm_api.grab import _grab_all
 from core.obfuscate import obf_code
 from core.encode import encode_process
 from core.opcoder import op
@@ -49,7 +50,7 @@ def _cli_start(commands):
 			_help_cli(help_cli)
 		sys.exit(0)
 	elif len(sys.argv) is 3:
-		if sys.argv[1] == '--show-payloads' or sys.argv[1] == '-l':
+		if (sys.argv[1] == '--show-payloads' or sys.argv[1] == '-l') and (sys.argv[2] != '--shell-storm' and sys.argv[2] != '-s'):
 			payloads = _show_payloads(commands,True)
 			if len(payloads) >= 1:
 				warn('Note: Shellcode Payloads Sorted By OperatingSystem_Architecture/Function_Name/Encode_Name\n')
@@ -60,6 +61,12 @@ def _cli_start(commands):
 			else:
 				warn('no payload find for your platform, to show all of payloads please use only "--show-payloads" switch\n')
 				sys.exit(0)
+		elif (sys.argv[1] == '--show-payloads' or sys.argv[1] == '-l') and (sys.argv[2] == '--shell-storm' or sys.argv[2] == '-s'):
+			warn('Note: Shellcode Payloads Sorted By OperatingSystem_Architecture/Function_Name/Encode_Name\n')
+			warn('Note: Programming Languages Payloads Sorted By ProgrammingLanguagesName/Encode_Name\n')
+			_show_payloads(commands,False)
+			warn('shell-storm shellcodes:\n')
+			_grab_all()
 		else:
 			warn('command not found!\n')
 			_help_cli(help_cli)

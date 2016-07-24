@@ -105,8 +105,9 @@ commands = {  #commands section
       },
       'search': ['search for shellcode in shellstorm', 'keyword_to_search'
                  ],  #shellcode sub command  
-      'download': ['download shellcodes from shellstorm', 'id_to_download']
+      'download': ['download shellcodes from shellstorm', 'id_to_download'],
       #add shellcode sub command
+	  'shell_storm_list' : ['list all shellcodes in shellstorm','']
       }],
     'obfuscate':  #obfuscate main command
     [
@@ -142,6 +143,7 @@ help = [
     ['shellcode>generate', 'to generate shellcode'],
     ['shellcode>search', commands['shellcode'][1]['search'][0]],
 	['shellcode>download', commands['shellcode'][1]['download'][0]],
+	['shellcode>shell_storm_list', commands['shellcode'][1]['shell_storm_list'][0]],
     ['obfuscate', commands['obfuscate'][0]],
     ['back', commands['back'][0]],
     ['clear', commands['clear'][0]],
@@ -155,7 +157,7 @@ help = [
 
 help_cli = [
 	[['-l','--show-payloads'],'show list of available payloads and required inputs'],
-	[['-s','--shel-storm'],'download or search shellcode from shell-storm'],
+	[['-s','--shel-storm'],'download, search, list shellcode from shell-storm'],
 	[['-p','--payload'],'select a payload'],
 	[['-i','--input'],'enter the required inputs'],
 	[['-c','--assembly-code'],'show assembly code instead of shellcode'],

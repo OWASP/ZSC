@@ -67,3 +67,20 @@ def _download_shellcode(cli,id,name):
 	else:
 		if name != '':
 			downloaded_file_output(name, data)
+			
+def _grab_all():
+	url = 'http://shell-storm.org/shellcode/'
+	try:
+		if version() is 2:
+			data = urlopen(url).read().rsplit('\n')
+		if version() is 3:
+			data = urlopen(url).read().decode('utf-8').rsplit('\n')
+	except:
+		warn('connection error\n')
+		return
+	for shellcode in data:
+		if '/shellcode/files/shellcode-' in shellcode:
+			id = shellcode.rsplit('<li><a href="/shellcode/files/shellcode-')[1].rsplit('.php')[0]
+			title = shellcode.rsplit('">')[1].rsplit('</a>')[0]
+			author = shellcode.rsplit('<i>')[1].rsplit('</i>')[0]
+			info('id: ' + id + ' - ' + title + ' ' + author + '\n')
