@@ -34,10 +34,10 @@ Assembly code:\n
 
 
 
-compile example(OSX x86): gcc -m32  -o shellcode_compiled %s
-compile example(Linux x86): gcc -m32  -z execstack -o shellcode_compiled %s
-compile example(Windows x86): gcc -o shellcode_compiled %s
-followed by(to run): ./shellcode_compiled
+compile example(osx_x86): gcc -m32  -o shellcode_compiled %s
+compile example(linux_x86): gcc -m32  -z execstack -o shellcode_compiled %s
+compile example(windows_x86): gcc -o shellcode_compiled.exe %s
+followed by(to run): ./shellcode_compiled or shellcode_compiled.exe
 */
 \n\n
 char *shellcode = "%s";
