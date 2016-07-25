@@ -73,25 +73,31 @@ commands = {  #commands section
           {
               'exec': {'file_to_execute':
                        ['none', 'xor_random', 'add_random',
-			'sub_random', 'xor_yourvalue']},
+			'sub_random', 'xor_yourvalue', 'inc']},
               'dir_create': {'directory_to_create':
                              ['none', 'xor_random', 'add_random',
-			     'sub_random', 'xor_yourvalue']},
+			     'sub_random', 'xor_yourvalue', 'inc',
+			     'dec']},
               'create_file': {'filename&&content':
                               ['none', 'xor_random', 'add_random', 
-			       'sub_random', 'xor_yourvalue']},
+			       'sub_random', 'xor_yourvalue', 'inc',
+			       'dec']},
               'download_tofile': {'url&&filename':
                                   ['none', 'xor_random', 'add_random',
-			           'sub_random', 'xor_yourvalue']},
+			           'sub_random', 'xor_yourvalue', 'inc',
+				   'dec']},
               'download_exec': {'url&&filename':
                                 ['none', 'xor_random', 'add_random',
-			         'sub_random', 'xor_yourvalue']},
+			         'sub_random', 'xor_yourvalue', 'inc',
+				 'dec']},
               'add_admin': {'username&&password':
                             ['none', 'xor_random', 'add_random',
-			     'sub_random', 'xor_yourvalue']},
+			     'sub_random', 'xor_yourvalue', 'inc',
+			     'dec']},
               'disable_firewall': {'':
                                    ['none', 'xor_random', 'add_random',
-				    'sub_random', 'xor_yourvalue']},
+				    'sub_random', 'xor_yourvalue', 'inc',
+				    'dec']},
           },
           'osx_x86':  #generate sub command - os name
           {
