@@ -64,4 +64,10 @@ def encode_process(encode, shellcode, os, func):
         elif 'xor_' in encode:
             from lib.encoder.windows_x86.xor_yourvalue import start
             return start(encode, shellcode, func)
+	elif 'inc_' in encode:
+	    from lib.encoder.windows_x86.inc_timesyouwant import start
+	    return start(encode, shellcode, func)
+	elif 'dec_' in encode:
+	    from lib.encoder.windows_x86.dec_timesyouwant import start
+	    return start(encode, shellcode, func)
     return shellcode
