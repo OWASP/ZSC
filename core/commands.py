@@ -171,7 +171,8 @@ help_cli = [
 
 cmd_samples = [
 	'zsc.py --show-payloads',
-	'zsc.py --show-payloads windows',
+	'zsc.py --show-payloads --shell-storm',
+	'zsc.py --show-payloads windows_x86',
 	'zsc.py -l php',
 	'zsc.py --shell-storm search word1',
 	'zsc.py -s search "word1 word2"',
