@@ -70,4 +70,10 @@ def encode_process(encode, shellcode, os, func):
 	elif 'dec_' in encode:
 	    from lib.encoder.windows_x86.dec_timesyouwant import start
 	    return start(encode, shellcode, func)
+	elif 'add_' in encode:
+	    from lib.encoder.windows_x86.add_yourvalue import start
+	    return start(encode, shellcode, func)
+	elif 'sub_' in encode:
+	    from lib.encoder.windows_x86.sub_yourvalue import start
+	    return start(encode, shellcode, func)
     return shellcode

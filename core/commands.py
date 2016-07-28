@@ -74,31 +74,38 @@ commands = {  #commands section
               'exec': {'file_to_execute':
                        ['none', 'xor_random', 'add_random',
 			'sub_random', 'xor_yourvalue', 'inc',
-			'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+			'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			'add_yourvalue', 'sub_yourvalue']},
               'dir_create': {'directory_to_create':
                              ['none', 'xor_random', 'add_random',
 			     'sub_random', 'xor_yourvalue', 'inc',
-			     'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+			     'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			     'add_yourvalue', 'sub_yourvalue']},
               'create_file': {'filename&&content':
                               ['none', 'xor_random', 'add_random', 
 			       'sub_random', 'xor_yourvalue', 'inc',
-			       'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+			       'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			       'add_yourvalue', 'sub_yourvalue']},
               'download_tofile': {'url&&filename':
                                   ['none', 'xor_random', 'add_random',
 			           'sub_random', 'xor_yourvalue', 'inc',
-				   'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+				   'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+				   'add_yourvalue', 'sub_yourvalue']},
               'download_exec': {'url&&filename':
                                 ['none', 'xor_random', 'add_random',
 			         'sub_random', 'xor_yourvalue', 'inc',
-				 'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+				 'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+				 'add_yourvalue', 'sub_yourvalue']},
               'add_admin': {'username&&password':
                             ['none', 'xor_random', 'add_random',
 			     'sub_random', 'xor_yourvalue', 'inc',
-			     'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+			     'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			     'add_yourvalue', 'sub_yourvalue']},
               'disable_firewall': {'':
                                    ['none', 'xor_random', 'add_random',
 				    'sub_random', 'xor_yourvalue', 'inc',
-				    'dec', 'inc_timesyouwant', 'dec_timesyouwant']},
+				    'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+				    'add_yourvalue', 'sub_yourvalue']},
           },
           'osx_x86':  #generate sub command - os name
           {
