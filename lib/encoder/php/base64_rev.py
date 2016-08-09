@@ -10,7 +10,8 @@ import binascii
 import random
 import string
 from core.compatible import version
-_version = version()
+from core.alert import *
+from core.get_input import _input
 
 
 def encode(f):
