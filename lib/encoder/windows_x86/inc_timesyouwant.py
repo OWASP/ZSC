@@ -22,6 +22,6 @@ def start(incvalue, shellcode, job):
             data = line.rsplit('push')[1].rsplit('$0x')[1]
             ecx_2 = "%x" % (int(data, 16) - times)
 	    inc = 'inc %ecx\n' * times
-	    command = '\npush $0x%s\npop %%ecx\n%s\npush %%ecx\n' % (str(ecx_2), inc)
-	    shellcode = shellcode.replace(line, command)
+            command = '\npush $0x%s\npop %%ecx\n%s\npush %%ecx\n' % (str(ecx_2), inc)
+            shellcode = shellcode.replace(line, command)
     return shellcode
