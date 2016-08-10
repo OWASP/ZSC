@@ -16,7 +16,6 @@ def encode(f):
 	random.choice(string.ascii_lowercase + string.ascii_uppercase)
 	for i in range(50))
     ascii_data = ''.join([str(ord(i))+'*' for i in f])[:-1]
-    data = ''
     data = var_name + ' = "' + ascii_data + '";\n'
     var_str = '$' + ''.join(
         random.choice(string.ascii_lowercase + string.ascii_uppercase)
