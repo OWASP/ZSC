@@ -73,25 +73,39 @@ commands = {  #commands section
           {
               'exec': {'file_to_execute':
                        ['none', 'xor_random', 'add_random',
-			'sub_random', 'xor_yourvalue']},
+			'sub_random', 'xor_yourvalue', 'inc',
+			'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			'add_yourvalue', 'sub_yourvalue']},
               'dir_create': {'directory_to_create':
                              ['none', 'xor_random', 'add_random',
-			     'sub_random', 'xor_yourvalue']},
+			     'sub_random', 'xor_yourvalue', 'inc',
+			     'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			     'add_yourvalue', 'sub_yourvalue']},
               'create_file': {'filename&&content':
                               ['none', 'xor_random', 'add_random', 
-			       'sub_random', 'xor_yourvalue']},
+			       'sub_random', 'xor_yourvalue', 'inc',
+			       'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			       'add_yourvalue', 'sub_yourvalue']},
               'download_tofile': {'url&&filename':
                                   ['none', 'xor_random', 'add_random',
-			           'sub_random', 'xor_yourvalue']},
+			           'sub_random', 'xor_yourvalue', 'inc',
+				   'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+				   'add_yourvalue', 'sub_yourvalue']},
               'download_exec': {'url&&filename':
                                 ['none', 'xor_random', 'add_random',
-			         'sub_random', 'xor_yourvalue']},
+			         'sub_random', 'xor_yourvalue', 'inc',
+				 'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+				 'add_yourvalue', 'sub_yourvalue']},
               'add_admin': {'username&&password':
                             ['none', 'xor_random', 'add_random',
-			     'sub_random', 'xor_yourvalue']},
+			     'sub_random', 'xor_yourvalue', 'inc',
+			     'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+			     'add_yourvalue', 'sub_yourvalue']},
               'disable_firewall': {'':
                                    ['none', 'xor_random', 'add_random',
-				    'sub_random', 'xor_yourvalue']},
+				    'sub_random', 'xor_yourvalue', 'inc',
+				    'dec', 'inc_timesyouwant', 'dec_timesyouwant',
+				    'add_yourvalue', 'sub_yourvalue']},
           },
           'osx_x86':  #generate sub command - os name
           {
@@ -114,16 +128,17 @@ commands = {  #commands section
         'generate obfuscate code',  #description of obfuscate command
         {
             'javascript':  #langauge name
-            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev'
-             ],  #encode types
+            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev',
+             'simple_ascii'],  #encode types
             'python':
-            ['simple_hex', 'simple_hex_rev', 'simple_base64_rev'],
+            ['simple_hex', 'simple_hex_rev', 'simple_base64_rev', 'simple_ascii'],
             'php':
-            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii'],
             'perl':
-            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev', 
+             'simple_ascii'],
             'ruby':
-            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii'],
         }
     ],
     'back': ['Go back one step', ''],
