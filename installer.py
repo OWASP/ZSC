@@ -27,7 +27,7 @@ def check_prv():
                          'reset'))
 
 
-def linux_osx():
+def linux():
     check_prv()
     executor = '''#!/bin/bash\npython /usr/share/owasp_zsc/zsc.py "$@"'''
     print(color.color('cyan') + 'Building Commandline')
@@ -42,6 +42,20 @@ def linux_osx():
         '\nNow you can remove this folder\nfiles copied in /usr/share/owasp_zsc.\nto run zcr shellcoder please use "zsc" command line\n'
         + color.color('reset'))
 
+def osx():
+    check_prv()
+    executor = '''#!/bin/bash\npython /usr/local/share/owasp_zsc/zsc.py "$@"'''
+    print(color.color('cyan') + 'Building Commandline')
+    commandline = open('/usr/local/bin/zsc', 'w')
+    commandline.write(executor)
+    commandline.close()
+    print(color.color('green') + 'Copying Files' + color.color('white'))
+    os.system(
+        'rm -rf /usr/local/share/owasp_zsc && mkdir /usr/local/share/owasp_zsc && cp -r * /usr/local/share/owasp_zsc/ && chmod +x /usr/local/share/owasp_zsc/zsc.py && chmod +x /usr/local/bin/zsc')
+    print(
+        color.color('yellow') +
+        '\nNow you can remove this folder\nfiles copied in /usr/local/share/owasp_zsc.\nto run zcr shellcoder please use "zsc" command line\n'
+        + color.color('reset'))
 
 def windows():
     #check_prv()
@@ -59,13 +73,16 @@ def windows():
     tmp_add_command_line.close()
     print(
         color.color('yellow') +
-        '\nNow you can remove this folder\nfiles copied in %s.\nto run zcr shellcoder please use "zsc" command line\nNOTE: IF COMMAND LINE "zsc" NOT FOUND, PLEASE RE-OPEN YOUR CMD!\N'
+        '\nNow you can remove this folder\nfiles copied in %s.\nto run zcr shellcoder please use "zsc" command line\nNOTE: IF COMMAND LINE "zsc" NOT FOUND, PLEASE RE-OPEN YOUR CMD!\n'
         % installing_path + color.color('reset'))
 
 
-if 'linux' in sys.platform or 'darwin' in sys.platform:
+if 'linux' in sys.platform:
     os.system('clear')
-    linux_osx()
+    linux()
+elif 'darwin' in sys.platform:
+    os.system('clear')
+    osx()
 elif 'win32' in sys.platform or 'win64' in sys.platform:
     os.system('cls')
     windows()

@@ -11,13 +11,21 @@ import sys
 from core import start
 from core import color
 #start.logo()
-if 'linux' in sys.platform or 'darwin' in sys.platform:
+if 'linux' in sys.platform:
     if os.geteuid() is not 0:
         sys.exit(color.color('red') + 'Sorry, you most run this file as root.'
                  + color.color('reset'))
     os.system('clear')
     print(color.color('green') + 'Removing Files' + color.color('white'))
     os.system('rm -rf /usr/share/owasp_zsc /usr/bin/zsc')
+    print(color.color('green') + 'Files Removed!' + color.color('white'))
+elif 'darwin' in sys.platform:
+    if os.geteuid() is not 0:
+        sys.exit(color.color('red') + 'Sorry, you most run this file as root.'
+                 + color.color('reset'))
+    os.system('clear')
+    print(color.color('green') + 'Removing Files' + color.color('white'))
+    os.system('rm -rf /usr/local/share/owasp_zsc /usr/local/bin/zsc')
     print(color.color('green') + 'Files Removed!' + color.color('white'))
 elif 'win32' in sys.platform or 'win64' in sys.platform:
     #import ctypes
