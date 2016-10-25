@@ -150,6 +150,7 @@ commands = {  #commands section
     'version': ['software version', ''],
     'exit': ['to exit the software', ''],
     'quit': ['to exit the software', ''],
+    '#': ['insert comment', ''],
     #add main command here
 }
 
@@ -168,6 +169,7 @@ help = [
     ['restart', commands['restart'][0]],
     ['version', commands['version'][0]],
     ['exit/quit', commands['exit'][0]],
+    ['#', commands['#'][0]],
 ]
 
 help_cli = [

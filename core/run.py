@@ -72,6 +72,10 @@ def getcommand(commands):
 			warn('interrupted by user!\nExit\n')
 			sys.exit(0)
 		check = True
+
+		if command.startswith('#'): # allows for comments
+			continue
+
 		inContext = ['clear', 'help', 'about', 'version', 'back']
 		for option in commands:
 			if command == option and command not in inContext:
