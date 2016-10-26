@@ -174,7 +174,7 @@ help = [
 
 help_cli = [
 	[['-l','--show-payloads'],'show list of available payloads and required inputs'],
-	[['-s','--shel-storm'],'download, search, list shellcode from shell-storm'],
+	[['-s','--shell-storm'],'download, search, list shellcode from shell-storm'],
 	[['-p','--payload'],'select a payload'],
 	[['-i','--input'],'enter the required inputs'],
 	[['-c','--assembly-code'],'show assembly code instead of shellcode'],

@@ -13,9 +13,18 @@ from core.get_input import _input
 from core.file_out import downloaded_file_output
 if version() is 2:
 	from urllib import urlopen
+	from HTMLParser import HTMLParser
 if version() is 3:
 	from urllib.request import urlopen
+	import html
 
+def _html_decode(data):
+	"""HTML Decode function separate to handle py2 and py3."""
+	if version() is 2:
+		h = HTMLParser()
+		return h.unescape(data)
+	if version() is 3:
+		return html.unescape(data)
 
 def _search_shellcode(cli,keyword):
 	url = 'http://shell-storm.org/api/?s='
@@ -58,15 +67,17 @@ def _download_shellcode(cli,id,name):
 	except:
 		warn('connection error\n')
 		return
-	write(data + '\n\n')
+
+	write(_html_decode(data) + '\n\n')
+
 	if cli is False:
 		file_or_not = _input('Shellcode output to a .c file?(y or n)', 'any', True)
 		if file_or_not[0] == 'y':
 			target = _input('Target .c file?', 'any', True)
-			downloaded_file_output(target, data)
+			downloaded_file_output(target, _html_decode(data))
 	else:
 		if name != '':
-			downloaded_file_output(name, data)
+			downloaded_file_output(name, _html_decode(data))
 			
 def _grab_all():
 	url = 'http://shell-storm.org/shellcode/'
