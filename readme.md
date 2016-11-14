@@ -15,6 +15,6 @@ OWASP ZSC is open source software written in python which lets you generate cust
  * Mailing List: https://groups.google.com/d/forum/owasp-zsc
  * API: http://api.z3r0d4y.com
 
-![screenshot](http://zsc.z3r0d4y.com/images/Snapshot_2015-07-26_191951.png)
+[![asciicast](https://asciinema.org/a/90674.png)](https://asciinema.org/a/90674)
 
 #### For more information, read the document files in main directory or visit home page.
