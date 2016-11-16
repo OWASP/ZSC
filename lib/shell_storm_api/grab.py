@@ -44,7 +44,7 @@ def _search_shellcode(cli,keyword):
 	for shellcode_ in data.rsplit('\n'):
 		try:
 			shellcode_ = shellcode_.rsplit('::::')
-			info('author: %s\tshellcode_id: %s\tplathform: %s\ttitle: %s\n' %
+			info('author: %s\tshellcode_id: %s\tplatform: %s\ttitle: %s\n' %
 				 (shellcode_[0], shellcode_[3], shellcode_[1], shellcode_[2]))
 		except:
 			pass
