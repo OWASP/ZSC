@@ -11,8 +11,9 @@ from core import color
 
 
 def info(content):
+    num_newline = len(content) - len(content.rstrip("\n"))
     sys.stdout.write(color.color('yellow') + '[+] ' + color.color('green') +
-                     content + color.color('reset'))
+                     content[:-num_newline] + color.color('reset') + "\n"*num_newline)
     return
 
 
@@ -22,8 +23,9 @@ def write(content):
 
 
 def warn(content):
+    num_newline = len(content) - len(content.rstrip("\n"))
     sys.stdout.write(color.color('red') + '[!] ' + color.color('yellow') +
-                     content + color.color('reset'))
+                     content[:-num_newline] + color.color('reset') + "\n"*num_newline)
     return
 
 
