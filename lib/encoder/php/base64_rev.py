@@ -12,7 +12,7 @@ import string
 from core.compatible import version
 from core.alert import *
 from core.get_input import _input
-
+_version = version()
 
 def encode(f):
 	var_name = '$' + ''.join(
