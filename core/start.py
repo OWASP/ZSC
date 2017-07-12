@@ -16,7 +16,7 @@ from core import color
 
 
 def logo():
-    print(color.color('red') + '''
+    print(color.color('blue') + '''
   ______          __      _____ _____    ______ _____  _____ 
  / __ \ \        / /\    / ____|  __ \  |___  // ____|/ ____|
 | |  | \ \  /\  / /  \  | (___ | |__) |    / /| (___ | |     
