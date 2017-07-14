@@ -76,4 +76,8 @@ def encode_process(encode, shellcode, os, func):
         elif 'sub_' in encode:
             from lib.encoder.windows_x86.sub_yourvalue import start
             return start(encode, shellcode, func)
+    elif 'osx_x86' == os:
+        if encode == 'add_random':
+            from lib.encoder.osx_x86.add_random import start
+            return start(shellcode, func)
     return shellcode

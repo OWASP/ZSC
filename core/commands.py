@@ -109,9 +109,8 @@ commands = {  #commands section
           },
           'osx_x86':  #generate sub command - os name
           {
-              'exec': {'file_to_execute': ['none']},  #function of shellcode
-              'system':
-              {'command_to_execute': ['none']},  #function of shellcode
+              'exec': {'file_to_execute': ['none', 'add_random']},  #function of shellcode
+              'system':{'command_to_execute': ['none']},  #function of shellcode
               'chmod': {'file_to_perm&&perm_number':
                         ['none']},  # function of shellcode
           },
