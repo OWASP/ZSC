@@ -49,10 +49,24 @@ def start(type, shellcode, job):
         shellcode = shellcode.replace('_z3r0d4y_', '')
 
 	if "system" == job:
+		value = str(type.rsplit('add_')[1][2:])
+        
+        for line in shellcode.rsplit('\n'):
+            if 'push' in line and '$0x' in line and ',' not in line and len(
+                    line) > 14:
+                data = line.rsplit('push')[1].rsplit('$0x')[1]
+                ebx_1 = value
+                ebx_2 = "%x" % (int(data, 16) - int(ebx_1, 16))
+                A = 0
+                if str('-') in str(ebx_2):
+                    ebx_2 = ebx_2.replace('-', '')
+                    command = '\npush $0x%s\npop %%ebx\npush $0x%s\npop %%eax\nneg %%eax\nadd %%ebx,%%eax\npush %%eax\n' % (
+                        str(ebx_1), str(ebx_2))
+                    A = 1
+                if A is 0:
+                    command = '\npush $0x%s\npop %%ebx\npush $0x%s\npop %%eax\nadd %%ebx,%%eax\npush %%eax\n' % (
+                        str(ebx_1), str(ebx_2))
+                shellcode = shellcode.replace(line, command)
 
-
-
-
-
-
+   
 	return shellcode
