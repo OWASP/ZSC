@@ -83,4 +83,10 @@ def encode_process(encode, shellcode, os, func):
         elif encode =='add_yourvalue':
             from lib.encoder.osx_x86.add_yourvalue import start
             return start(encode, shellcode, func)
+        elif encode == 'dec':
+            from lib.encoder.osx_x86.dec import start
+            return start(shellcode, func)
+        elif encode == 'dec_timesyouwant':
+            from lib.encoder.osx_x86.dec_timesyouwant import start
+            return start(encode, shellcode, func)
     return shellcode
