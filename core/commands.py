@@ -109,8 +109,8 @@ commands = {  #commands section
           },
           'osx_x86':  #generate sub command - os name
           {
-              'exec': {'file_to_execute': ['none', 'add_random', 'add_yourvalue', 'dec', 'dec_timesyouwant']},  #function of shellcode
-              'system':{'command_to_execute': ['none', 'add_random', 'add_yourvalue', 'dec', 'dec_timesyouwant']},  #function of shellcode
+              'exec': {'file_to_execute': ['none', 'add_random', 'add_yourvalue', 'dec', 'dec_timesyouwant', 'inc', 'inc_timesyouwant', 'sub_random', 'sub_yourvalue', 'xor_random', 'xor_yourvalue']},  #function of shellcode
+              'system':{'command_to_execute': ['none', 'add_random', 'add_yourvalue', 'dec', 'dec_timesyouwant', 'inc_timesyouwant', 'inc','sub_random', 'sub_yourvalue', 'xor_random', 'xor_yourvalue']},  #function of shellcode
               'chmod': {'file_to_perm&&perm_number':
                         ['none']},  # function of shellcode
           },

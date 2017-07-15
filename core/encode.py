@@ -89,4 +89,22 @@ def encode_process(encode, shellcode, os, func):
         elif encode == 'dec_timesyouwant':
             from lib.encoder.osx_x86.dec_timesyouwant import start
             return start(encode, shellcode, func)
+        elif encode == 'inc':
+            from lib.encoder.osx_x86.inc import start
+            return start(shellcode, func)
+        elif 'inc_timesyouwant' in encode:
+            from lib.encoder.osx_x86.inc_timesyouwant import start
+            return start(encode, shellcode, func)
+        elif encode == 'sub_random':
+            from lib.encoder.osx_x86.sub_random import start
+            return start(shellcode, func)
+        elif 'sub_yourvalue' in encode:
+            from lib.encoder.osx_x86.sub_yourvalue import start
+            return start(encode, shellcode, func)
+        elif encode == 'xor_random':
+            from lib.encoder.osx_x86.xor_random import start
+            return start(shellcode, func)
+        elif 'xor_' in encode:
+            from lib.encoder.osx_x86.xor_yourvalue import start
+            return start(encode, shellcode, func)
     return shellcode
