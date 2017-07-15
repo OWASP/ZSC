@@ -104,7 +104,7 @@ def encode_process(encode, shellcode, os, func):
         elif encode == 'xor_random':
             from lib.encoder.osx_x86.xor_random import start
             return start(shellcode, func)
-        elif 'xor_' in encode:
+        elif 'xor_yourvalue' in encode:
             from lib.encoder.osx_x86.xor_yourvalue import start
             return start(encode, shellcode, func)
     return shellcode
