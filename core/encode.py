@@ -80,4 +80,7 @@ def encode_process(encode, shellcode, os, func):
         if encode == 'add_random':
             from lib.encoder.osx_x86.add_random import start
             return start(shellcode, func)
+        elif encode =='add_yourvalue':
+            from lib.encoder.osx_x86.add_yourvalue import start
+            return start(encode, shellcode, func)
     return shellcode
