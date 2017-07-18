@@ -15,9 +15,6 @@ def encode(f):
         for i in range(50))
     ascii_data = ''.join([str(ord(i))+'*' for i in f])[:-1]
     data = var_name + ' = "' + ascii_data + '"'
-    var_data = ''.join(
-        random.choice(string.ascii_lowercase + string.ascii_uppercase)
-        for i in range(50))
     var_counter = ''.join(
         random.choice(string.ascii_lowercase + string.ascii_uppercase)
         for i in range(50))
@@ -37,10 +34,9 @@ def %s(%s):
    for %s in %s.split('*'):
       %s += chr(int(%s))
    return %s
-%s = %s
 exec(%s(%s))
 ''' % (data, func_name, func_argv, var_str, var_counter, func_argv, var_str, 
-       var_counter, var_str, var_data, var_name, func_name, var_data)
+       var_counter, var_str, func_name, var_name)
     return f
 
 
