@@ -130,7 +130,7 @@ commands = {  #commands section
             ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev',
              'simple_ascii'],  #encode types
             'python':
-            ['simple_hex', 'simple_hex_rev', 'simple_base64_rev', 'simple_ascii'],
+            ['simple_hex', 'simple_hex_rev', 'simple_base64_rev', 'simple_ascii', 'rot13'],
             'php':
             ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii'],
             'perl':
