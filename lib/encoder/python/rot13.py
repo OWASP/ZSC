@@ -19,9 +19,7 @@ def encode(f):
         random.choice(string.ascii_lowercase + string.ascii_uppercase)
         for i in range(50))
     if _version is 2:
-        # rev_data = binascii.b2a_base64(f)[-2::-1]
         rev_data = f.encode("rot13")
-        print(rev_data)
         data = var_name + ' = """' + str(rev_data) + '"""'
     if _version is 3:
         rev_data = codecs.encode(f, "rot-13")
