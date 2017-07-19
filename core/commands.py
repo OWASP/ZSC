@@ -109,9 +109,8 @@ commands = {  #commands section
           },
           'osx_x86':  #generate sub command - os name
           {
-              'exec': {'file_to_execute': ['none']},  #function of shellcode
-              'system':
-              {'command_to_execute': ['none']},  #function of shellcode
+              'exec': {'file_to_execute': ['none', 'add_random', 'add_yourvalue', 'dec', 'dec_timesyouwant', 'inc', 'inc_timesyouwant', 'sub_random', 'sub_yourvalue', 'xor_random', 'xor_yourvalue']},  #function of shellcode
+              'system':{'command_to_execute': ['none', 'add_random', 'add_yourvalue', 'dec', 'dec_timesyouwant', 'inc_timesyouwant', 'inc','sub_random', 'sub_yourvalue', 'xor_random', 'xor_yourvalue']},  #function of shellcode
               'chmod': {'file_to_perm&&perm_number':
                         ['none']},  # function of shellcode
           },
@@ -129,16 +128,16 @@ commands = {  #commands section
         {
             'javascript':  #langauge name
             ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev',
-             'simple_ascii'],  #encode types
+             'simple_ascii', 'rot13'],  #encode types
             'python':
-            ['simple_hex', 'simple_hex_rev', 'simple_base64_rev', 'simple_ascii'],
+            ['simple_hex', 'simple_hex_rev', 'simple_base64_rev', 'simple_ascii', 'rot13'],
             'php':
-            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii', 'rot13'],
             'perl':
             ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev', 
-             'simple_ascii'],
+             'simple_ascii', 'rot13'],
             'ruby':
-            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii'],
+            ['simple_hex', 'base64', 'simple_hex_rev', 'base64_rev', 'simple_ascii', 'rot13'],
         }
     ],
     'back': ['Go back one step', ''],

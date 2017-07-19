@@ -9,6 +9,7 @@ https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com 
 import binascii
 import random
 import string
+import codecs
 from core.compatible import version
 _version = version()
 
@@ -18,11 +19,11 @@ def encode(f):
         random.choice(string.ascii_lowercase + string.ascii_uppercase)
         for i in range(50))
     if _version is 2:
-        rev_data = binascii.b2a_base64(f)[-2::-1]
-        data = var_name + ' = "' + str(rev_data) + '"'
+        rev_data = f.encode("rot13")
+        data = var_name + ' = """' + str(rev_data) + '"""'
     if _version is 3:
-        rev_data = binascii.b2a_base64(f.encode('utf8')).decode('utf8')[-2::-1]
-        data = var_name + ' = "' + str(rev_data) + '"'
+        rev_data = codecs.encode(f, "rot-13")
+        data = var_name + ' = """' + str(rev_data) + '"""'
 
     func_name = ''.join(
         random.choice(string.ascii_lowercase + string.ascii_uppercase)
@@ -33,12 +34,13 @@ def encode(f):
     f = '''
 import binascii
 import sys
+import codecs
 %s
 def %s(%s):
-    if sys.version_info.major is 2:
-        return str(binascii.a2b_base64(%s[::-1]))
+    if sys.version_info.major is 2:        
+        return str(%s.decode("rot13"))
     elif sys.version_info.major is 3:
-        return str(binascii.a2b_base64(%s[::-1]).encode('utf8'))[::-1].decode('utf8')
+        return str(codecs.decode(%s, "rot-13"))
     else:
         sys.exit('Your python version is not supported!')
 exec(%s(%s))
