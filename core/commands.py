@@ -128,7 +128,7 @@ commands = {  #commands section
         {
             'javascript':  #langauge name
             ['simple_hex', 'base64', 'simple_hex_rev', 'simple_base64_rev',
-             'simple_ascii', 'rot13'],  #encode types
+             'simple_ascii', 'rot13', 'jsfuck'],  #encode types
             'python':
             ['simple_hex', 'simple_hex_rev', 'simple_base64_rev', 'simple_ascii', 'rot13'],
             'php':
