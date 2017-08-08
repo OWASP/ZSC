@@ -18,5 +18,7 @@ def op(shellcode, os):
     if os == 'osx_x86':  # for osx_x86 os
         from lib.opcoder.osx_x86 import convert
         return convert(shellcode)
+    if os == 'windows_x86_64':
+        from lib.opcoder.windows_x86_64 import convert
     #add os opcoder here
     return shellcode
