@@ -16,8 +16,8 @@ if version() is 3:
 
 
 def _update(__version__):
-    url = 'http://zsc.z3r0d4y.com/zsc_archive/last_version'
-    up_url = 'http://zsc.z3r0d4y.com/zsc_archive/'
+    url = 'https://raw.githubusercontent.com/zdresearch/ZCR-Shellcoder-Archive/master/last_version'
+    up_url = 'https://raw.githubusercontent.com/zdresearch/ZCR-Shellcoder-Archive/master/'
     err = 0
     try:
         last_version = urlopen(url).read()
