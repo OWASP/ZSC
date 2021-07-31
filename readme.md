@@ -1,7 +1,7 @@
 OWASP ZSC
 =========
 
-<img src="https://camo.githubusercontent.com/25244200c371a611477ad97f0e91d8132a3b24d2/68747470733a2f2f7777772e6f776173702e6f72672f696d616765732f7468756d622f632f63662f5a7363312e706e672f32303070782d5a7363312e706e67" width="200"><img src="https://raw.githubusercontent.com/viraintel/OWASP-Nettacker/master/web/static/img/owasp.png" width="500">
+src="https://raw.githubusercontent.com/viraintel/OWASP-Nettacker/master/web/static/img/owasp.png" width="500">
 
 ***THIS SOFTWARE WAS CREATED TO CHALLENGE ANTIVIRUS TECHNOLOGY, RESEARCH NEW ENCRYPTION METHODS, AND PROTECT SENSITIVE OPEN SOURCE FILES WHICH INCLUDE IMPORTANT DATA. CONTRIBUTORS AND OWASP FOUNDATION WILL NOT BE RESPONSIBLE FOR ANY ILLEGAL USAGE.***
 
@@ -18,6 +18,42 @@ OWASP ZSC is open source software written in python which lets you generate cust
  * API: http://api.z3r0d4y.com
 
 [![asciicast](https://asciinema.org/a/90674.png)](https://asciinema.org/a/90674)
+
+# Usage
+### General
+To install, run ```installer.py``` as sudo. 
+To run after installation, run command ```zsc```.
+``` help ``` See all options that can be used
+```about``` See information about creator, contributors and mailing lists etc
+```exit/quit``` Exit the script
+
+TAB KEY is used for autocomplete and can also be used for autosuggestion.
+
+### Searching and Downloading shellcodes
+To enter into the shellcode section, use the ```shellcode``` command
+To start searching, use the ```search``` command when command path is ```zsc/shellcode>```
+It will prompt for ```keyword_to_search``` and after entering, it gives search results.
+To download shellcode, use the ```download``` command when command path is ```zsc/shellcode>```
+It will prompt for ```shellcode_id``` from the search results and after entering, it will download requested shellcode.
+
+### Generating Custom Shellcode
+Start with entering shellcode section by using the ```shellcode``` command when command path is ```zsc>```
+Use ```generate``` command and custom shellcode generation process will start.
+Select the OS_Architecture combination you want for the custom shellcode
+Select the functionality you want for the custom shellcode
+Enter or select the required data that the selected functionality requires.
+If TAB reveals no options, no extra data/files are required. Press ENTER
+Select your preffered method of encoding the shellcode. If no encoding is desired, enter none.
+Next, shellcode, and assembly code will be printed to terminal and a .c file will be offered that contains the shellcode executor.
+
+### Obfuscation 
+The obfuscate function of ZSC can be used to obfuscate a file into any any of the following languages-```javascript  perl        php         python      ruby```
+To start obfuscation, enter the obfuscate section by using the ```obfuscate``` command when command path is ```zsc>```
+To continue, select a language out of the given list. To see all options, press TAB
+After selecting language, enter file that needs to be obfuscated. 
+Select Encoding. Use TAB to see all options. 
+After file has been encoded successfully, rename the file to extension corresponding to language that was chosen for encoding.
+
 
 #### For more information, read the document files in main directory or visit home page.
 
