@@ -15,7 +15,7 @@ from core.controller import _interface
 def main():
     ''' Main Fucntion '''
     logo()  #zsc logo
-    _interface()
+    _interface() #runs _interface() from controller.py
 
 
 if __name__ == "__main__":
