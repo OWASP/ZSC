@@ -78,12 +78,15 @@ def getcommand(commands):
 
 		inContext = ['clear', 'help', 'about', 'version', 'back']
 		for option in commands:
-			if command == option and command not in inContext:
+			if command == option and command not in inContext: #if command is shellcode, obfuscate, update, restart, exit, quit
 				crawler += 1
 				if crawler is 1:
 					commands = commands[option][1]
 					command_path.append(option)
-				if crawler is 2:
+					if option is 'obfuscate':
+						print('Select language for obfuscation. Press TAB to see all options')
+				if crawler is 2: # crawler becomes 2 when you go into one of the options shellcode> or obfuscate>
+					# for example when you do shellcode, enter, and then search or download
 					if command == 'search':
 						_search_shellcode(False,0)
 						commands = backup_commands
@@ -111,7 +114,11 @@ def getcommand(commands):
 					elif command == 'generate':
 						commands = commands[option]
 						command_path.append(option)
-					else:
+						print('Select Select OS and Architecture. Press TAB to see all options') #you can now select OS and Architecture
+						#crawler becomes 3
+					else:  #this happens in case of obfuscate
+						#the below code executes after user selects language for obfuscation
+						#first it asks for filename
 						while True:
 							f = []
 							import os as OS
@@ -135,28 +142,30 @@ def getcommand(commands):
 						readline.parse_and_bind('tab: complete')
 						t = True
 						while t:
-							encode = _input('encode', 'any', True)
+							encode = _input('encode', 'any', True) #after filename it asks for encoding type
 							for en in commands:
 								if encode == en:
 									t = False
 							if t is True:
 								warn('please enter a valid encode name\n')
-						obf_code(option, encode, filename, content,False)
+						obf_code(option, encode, filename, content,False) # after all parameters entered obf_code from obfuscate.py is called
 						commands = backup_commands
 						completer = autocomplete(commands)
 						readline.set_completer(completer.complete)
 						readline.parse_and_bind('tab: complete')
 						crawler = 0
 						command_path = ['zsc']
-				if crawler is 3:
+				if crawler is 3: # here you select OS and Architecture after shellcode>generate>
 					os = option
 					commands = commands[option]
 					command_path.append(option)
-				if crawler is 4:
+					print('Select Select functionality of code. Press TAB to see all options')
+				if crawler is 4: # here you select functionality after shellcode>generate>OS_Architecture
 					func = option
 					commands = commands[option]
 					command_path.append(option)
-				if crawler is 5:
+					print('Select file to execute and content. Press TAB to see all options')
+				if crawler is 5: # here you select final options including filename, obfuscation type, functionality specific data, etc
 					data = []
 					backup_option = option
 					if option != '':
