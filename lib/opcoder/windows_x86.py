@@ -96,24 +96,24 @@ def convert(shellcode):
 	last = 0
 	for line in new_shellcode:
 		if 'push $0x' in line:
-			if len(line) is 15:
-				if _version is 2:
+			if len(line) == 15:
+				if _version == 2:
 					rep = str('68') + stack.st(str(binascii.a2b_hex(str('0') + str(line.rsplit('$0x')[1]))))
-				if _version is 3:
+				if _version == 3:
 					rep = str('68') + stack.st(str(binascii.a2b_hex(str('0') + line.rsplit('$0x')[1].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
-			if len(line) is 16:
-				if _version is 2:
+			if len(line) == 16:
+				if _version == 2:
 					rep = str('68') + stack.st(str(binascii.a2b_hex(str(line.rsplit('$0x')[1]))))
-				if _version is 3:
+				if _version == 3:
 					rep = str('68') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 
 		if 'mov $0x' in line:
 			if '%ecx' in line.rsplit(',')[1]:
-				if _version is 2:
+				if _version == 2:
 					rep = str('b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
-				if _version is 3:
+				if _version == 3:
 					rep = str('b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 
@@ -139,39 +139,39 @@ def convert(shellcode):
 
 		if 'mov $0x' in line and len(line.rsplit('$0x')[1].rsplit(',')[0]) == 4:
 			if '%cx' in line:
-				if _version is 2:
+				if _version == 2:
 					rep = str('66 b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
-				if _version is 3:
+				if _version == 3:
 					rep = str('66 b9') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 			if '%dx' in line:
-				if _version is 2:
+				if _version == 2:
 					rep = str('66 ba') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
-				if _version is 3:
+				if _version == 3:
 					rep = str('66 ba') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 
 		if 'add' in line:
 			if '$0x' in line:
 				if '%esp' in line.rsplit(',')[1]:
-					if _version is 2:
+					if _version == 2:
 						rep = str('83 c4') + stack.st(str(binascii.a2b_hex(stack.toHex(line.rsplit('$0x')[1].rsplit(',')[0]))))
-					if _version is 3:
+					if _version == 3:
 						rep = str('83 c4') + stack.st(str(binascii.a2b_hex(stack.toHex(line.rsplit('$0x')[1].rsplit(',')[0]).encode('latin-1')).decode('latin-1')))
 					shellcode = shellcode.replace(line,rep)
 
 		if 'cmpl' in line:
 			if '(%eax)' == line.rsplit(',')[1]:
-				if _version is 2:
+				if _version == 2:
 					rep = str('81 38') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
-				if _version is 3:
+				if _version == 3:
 					rep = str('81 38') + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 				shellcode = shellcode.replace(line,rep)
 			if '0x' in line.rsplit(',')[1]:
 				if '%eax' in line:
-					if _version is 2:
+					if _version == 2:
 						rep = str('81 78') + stack.st(str(binascii.a2b_hex(stack.toHex(line.rsplit(',0x')[1].rsplit('(')[0])))) + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0])))
-					if _version is 3:
+					if _version == 3:
 						rep = str('81 78') + stack.st(str(binascii.a2b_hex(stack.toHex(line.rsplit(',0x')[1].rsplit('(')[0]).encode('latin-1')).decode('latin-1'))) + stack.st(str(binascii.a2b_hex(line.rsplit('$0x')[1].rsplit(',')[0].encode('latin-1')).decode('latin-1')))
 					shellcode = shellcode.replace(line,rep)
 
