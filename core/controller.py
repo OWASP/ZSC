@@ -16,6 +16,8 @@ exec (compile(
         str(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/')) +
         '/commands.py', "rb").read(), str(os.path.dirname(os.path.abspath(
             __file__)).replace('\\', '/')) + '/commands.py', 'exec'))
+        #commands.py contains neatly formatted data about all functions/variables/objects 
+
 
 			
 def _interface():
