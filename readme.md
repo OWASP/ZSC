@@ -10,7 +10,7 @@ OWASP ZSC is open source software written in python which lets you generate cust
 
  * OWASP Page: https://www.owasp.org/index.php/OWASP_ZSC_Tool_Project
  * Documents: https://www.gitbook.com/book/ali-razmjoo/owasp-zsc/details
- * Home: http://zsc.z3r0d4y.com/
+ * Home: [https://www.secologist.com/](https://www.secologist.com/)
  * Features: http://zsc.z3r0d4y.com/table.html
  * Github: https://github.com/Ali-Razmjoo/OWASP-ZSC
  * Archive: https://github.com/Ali-Razmjoo/ZCR-Shellcoder-Archive
