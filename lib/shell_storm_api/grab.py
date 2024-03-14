@@ -57,7 +57,7 @@ def _download_shellcode(cli,id,name):
 	else:
 		id = _input('%sshellcode_id%s' %
 				(color.color('blue'), color.color('yellow')), 'int', True)
-	url = 'http://shell-storm.org/shellcode/files/shellcode-%s.php' % (str(id))
+	url = 'http://shell-storm.org/shellcode/files/shellcode-%s.html' % (str(id))
 	try:
 		if version() is 2:
 			data = urlopen(url).read().rsplit('<pre>')[1].rsplit('<body>')[0]
@@ -80,7 +80,7 @@ def _download_shellcode(cli,id,name):
 			downloaded_file_output(name, _html_decode(data))
 			
 def _grab_all():
-	url = 'http://shell-storm.org/shellcode/'
+	url = 'http://shell-storm.org/shellcode/index.html'
 	try:
 		if version() is 2:
 			data = urlopen(url).read().rsplit('\n')
@@ -91,7 +91,7 @@ def _grab_all():
 		return
 	for shellcode in data:
 		if '/shellcode/files/shellcode-' in shellcode:
-			id = shellcode.rsplit('<li><a href="/shellcode/files/shellcode-')[1].rsplit('.php')[0]
+			id = shellcode.rsplit('<li><a href="/shellcode/files/shellcode-')[1].rsplit('.html')[0]
 			title = shellcode.rsplit('">')[1].rsplit('</a>')[0]
 			author = shellcode.rsplit('<i>')[1].rsplit('</i>')[0]
 			info('id: ' + id + ' - ' + title + ' ' + author + '\n')
